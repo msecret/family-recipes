@@ -12,21 +12,21 @@ module.exports = {
     username: POSTGRES_USER,
     password: POSTGRES_PASSWORD,
     database: POSTGRES_DEV_DB,
-    host: 'localhost',
+    host: 'db',
     dialect: 'postgres'
   },
   test: {
     username: POSTGRES_USER,
     password: POSTGRES_PASSWORD,
     database: POSTGRES_TEST_DB,
-    host: 'localhost',
+    host: 'db',
     dialect: 'postgres'
   },
   production: {
     username: POSTGRES_USER,
     password: POSTGRES_PASSWORD,
     database: POSTGRES_PROD_DB,
-    host: 'localhost',
+    host: 'db',
     dialect: 'postgres'
   }
 };

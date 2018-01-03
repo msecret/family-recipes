@@ -4,7 +4,7 @@
   "description": "The family recipes",
   "main": "index.js",
   "scripts": {
-    "build": "exit 0",
+    "build": "npm run migrate",
     "migrate": "sequelize db:migrate",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,7 +19,9 @@
     "graphql-tools": "^2.15.0",
     "pg": "^7.4.0",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.28.6",
+    "sequelize": "^4.28.6"
+  },
+  "devDependencies": {
     "sequelize-cli": "^3.2.0"
   }
 }

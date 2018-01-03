@@ -2,18 +2,13 @@
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
-const config = require('config/config');
 const dbenv = process.env.NODE_ENV.toLowerCase();
-const opts = config[dbenv];
+const config = require(__dirname + '/config/config.js')[dbenv];
 
 const sequelize = new Sequelize(
-  opts.database, opts.username, opts.password, {
-  host: opts.host,
-  dialect: opts.dialect,
-
-  operatorsAliases: {
-    $and: Op.and
-  },
+  config.database, config.username, config.password, {
+  host: config.host,
+  dialect: config.dialect,
 
   pool: {
     max: 5,
@@ -23,6 +18,15 @@ const sequelize = new Sequelize(
   }
 });
 
-modules.export = {
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
+
+module.export = {
   db: sequelize
 }

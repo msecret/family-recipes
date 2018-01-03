@@ -1,0 +1,25 @@
+version: "3"
+services:
+  api:
+    build: ./api
+    image: secret-recipes-api:latest
+    container_name: family-recipes-api
+    env_file: config/.env
+    environment:
+      - NODE_ENV=production
+    ports:
+      - 8088:8088
+
+  db:
+    build: ./db
+    image: secret-recipes-db:latest
+    container_name: family-recipes-db
+    env_file: config/.env
+    volumes:
+      - family-recipes-db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+volumes:
+  family-recipes-db:
+    driver: local

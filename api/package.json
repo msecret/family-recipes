@@ -1,0 +1,12 @@
+{
+  "name": "secret-recipes",
+  "version": "0.1.0",
+  "description": "The family recipes",
+  "main": "index.js",
+  "scripts": {
+    "build": "exit 0",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marco Segreto",
+  "license": "ISC"
+}

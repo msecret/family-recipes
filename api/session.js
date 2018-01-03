@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 const config = require('config/config');
-const dbenv = process.env.ENV.toLowerCase();
+const dbenv = process.env.NODE_ENV.toLowerCase();
 const opts = config[dbenv];
 
 const sequelize = new Sequelize(

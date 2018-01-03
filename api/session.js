@@ -1,18 +1,19 @@
 
 const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
-const {
-  POSTGRES_USER,
-  POSTGRES_PASSWORD,
-  POSTGRES_DEV_DB,
-  POSTGRES_TEST_DB,
-  POSTGRES_PROD_DB
-} = process.env;
+const config = require('config/config');
+const dbenv = process.env.ENV.toLowerCase();
+const opts = config[dbenv];
 
 const sequelize = new Sequelize(
-  POSTGRES_DEV_DB, POSTGRES_USER, POSTGRES_PASSWORD, {
-  host: 'localhost',
-  dialect: 'postgres',
+  opts.database, opts.username, opts.password, {
+  host: opts.host,
+  dialect: opts.dialect,
+
+  operatorsAliases: {
+    $and: Op.and
+  },
 
   pool: {
     max: 5,

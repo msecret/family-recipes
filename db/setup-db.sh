@@ -2,6 +2,7 @@
 
 set -e
 
+echo "In database setup"
 POSTGRES="psql --username ${POSTGRES_USER}"
 DATABASES=($POSTGRES_DEV_DB $POSTGRES_TEST_DB $POSTGRES_PROD_DB)
 

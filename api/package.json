@@ -4,7 +4,9 @@
   "description": "The family recipes",
   "main": "index.js",
   "scripts": {
-    "build": "exit 0",
+    "build": "npm run migrate",
+    "migrate": "sequelize db:migrate",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Marco Segreto",

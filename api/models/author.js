@@ -1,16 +1,26 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Author = sequelize.define('Author', {
+  const Author = sequelize.define('Author', {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    email: DataTypes.STRING,
-    image: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: true
+      }
+    },
+    image: {
+      type: DataTypes.STRING,
+      validate: {
+        isUrl: true,
       }
     }
+  }, {
   });
+
+  Author.associate = function(models) {
+    Author.belongsToMany(models.Recipe, {through: 'RecipeAuthor', as: 'recipes' });
+  }
+
   return Author;
 };

@@ -8,7 +8,7 @@
     "lint": "eslint --ext .js ./",
     "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed:all",
-    "start": "node index.js",
+    "start": "nodemon -L index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Marco Segreto",

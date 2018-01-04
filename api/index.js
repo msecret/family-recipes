@@ -1,3 +1,4 @@
 
-const db = require('./session').db;
+const server = require('./server');
 
+server.start();

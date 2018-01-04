@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Recipe.associate = function(models) {
-    Recipe.hasOne(models.Image { as: 'mainImage' });
+    Recipe.hasOne(models.Image, { as: 'mainImage' });
     Recipe.belongsToMany(models.Author, {through: 'RecipeAuthor', as: 'authors' });
   }
 

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run migrate && npm run seed",
+    "lint": "eslint --ext .js ./",
     "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed:all",
     "start": "node index.js",
@@ -25,6 +26,10 @@
     "sequelize": "^4.28.6"
   },
   "devDependencies": {
+    "eslint": "^4.14.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.4.0",
+    "prettier": "^1.9.2",
     "sequelize-cli": "^3.2.0"
   }
 }

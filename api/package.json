@@ -4,7 +4,7 @@
   "description": "The family recipes",
   "main": "index.js",
   "scripts": {
-    "build": "npm run migrate",
+    "build": "npm run migrate && npm run seed",
     "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed:all",
     "start": "node index.js",

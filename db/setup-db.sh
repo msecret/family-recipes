@@ -11,8 +11,6 @@ psql -U postgres -c "CREATE USER docker;"
 for i in ${DATABASES[@]}; do
   echo "Creating database: ${i}"
   psql -U postgres -tc "SELECT 1 FROM pg_database WHERE datname = '${i}'" | grep -q 1 || psql -U postgres -c "CREATE DATABASE \"${i}\""
-  psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
+  psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER"
     GRANT ALL PRIVILEGES ON \"${i}\" TO docker;
-  EOSQL
 done
-

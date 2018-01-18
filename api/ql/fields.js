@@ -1,7 +1,7 @@
 const db = require('../models');
 
 module.exports = [
-  'author',
+  'cook',
   'recipe'
 ].reduce(
   ({ queries }, model) => ({

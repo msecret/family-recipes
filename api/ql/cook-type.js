@@ -8,13 +8,13 @@ const {
 } = require('graphql');
 
 module.exports = new GraphQLObjectType({
-  name: 'Author',
-  description: 'An author of a family recipe or the book',
+  name: 'Cook',
+  description: 'A cook of a family recipe or the book',
   fields: () => {
     return {
       id: {
         type: new GraphQLNonNull(GraphQLInt),
-        description: 'The id of the author',
+        description: 'The id of the cook',
       },
       firstName: {
         type: GraphQLString,
@@ -24,7 +24,7 @@ module.exports = new GraphQLObjectType({
       },
       email: {
         type: GraphQLString,
-        description: 'The email of the author'
+        description: 'The email of the cook'
       }
     }
   }

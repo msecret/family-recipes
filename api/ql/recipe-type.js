@@ -4,8 +4,13 @@ const {
   GraphQLNonNull,
   GraphQLBoolean,
   GraphQLInt,
+  GraphQLList,
   GraphQLString
 } = require('graphql');
+const { resolver } = require('graphql-sequelize');
+
+const AuthorType = require('./author-type');
+const { Recipe } = require('../models');
 
 module.exports = new GraphQLObjectType({
   name: 'Recipe',
@@ -31,6 +36,11 @@ module.exports = new GraphQLObjectType({
       story: {
         type: GraphQLInt,
         description: 'A story that goes along with the recipe'
+      },
+      authors: {
+        type: new GraphQLList(AuthorType),
+        description: 'The authors of the recipe',
+        resolve: resolver(Recipe.associations.authors)
       }
     }
   }

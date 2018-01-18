@@ -8,23 +8,23 @@ module.exports = {
     {
       createdAt: new Date(),
       updatedAt: new Date(),
-      recipeId: 1,
-      authorId: 0
+      RecipeId: 1,
+      AuthorId: 2
     }, {
       createdAt: new Date(),
       updatedAt: new Date(),
-      recipeId: 0,
-      authorId: 1
+      RecipeId: 2,
+      AuthorId: 1
     }, {
       createdAt: new Date(),
       updatedAt: new Date(),
-      recipeId: 0,
-      authorId: 2
+      RecipeId: 0,
+      AuthorId: 2
     }, {
       createdAt: new Date(),
       updatedAt: new Date(),
-      recipeId: 3,
-      authorId: 3
+      RecipeId: 3,
+      AuthorId: 3
     }]);
   },
 

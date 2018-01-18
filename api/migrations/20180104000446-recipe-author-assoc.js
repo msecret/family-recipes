@@ -13,11 +13,11 @@ module.exports = {
           allowNull: false,
           type: Sequelize.DATE,
         },
-        recipeId: {
+        RecipeId: {
           type: Sequelize.INTEGER,
           primaryKey: true,
         },
-        authorId: {
+        AuthorId: {
           type: Sequelize.INTEGER,
           primaryKey: true,
         },

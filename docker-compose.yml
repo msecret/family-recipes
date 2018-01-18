@@ -6,9 +6,8 @@ services:
       - db
     image: secret-recipes-api:latest
     container_name: family-recipes-api
-    env_file: config/.env
-    environment:
-      - NODE_ENV=development
+    env_file:
+      - config/.env
     ports:
       - 8088:8088
 
@@ -16,7 +15,8 @@ services:
     build: ./db
     image: secret-recipes-db:latest
     container_name: family-recipes-db
-    env_file: config/.env
+    env_file:
+      - config/.env
     volumes:
       - family-recipes-db:/var/lib/postgresql/data
     ports:

@@ -7,7 +7,7 @@
     "build": "npm run migrate && npm run seed",
     "lint": "eslint --ext .js ./",
     "migrate": "sequelize db:migrate",
-    "seed": "sequelize db:seed:all",
+    "seed": "sequelize db:seed:undo:all && sequelize db:seed:all",
     "start": "nodemon -L index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

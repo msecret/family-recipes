@@ -7,14 +7,14 @@ const {
 } = require('graphql');
 const { Op: {iLike} } = require('sequelize');
 const { resolver } = require('graphql-sequelize');
-const authorType = require('./author-type');
+const cookType = require('./cook-type');
 
 module.exports = ({ Author }) => ({
-  author: {
-    type: authorType,
+  cook: {
+    type: cookType,
     args: {
       id: {
-        description: 'ID of author',
+        description: 'ID of cook',
         type: new GraphQLNonNull(GraphQLInt)
       }
     },
@@ -22,15 +22,15 @@ module.exports = ({ Author }) => ({
       after: result => (result.length ? result[0] : result)
     })
   },
-  authors: {
-    type: new GraphQLList(authorType),
+  cooks: {
+    type: new GraphQLList(cookType),
     resolve: resolver(Author)
   },
-  authorSearch: {
-    type: new GraphQLList(authorType),
+  cookSearch: {
+    type: new GraphQLList(cookType),
     args: {
       query: {
-        description: 'Fuzzy-matched name of author',
+        description: 'Fuzzy-matched name of cook',
         type: new GraphQLNonNull(GraphQLString)
       }
     },

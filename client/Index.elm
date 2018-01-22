@@ -2,10 +2,11 @@ module Recipes exposing (..)
 
 import Html exposing (..)
 import Html.Events exposing (onClick)
+import Navigation exposing (..)
 
 
 main =
-    Html.program
+    Navigation.program locFor
         { init = init
         , view = view
         , update = update
@@ -24,15 +25,47 @@ type alias Model =
     }
 
 
-init : ( Model, Cmd Msg )
-init =
-    ( Model Home, Cmd.none )
+init : Location -> ( Model, Cmd Msg )
+init location =
+    let
+        page =
+            case location.hash of
+                "#home" ->
+                    Home
+
+                "#recipes" ->
+                    Recipes
+
+                "#about" ->
+                    About
+
+                _ ->
+                    Home
+    in
+        ( Model Home, Cmd.none )
+
+
+locFor : Location -> Msg
+locFor location =
+    case location.hash of
+        "#home" ->
+            GoHome
+
+        "#recipes" ->
+            GoRecipes
+
+        "#about" ->
+            GoAbout
+
+        _ ->
+            GoHome
 
 
 type Msg
     = GoHome
     | GoRecipes
     | GoAbout
+    | LinkTo String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -47,6 +80,9 @@ update msg model =
         GoAbout ->
             ( { model | currentPage = About }, Cmd.none )
 
+        LinkTo path ->
+            ( model, newUrl path )
+
 
 view : Model -> Html Msg
 view model =
@@ -60,9 +96,9 @@ view model =
 render_menu : Model -> Html Msg
 render_menu model =
     div []
-        [ button [ onClick GoHome ] [ text "Home" ]
-        , button [ onClick GoRecipes ] [ text "Recipes" ]
-        , button [ onClick GoAbout ] [ text "About" ]
+        [ button [ onClick (LinkTo "#home") ] [ text "Home" ]
+        , button [ onClick (LinkTo "#recipes") ] [ text "Recipes" ]
+        , button [ onClick (LinkTo "#about") ] [ text "About" ]
         ]
 
 

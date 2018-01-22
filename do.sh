@@ -20,7 +20,7 @@ error() {
 
 connect() {
   log "Bash for container '$1'"
-  docker exec -it $1 /bin/sh
+  docker exec -it family-recipes-$1 /bin/sh
 }
 
 connect_db() {

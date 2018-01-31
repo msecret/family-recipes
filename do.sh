@@ -31,6 +31,14 @@ connect_db() {
   [ $? != 0 ] && error "Could not connect" && exit 101
 }
 
+rails() {
+  docker exec -it family-recipes-api rails $*
+}
+
+rake() {
+  docker exec -it family-recipes-api rake $*
+}
+
 test() {
   log "Running client tests"
   docker exec -it $CLIENT_IMAGE \

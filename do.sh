@@ -43,6 +43,15 @@ migrate() {
   docker exec -it family-recipes-api rails db:migrate
 }
 
+query() {
+  log "Running graphql query: $*"
+  curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    --data "{ \"query\": \"$*\" }" \
+    http://localhost:4000/graphql
+}
+
 test() {
   log "Running client tests"
   docker exec -it $CLIENT_IMAGE \

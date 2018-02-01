@@ -1,24 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Development
 
-Things you may want to cover:
+### Setup
 
-* Ruby version
+```sh
+docker-compose -f docker-compose-dev.yml build
+./do.sh migrate
+./do.sh seed
+```
 
-* System dependencies
+### Run
 
-* Configuration
+```sh
+docker-compose -f docker-compose-dev.yml up
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Once sucessfully up, there should be a running db, rails/graphql api connected
+to the db, and client running front end elm code in with elm-reactor.

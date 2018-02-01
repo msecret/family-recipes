@@ -39,10 +39,20 @@ rake() {
   docker exec -it family-recipes-api rake $*
 }
 
+migrate() {
+  docker exec -it family-recipes-api rails db:migrate
+}
+
 test() {
   log "Running client tests"
   docker exec -it $CLIENT_IMAGE \
     elm-test
+
+  [ $? != 0 ] && error "Tests failed" && exit 101
+
+  log "Running api tests"
+  docker exec -it $API_IMAGE \
+    bundle exec rspec
 
   [ $? != 0 ] && error "Tests failed" && exit 101
 }

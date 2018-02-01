@@ -12,4 +12,4 @@ RUN apt-get install -y nodejs # check with node: --versionk
 ADD . .
 RUN npm install && \
   npm run build
-CMD npm run host
+CMD nginx -t -c ./server/nginx.conf

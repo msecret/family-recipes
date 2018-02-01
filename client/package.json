@@ -5,6 +5,8 @@
   "author": "Marco Segreto<msegreto@miceover.com>",
   "license": "MIT",
   "scripts": {
-    "start": "elm -v"
+    "start": "elm -v",
+    "build": "npm run build-elm",
+    "build-elm": "elm-make src/Index.elm --output=public/index.js"
   }
 }

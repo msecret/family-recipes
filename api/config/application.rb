@@ -12,5 +12,7 @@ module Api
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.api_only = true
+    config.autoload_paths << Rails.root.join('app', 'graphql')
+    config.autoload_paths << Rails.root.join('app', 'graphql', 'types')
   end
 end

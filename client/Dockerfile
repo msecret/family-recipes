@@ -14,4 +14,4 @@ RUN npm install -g elm
 RUN elm-package install -y
 RUN npm install && \
   npm run build
-CMD nginx -t -c ./server/nginx.conf
+CMD nginx -t -c /usr/www/server/nginx.conf

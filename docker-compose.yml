@@ -27,6 +27,9 @@ services:
 
   client:
     build: ./client
+    command: nginx -c /usr/www/server/nginx.conf
+    depends_on:
+      - api
     image: secret-recipes-client:latest
     container_name: family-recipes-client
     env_file:
@@ -34,7 +37,7 @@ services:
     environment:
       - NODE_ENV=production
     ports:
-      - 8000:8000
+      - 8080:8080
 
 volumes:
   family-recipes-db:

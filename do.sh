@@ -40,7 +40,13 @@ rake() {
 }
 
 migrate() {
+  log "Migrating database"
   docker exec -it family-recipes-api rails db:migrate
+}
+
+seed() {
+  log "Seeding database"
+  docker exec -it family-recipes-api rails db:seed
 }
 
 query() {

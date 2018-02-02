@@ -63,13 +63,13 @@ test() {
   docker exec -it $CLIENT_IMAGE \
     elm-test
 
-  [ $? != 0 ] && error "Tests failed" && exit 101
+  [ $? != 0 ] && error "Client tests failed" && exit 101
 
   log "Running api tests"
   docker exec -it $API_IMAGE \
     bundle exec rspec
 
-  [ $? != 0 ] && error "Tests failed" && exit 101
+  [ $? != 0 ] && error "API tests failed" && exit 101
 }
 
 $*

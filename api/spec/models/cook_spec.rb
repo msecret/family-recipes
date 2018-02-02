@@ -6,5 +6,6 @@ describe Cook do
     it { is_expected.to validate_presence_of(:email) }
     it { should allow_value('marco@marco.com').for(:email) }
     it { should_not allow_value('adsflk').for(:email) }
+    it { should have_one(:image) }
   end
 end

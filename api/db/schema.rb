@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180202003115) do
+ActiveRecord::Schema.define(version: 20180202010726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,9 @@ ActiveRecord::Schema.define(version: 20180202003115) do
     t.text     "alt"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "cook_id"
+    t.index ["cook_id"], name: "index_images_on_cook_id", using: :btree
   end
 
+  add_foreign_key "images", "cooks"
 end

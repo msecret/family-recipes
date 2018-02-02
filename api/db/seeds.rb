@@ -11,7 +11,7 @@ require 'faker'
 Image.destroy_all
 
 15.times do
-  Image.create(
+  Image.create!(
     name: Faker::Food.dish,
     url: Faker::Internet.url('family-recipes.com'),
     text: Faker::Food.measurement,
@@ -21,4 +21,32 @@ Image.destroy_all
   )
 end
 
+10.times do
+  Image.create!(
+    name: Faker::Name,
+    url: Faker::Internet.url('family-recipes.com'),
+    text: Faker::Friends.quote,
+    width_orig: Faker::Number.between(1, 800),
+    height_orig: Faker::Number.between(1, 800),
+    alt: Faker::StarWars.quote
+  )
+end
+
 p "Created #{Image.count} images"
+
+
+Cook.destroy_all
+
+images = Image.last(10).reverse
+10.times do |i|
+  Cook.create(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.email,
+    date_of_birth: Faker::Date.between(80.years.ago, Date.today),
+    location: Faker::Address.city,
+    image: images[i]
+  )
+end
+
+p "Created #{Cook.count} cooks"

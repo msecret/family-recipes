@@ -23,7 +23,7 @@ end
 
 10.times do
   Image.create!(
-    name: Faker::Name,
+    name: Faker::Name.first_name,
     url: Faker::Internet.url('family-recipes.com'),
     text: Faker::Friends.quote,
     width_orig: Faker::Number.between(1, 800),

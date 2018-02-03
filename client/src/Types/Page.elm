@@ -1,4 +1,4 @@
-module Main exposing (..)
+module Types.Page exposing (..)
 
 
 type Page

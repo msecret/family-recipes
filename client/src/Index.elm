@@ -3,6 +3,7 @@ module Recipes exposing (..)
 import Html exposing (..)
 import Html.Events exposing (onClick)
 import Navigation exposing (..)
+import View.Footer as Footer
 
 
 main =
@@ -79,9 +80,12 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div []
-        [ h1 [] [ text "SPA application" ]
-        , render_menu model
-        , render_page model
+        [ div []
+            [ h1 [] [ text "SPA application" ]
+            , render_menu model
+            , render_page model
+            ]
+        , Footer.view
         ]
 
 

@@ -36,4 +36,22 @@ Types::QueryType = GraphQL::ObjectType.define do
       Cook.all
     }
   end
+
+  field :category, Types::CategoryType do
+    description 'Retreive a category by name'
+
+    argument :name, !types.String, 'The name (not display) of the category'
+
+    resolve -> (obj, args, ctx) {
+      Category.where(name: args['name']).take
+    }
+  end
+
+  field :categories, types[Types::CategoryType] do
+    description "Retrieve all categories"
+
+    resolve -> (obj, args, ctx) {
+      Category.order(order: :asc)
+    }
+  end
 end

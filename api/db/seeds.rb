@@ -50,3 +50,37 @@ images = Image.last(10).reverse
 end
 
 p "Created #{Cook.count} cooks"
+
+Category.destroy_all
+
+Category.create(
+  name: 'antipasti',
+  display_name: 'Antipasti',
+  order: 1
+)
+
+Category.create(
+  name: 'primi',
+  display_name: 'Primi',
+  order: 2
+)
+
+Category.create(
+  name: 'secondi',
+  display_name: 'Secondi',
+  order: 3
+)
+
+Category.create(
+  name: 'contorni',
+  display_name: 'Contorni',
+  order: 4
+)
+
+Category.create(
+  name: 'dolci',
+  display_name: 'Dolci',
+  order: 5
+)
+
+p "Created #{Category.count} categories"

@@ -6,13 +6,12 @@ import UrlParser exposing (..)
 import Types.Categories exposing (CategoryName)
 
 
+type alias CookId =
+    Int
 
-type alias CookId
-    = Int
 
-
-type alias RecipeId
-    = Int
+type alias RecipeId =
+    Int
 
 
 type Route
@@ -39,7 +38,7 @@ parseLocation : Location -> Route
 parseLocation location =
     case (parseHash matcher location) of
         Just route ->
-          route
+            route
 
         Nothing ->
-          NotFoundRoute
+            NotFoundRoute

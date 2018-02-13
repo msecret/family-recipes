@@ -4,11 +4,13 @@ import Html exposing (..)
 import Html.Events exposing (onClick)
 import Navigation exposing (..)
 import Route exposing (..)
+import Msgs exposing (Msg)
+import View.Header as Header
 import View.Footer as Footer
 
 
 main =
-    Navigation.program OnLocationChange
+    Navigation.program Msgs.OnLocationChange
         { init = init
         , view = view
         , update = update
@@ -36,19 +38,18 @@ init location =
         ( initialModel currentRoute, Cmd.none )
 
 
-type Msg
-    = OnLocationChange Location
-
-
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        OnLocationChange location ->
+        Msgs.OnLocationChange location ->
             let
                 newRoute =
                     parseLocation location
             in
                 ( { model | route = newRoute }, Cmd.none )
+
+        Msgs.LinkTo newRoute ->
+            ( { model | route = newRoute }, Cmd.none )
 
 
 view : Model -> Html Msg
@@ -56,6 +57,7 @@ view model =
     div []
         [ div []
             [ h1 [] [ text "Family recipes" ]
+            , Header.view
             , renderWrap model
             ]
         , Footer.view

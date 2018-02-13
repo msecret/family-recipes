@@ -3,85 +3,89 @@ module Recipes exposing (..)
 import Html exposing (..)
 import Html.Events exposing (onClick)
 import Navigation exposing (..)
-import Route
+import Route exposing (..)
 import View.Footer as Footer
 
 
 main =
-    Navigation.program Route.urlParser
+    Navigation.program OnLocationChange
         { init = init
         , view = view
         , update = update
-        , urlUpdate = Route.urlUpdate
         , subscriptions = subscriptions
         }
 
 
-
 type alias Model =
-    { currentPage : Route.Route
+    { route : Route
     }
 
-initialModel : Route.Route ->  Model
+
+initialModel : Route -> Model
 initialModel route =
-  { route = route }
+    { route = route
+    }
 
 
-init : Route.Route -> ( Model, Cmd Msg )
-init route =
-  ( initialModel route, Cmd.none)
+init : Location -> ( Model, Cmd Msg )
+init location =
+    let
+        currentRoute =
+            parseLocation location
+    in
+        ( initialModel currentRoute, Cmd.none )
+
 
 type Msg
-    = GoTo Route.Route
-    | LinkTo String
+    = OnLocationChange Location
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        GoTo page ->
-            ( { model | currentPage = page }, Cmd.none )
-
-        LinkTo path ->
-            ( model, newUrl path )
+        OnLocationChange location ->
+            let
+                newRoute =
+                    parseLocation location
+            in
+                ( { model | route = newRoute }, Cmd.none )
 
 
 view : Model -> Html Msg
 view model =
     div []
         [ div []
-            [ h1 [] [ text "SPA application" ]
-            , render_menu model
-            , render_page model
+            [ h1 [] [ text "Family recipes" ]
+            , renderWrap model
             ]
         , Footer.view
         ]
 
 
-render_menu : Model -> Html Msg
-render_menu model =
-    div []
-        [ button [ onClick (LinkTo "#home") ] [ text "Home" ]
-        , button [ onClick (LinkTo "#recipes") ] [ text "Recipes" ]
-        , button [ onClick (LinkTo "#about") ] [ text "About" ]
-        ]
-
-
-render_page : Model -> Html Msg
-render_page model =
+renderWrap : Model -> Html Msg
+renderWrap model =
     let
-        page_content =
-            case model.currentPage of
-                Home ->
+        pageContent =
+            case model.route of
+                HomeRoute ->
                     text "Home"
 
-                Recipes ->
+                CookRoute id ->
+                    text "Cook"
+
+                RecipesRoute categoryName ->
                     text "Recipes"
 
-                About ->
+                RecipeRoute id ->
+                    text "Recipe"
+
+                AboutRoute ->
                     text "About"
+
+                NotFoundRoute ->
+                    text "Not found"
     in
-        div [] [ page_content ]
+        div [] [ pageContent ]
 
 
 subscriptions : Model -> Sub Msg

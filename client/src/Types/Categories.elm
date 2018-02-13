@@ -3,7 +3,7 @@ module Types.Categories exposing (..)
 import String exposing (toLower)
 
 
-CategoryName =
+type alias CategoryName =
     String
 
 

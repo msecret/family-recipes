@@ -3,67 +3,36 @@ module Recipes exposing (..)
 import Html exposing (..)
 import Html.Events exposing (onClick)
 import Navigation exposing (..)
+import Route
 import View.Footer as Footer
 
 
 main =
-    Navigation.program locFor
+    Navigation.program Route.urlParser
         { init = init
         , view = view
         , update = update
+        , urlUpdate = Route.urlUpdate
         , subscriptions = subscriptions
         }
 
 
-type Page
-    = Home
-    | Recipes
-    | About
-
 
 type alias Model =
-    { currentPage : Page
+    { currentPage : Route.Route
     }
 
-
-init : Location -> ( Model, Cmd Msg )
-init location =
-    let
-        page =
-            case location.hash of
-                "#home" ->
-                    Home
-
-                "#recipes" ->
-                    Recipes
-
-                "#about" ->
-                    About
-
-                _ ->
-                    Home
-    in
-        ( Model Home, Cmd.none )
+initialModel : Route.Route ->  Model
+initialModel route =
+  { route = route }
 
 
-locFor : Location -> Msg
-locFor location =
-    case location.hash of
-        "#home" ->
-            GoTo Home
-
-        "#recipes" ->
-            GoTo Recipes
-
-        "#about" ->
-            GoTo About
-
-        _ ->
-            GoTo Home
-
+init : Route.Route -> ( Model, Cmd Msg )
+init route =
+  ( initialModel route, Cmd.none)
 
 type Msg
-    = GoTo Page
+    = GoTo Route.Route
     | LinkTo String
 
 

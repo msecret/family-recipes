@@ -3,8 +3,12 @@ module Types.Categories exposing (..)
 import String exposing (toLower)
 
 
+CategoryName =
+    String
+
+
 type alias Category =
-    { name : String
+    { name : CategoryName
     , displayName : String
     }
 

@@ -6,12 +6,46 @@ import UrlParser exposing (..)
 import Types.Categories exposing (CategoryName)
 
 
-type alias CookId =
-    Int
+type RecipeId
+    = RecipeId String
 
 
-type alias RecipeId =
-    Int
+type CookId
+    = CookId String
+
+
+type CategoryName
+    = CategoryName String
+
+
+cookIdToString : CookId -> String
+cookIdToString (CookId id) =
+    id
+
+
+cookIdParser : Parser (CookId -> a) a
+cookIdParser =
+    custom "COOKID" (Ok << CookId)
+
+
+recipeIdToString : RecipeId -> String
+recipeIdToString (RecipeId id) =
+    id
+
+
+recipeIdParser : Parser (RecipeId -> a) a
+recipeIdParser =
+    custom "RECIPEID" (Ok << RecipeId)
+
+
+categoryNameToString : CategoryName -> String
+categoryNameToString (CategoryName name) =
+    name
+
+
+categoryNameParser : Parser (CategoryName -> a) a
+categoryNameParser =
+    custom "CATEGORYNAME" (Ok << CategoryName)
 
 
 type Route
@@ -26,36 +60,51 @@ type Route
 getUrl : Route -> String
 getUrl route =
     let
-        routeStr =
+        pieces =
             case route of
                 HomeRoute ->
-                    ""
-
-                CookRoute id ->
-                    "cook"
-
-                RecipesRoute name ->
-                    "recipes"
-
-                RecipeRoute id ->
-                    "recipe"
+                    []
 
                 AboutRoute ->
-                    "about"
+                    [ "about" ]
+
+                CookRoute id ->
+                    [ "cook", cookIdToString id ]
+
+                RecipesRoute category ->
+                    [ "recipes?name=" ++ categoryNameToString category ]
+
+                RecipeRoute id ->
+                    [ "recipe", recipeIdToString id ]
 
                 NotFoundRoute ->
-                    "404"
+                    [ "404" ]
     in
-        "#" ++ routeStr ++ "/"
+        getUrlStart ++ String.join "/" pieces
+
+
+getUrlStart : String
+getUrlStart =
+    "#"
+
+
+getCookUrl : Int -> String
+getCookUrl id =
+    getUrlStart ++ "cook/" ++ toString id
+
+
+getRecipeUrl : Int -> String
+getRecipeUrl id =
+    getUrlStart ++ "recipe/" ++ toString id
 
 
 matcher : Parser (Route -> a) a
 matcher =
     oneOf
         [ map HomeRoute top
-        , map CookRoute (s "cook" </> int)
-        , map RecipesRoute (s "recipes" </> string)
-        , map RecipeRoute (s "recipe" </> int)
+        , map CookRoute (s "cook" </> cookIdParser)
+        , map RecipesRoute (s "recipes" </> categoryNameParser)
+        , map RecipeRoute (s "recipe" </> recipeIdParser)
         , map AboutRoute (s "about")
         ]
 

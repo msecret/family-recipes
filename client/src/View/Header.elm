@@ -29,7 +29,7 @@ renderMenuLink : Category -> Html msg
 renderMenuLink category =
     let
         link =
-            (getUrl RecipesRoute) ++ category.name
+            (getUrl (RecipesRoute (CategoryName category.name)))
     in
         li []
             [ a [ href link ] [ text category.displayName ]

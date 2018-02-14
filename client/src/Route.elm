@@ -43,9 +43,18 @@ categoryNameToString (CategoryName name) =
     name
 
 
-categoryNameParser : Parser (CategoryName -> a) a
+categoryNameParser : QueryParser (CategoryName -> a) a
 categoryNameParser =
-    custom "CATEGORYNAME" (Ok << CategoryName)
+    customParam "CATEGORYNAME" (Maybe.withDefault (CategoryName "") >> fromQueryValue)
+
+
+fromQueryValue data =
+    case data of
+        "name" ->
+            CategoryName
+
+        _ ->
+            CategoryName
 
 
 type Route
@@ -93,7 +102,7 @@ matcher =
     oneOf
         [ map HomeRoute top
         , map CookRoute (s "cook" </> cookIdParser)
-        , map RecipesRoute (s "recipes" </> categoryNameParser)
+        , map RecipesRoute (s "recipes" <?> categoryNameParser)
         , map RecipeRoute (s "recipe" </> recipeIdParser)
         , map AboutRoute (s "about")
         ]

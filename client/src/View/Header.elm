@@ -15,13 +15,13 @@ view =
     header []
         [ div []
             [ Logo.view
-            , renderMenu
+            , renderMenu categories
             ]
         ]
 
 
-renderMenu : Html Msg
-renderMenu =
+renderMenu : CategoryList -> Html Msg
+renderMenu categories =
     div [] (List.map renderMenuLink categories)
 
 
@@ -29,7 +29,7 @@ renderMenuLink : Category -> Html msg
 renderMenuLink category =
     let
         link =
-            "#recipes/" ++ category.name
+            (getUrl RecipesRoute) ++ category.name
     in
         li []
             [ a [ href link ] [ text category.displayName ]

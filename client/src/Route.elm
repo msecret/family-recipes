@@ -23,6 +23,32 @@ type Route
     | NotFoundRoute
 
 
+getUrl : Route -> String
+getUrl route =
+    let
+        routeStr =
+            case route of
+                HomeRoute ->
+                    ""
+
+                CookRoute id ->
+                    "cook"
+
+                RecipesRoute name ->
+                    "recipes"
+
+                RecipeRoute id ->
+                    "recipe"
+
+                AboutRoute ->
+                    "about"
+
+                NotFoundRoute ->
+                    "404"
+    in
+        "#" ++ routeStr ++ "/"
+
+
 matcher : Parser (Route -> a) a
 matcher =
     oneOf

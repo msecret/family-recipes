@@ -88,16 +88,6 @@ getUrlStart =
     "#"
 
 
-getCookUrl : Int -> String
-getCookUrl id =
-    getUrlStart ++ "cook/" ++ toString id
-
-
-getRecipeUrl : Int -> String
-getRecipeUrl id =
-    getUrlStart ++ "recipe/" ++ toString id
-
-
 matcher : Parser (Route -> a) a
 matcher =
     oneOf

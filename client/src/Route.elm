@@ -45,7 +45,6 @@ fromQueryValue data =
         Just data ->
             categoryFromString data
 
-        --Just (CategoryName (Maybe.withDefault "" (Just data)))
         Nothing ->
             Nothing
 
@@ -74,7 +73,7 @@ getUrl route =
                     [ "cook", cookIdToString id ]
 
                 RecipesRoute category ->
-                    [ "recipes?name=" ++ categoryToString category ]
+                    [ "recipes?category=" ++ categoryToString category ]
 
                 RecipeRoute id ->
                     [ "recipe", recipeIdToString id ]

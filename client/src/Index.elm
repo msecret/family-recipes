@@ -1,8 +1,9 @@
-module Recipes exposing (..)
+module Main exposing (..)
 
 import Html exposing (..)
 import Html.Events exposing (onClick)
 import Navigation exposing (..)
+import Types.Categories exposing (..)
 import Route exposing (..)
 import Msgs exposing (Msg)
 import View.Header as Header
@@ -73,13 +74,16 @@ renderWrap model =
                     text "Home"
 
                 CookRoute id ->
-                    text "Cook"
+                    text ("Cook " ++ cookIdToString id)
 
-                RecipesRoute categoryName ->
-                    text "Recipes"
+                RecipesRoute category ->
+                  let
+                      _ = Debug.log "recipes" category
+                  in
+                    text ("Recipes " ++ (categoryToString category))
 
                 RecipeRoute id ->
-                    text "Recipe"
+                    text ("Recipe " ++ recipeIdToString id)
 
                 AboutRoute ->
                     text "About"

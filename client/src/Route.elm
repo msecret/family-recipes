@@ -25,6 +25,10 @@ cookIdToString (CookId id) =
 
 cookIdParser : Parser (CookId -> a) a
 cookIdParser =
+    let
+        _ =
+            Debug.log "out otpasdf" 1
+    in
     custom "COOKID" (Ok << CookId)
 
 
@@ -49,8 +53,6 @@ categoryNameToString name =
 
 
 
--- QueryPaser String -> (Maybe String -> a) -> QueryParser (a -> b) b
-
 
 optionalCategoryParam : QueryParser (Maybe CategoryName -> b) b
 optionalCategoryParam =
@@ -58,7 +60,7 @@ optionalCategoryParam =
         _ =
             Debug.log "in otpasdf" 1
     in
-        customParam "name" (fromQueryValue)
+        customParam "category" (fromQueryValue)
 
 
 fromQueryValue : Maybe String -> Maybe CategoryName
@@ -68,11 +70,20 @@ fromQueryValue data =
             Debug.log "FFFFFFF" data
     in
         case data of
+            Just data ->
+                case data of
+                  "antipasti" ->
+                    Just (CategoryName (Maybe.withDefault "" (Just data)))
+
+                  "primi" ->
+                    Just (CategoryName (Maybe.withDefault "" (Just data)))
+
+                  _ ->
+                    Nothing
+
             Nothing ->
                 Nothing
 
-            Just data ->
-                Just (CategoryName (Maybe.withDefault "" (Just data)))
 
 
 type Route
@@ -112,11 +123,15 @@ getUrl route =
 
 getUrlStart : String
 getUrlStart =
-    "#"
+    "/"
 
 
 matcher : Parser (Route -> a) a
 matcher =
+    let
+        _ =
+            Debug.log "in matcher" 1
+    in
     oneOf
         [ map HomeRoute top
         , map CookRoute (s "cook" </> cookIdParser)
@@ -128,7 +143,11 @@ matcher =
 
 parseLocation : Location -> Route
 parseLocation location =
-    case (parseHash matcher location) of
+    let
+        _ =
+            Debug.log "in parseLocation" 1
+    in
+    case (parsePath matcher location) of
         Just route ->
             route
 

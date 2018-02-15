@@ -10,10 +10,10 @@ suite : Test
 suite =
     describe "Route test"
         [ describe "getUrlStart"
-            [ test "always returns a #" <|
+            [ test "always returns a /" <|
                 \() ->
                     Route.getUrlStart
-                        |> Expect.equal "#"
+                        |> Expect.equal "/"
             ]
         , describe "parseLocation"
             [ test "It should return home for root" <|
@@ -34,9 +34,9 @@ suite =
                         |> Expect.equal (Route.RecipeRoute (Route.RecipeId "3"))
             , test "It should return recipes route when recipe with category" <|
                 \() ->
-                    Route.parseLocation (recipesLocation "pasta")
+                    Route.parseLocation (recipesLocation "primi")
                         |> Expect.equal
-                            (Route.RecipesRoute (Just (Route.CategoryName "pasta")))
+                            (Route.RecipesRoute (Just (Route.CategoryName "primi")))
             ]
         , describe "getUrl"
             [ test "should return blank for the home route" <|
@@ -105,24 +105,24 @@ mockLocation =
 
 rootLocation : Navigation.Location
 rootLocation =
-    { mockLocation | hash = "#" }
+    { mockLocation | pathname = "/" }
 
 
 aboutLocation : Navigation.Location
 aboutLocation =
-    { mockLocation | hash = "#about" }
+    { mockLocation | pathname = "/about" }
 
 
 cookLocation : String -> Navigation.Location
 cookLocation id =
-    { mockLocation | hash = "#cook/" ++ id }
+    { mockLocation | pathname = "/cook/" ++ id }
 
 
 recipeLocation : String -> Navigation.Location
 recipeLocation id =
-    { mockLocation | hash = "#recipe/" ++ id }
+    { mockLocation | pathname= "/recipe/" ++ id }
 
 
 recipesLocation : String -> Navigation.Location
 recipesLocation name =
-    { mockLocation | hash = "recipes?name=" ++ name }
+    { mockLocation | pathname = "/recipes", search = "?category=" ++ name }

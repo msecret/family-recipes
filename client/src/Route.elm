@@ -38,29 +38,33 @@ recipeIdParser =
     custom "RECIPEID" (Ok << RecipeId)
 
 
-categoryNameToString : CategoryName -> String
-categoryNameToString (CategoryName name) =
-    name
+categoryNameToString : Maybe CategoryName -> String
+categoryNameToString name =
+    case name of
+      Nothing ->
+        ""
+      Just (CategoryName name) ->
+        name
 
+-- QueryPaser String -> (Maybe String -> a) -> QueryParser (a -> b) b
+optionalCategoryParam : QueryParser (Maybe CategoryName -> b) b
+optionalCategoryParam =
+    customParam "name" (fromQueryValue)
 
-categoryNameParser : QueryParser (CategoryName -> a) a
-categoryNameParser =
-    customParam "CATEGORYNAME" (Maybe.withDefault (CategoryName "") >> fromQueryValue)
-
-
+fromQueryValue : Maybe String -> Maybe ( String -> CategoryName)
 fromQueryValue data =
-    case data of
-        "name" ->
-            CategoryName
+  case data of
+    Nothing ->
+      Nothing
 
-        _ ->
-            CategoryName
+    Just "name" ->
+      Just CategoryName
 
 
 type Route
     = HomeRoute
     | CookRoute CookId
-    | RecipesRoute CategoryName
+    | RecipesRoute (Maybe CategoryName)
     | RecipeRoute RecipeId
     | AboutRoute
     | NotFoundRoute
@@ -102,7 +106,7 @@ matcher =
     oneOf
         [ map HomeRoute top
         , map CookRoute (s "cook" </> cookIdParser)
-        , map RecipesRoute (s "recipes" <?> categoryNameParser)
+        , map RecipesRoute (s "recipes" <?> optionalCategoryParam)
         , map RecipeRoute (s "recipe" </> recipeIdParser)
         , map AboutRoute (s "about")
         ]

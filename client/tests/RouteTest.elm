@@ -4,6 +4,7 @@ import Expect
 import Navigation
 import Test exposing (..)
 import Route
+import Types.Categories as Categories
 
 
 suite : Test
@@ -36,7 +37,7 @@ suite =
                 \() ->
                     Route.parseLocation (recipesLocation "primi")
                         |> Expect.equal
-                            (Route.RecipesRoute (Just (Route.CategoryName "primi")))
+                            (Route.RecipesRoute (Just (Categories.Primi)))
             ]
         , describe "getUrl"
             [ test "should return blank for the home route" <|
@@ -52,9 +53,10 @@ suite =
                     let
                         categoryName =
                             "antipasti"
+                        category = Categories.Antipasti
                     in
                         Route.getUrl
-                            (Route.RecipesRoute (Just (Route.CategoryName categoryName)))
+                            (Route.RecipesRoute (Just category))
                             |> Expect.equal
                                 (Route.getUrlStart ++ "recipes?name=" ++ categoryName)
             , test "should return cook route with id after /" <|

@@ -3,7 +3,7 @@ module Route exposing (..)
 import Debug
 import Navigation exposing (Location)
 import UrlParser exposing (..)
-import Types.Categories exposing (CategoryName)
+import Types.Categories exposing (..)
 
 
 type RecipeId
@@ -14,10 +14,6 @@ type CookId
     = CookId String
 
 
-type CategoryName
-    = CategoryName String
-
-
 cookIdToString : CookId -> String
 cookIdToString (CookId id) =
     id
@@ -25,10 +21,6 @@ cookIdToString (CookId id) =
 
 cookIdParser : Parser (CookId -> a) a
 cookIdParser =
-    let
-        _ =
-            Debug.log "out otpasdf" 1
-    in
     custom "COOKID" (Ok << CookId)
 
 
@@ -42,54 +34,26 @@ recipeIdParser =
     custom "RECIPEID" (Ok << RecipeId)
 
 
-categoryNameToString : Maybe CategoryName -> String
-categoryNameToString name =
-    case name of
-        Nothing ->
-            ""
-
-        Just (CategoryName name) ->
-            name
-
-
-
-
-optionalCategoryParam : QueryParser (Maybe CategoryName -> b) b
+optionalCategoryParam : QueryParser (Maybe Category -> b) b
 optionalCategoryParam =
-    let
-        _ =
-            Debug.log "in otpasdf" 1
-    in
-        customParam "category" (fromQueryValue)
+    customParam "category" (fromQueryValue)
 
 
-fromQueryValue : Maybe String -> Maybe CategoryName
+fromQueryValue : Maybe String -> Maybe Category
 fromQueryValue data =
-    let
-        _ =
-            Debug.log "FFFFFFF" data
-    in
-        case data of
-            Just data ->
-                case data of
-                  "antipasti" ->
-                    Just (CategoryName (Maybe.withDefault "" (Just data)))
+    case data of
+        Just data ->
+            categoryFromString data
 
-                  "primi" ->
-                    Just (CategoryName (Maybe.withDefault "" (Just data)))
-
-                  _ ->
-                    Nothing
-
-            Nothing ->
-                Nothing
-
+        --Just (CategoryName (Maybe.withDefault "" (Just data)))
+        Nothing ->
+            Nothing
 
 
 type Route
     = HomeRoute
     | CookRoute CookId
-    | RecipesRoute (Maybe CategoryName)
+    | RecipesRoute (Maybe Category)
     | RecipeRoute RecipeId
     | AboutRoute
     | NotFoundRoute
@@ -110,7 +74,7 @@ getUrl route =
                     [ "cook", cookIdToString id ]
 
                 RecipesRoute category ->
-                    [ "recipes?name=" ++ categoryNameToString category ]
+                    [ "recipes?name=" ++ categoryToString category ]
 
                 RecipeRoute id ->
                     [ "recipe", recipeIdToString id ]
@@ -128,10 +92,6 @@ getUrlStart =
 
 matcher : Parser (Route -> a) a
 matcher =
-    let
-        _ =
-            Debug.log "in matcher" 1
-    in
     oneOf
         [ map HomeRoute top
         , map CookRoute (s "cook" </> cookIdParser)
@@ -143,10 +103,6 @@ matcher =
 
 parseLocation : Location -> Route
 parseLocation location =
-    let
-        _ =
-            Debug.log "in parseLocation" 1
-    in
     case (parsePath matcher location) of
         Just route ->
             route

@@ -5,7 +5,7 @@ import Html.Attributes exposing (href)
 import Html.Events exposing (onClick)
 import Msgs exposing (Msg)
 import Route exposing (..)
-import Types.Categories exposing (categories, CategoryList, Category)
+import Types.Categories exposing (..)
 import Types.Page as Page
 import View.Logo as Logo
 
@@ -29,8 +29,8 @@ renderMenuLink : Category -> Html msg
 renderMenuLink category =
     let
         link =
-            (getUrl (RecipesRoute (Just (CategoryName category.name))))
+            (getUrl (RecipesRoute (Just (category))))
     in
         li []
-            [ a [ href link ] [ text category.displayName ]
+            [ a [ href link ] [ text (categoryToString (Just category)) ]
             ]

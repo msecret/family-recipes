@@ -41,24 +41,38 @@ recipeIdParser =
 categoryNameToString : Maybe CategoryName -> String
 categoryNameToString name =
     case name of
-      Nothing ->
-        ""
-      Just (CategoryName name) ->
-        name
+        Nothing ->
+            ""
+
+        Just (CategoryName name) ->
+            name
+
+
 
 -- QueryPaser String -> (Maybe String -> a) -> QueryParser (a -> b) b
+
+
 optionalCategoryParam : QueryParser (Maybe CategoryName -> b) b
 optionalCategoryParam =
-    customParam "name" (fromQueryValue)
+    let
+        _ =
+            Debug.log "in otpasdf" 1
+    in
+        customParam "name" (fromQueryValue)
 
-fromQueryValue : Maybe String -> Maybe ( String -> CategoryName)
+
+fromQueryValue : Maybe String -> Maybe CategoryName
 fromQueryValue data =
-  case data of
-    Nothing ->
-      Nothing
+    let
+        _ =
+            Debug.log "FFFFFFF" data
+    in
+        case data of
+            Nothing ->
+                Nothing
 
-    Just "name" ->
-      Just CategoryName
+            Just data ->
+                Just (CategoryName (Maybe.withDefault "" (Just data)))
 
 
 type Route

@@ -36,7 +36,7 @@ suite =
                 \() ->
                     Route.parseLocation (recipesLocation "pasta")
                         |> Expect.equal
-                            (Route.RecipesRoute (Route.CategoryName "pasta"))
+                            (Route.RecipesRoute (Just (Route.CategoryName "pasta")))
             ]
         , describe "getUrl"
             [ test "should return blank for the home route" <|
@@ -54,7 +54,7 @@ suite =
                             "antipasti"
                     in
                         Route.getUrl
-                            (Route.RecipesRoute (Route.CategoryName categoryName))
+                            (Route.RecipesRoute (Just (Route.CategoryName categoryName)))
                             |> Expect.equal
                                 (Route.getUrlStart ++ "recipes?name=" ++ categoryName)
             , test "should return cook route with id after /" <|

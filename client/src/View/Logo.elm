@@ -1,8 +1,8 @@
 module View.Logo exposing (view)
 
-import Html exposing (Html, div, h1, text, img)
-import Html.Attributes exposing (src)
-
+import Html
+import Html.Styled exposing (..)
+import Html.Styled.Attributes exposing (src)
 
 view : Html msg
 view =

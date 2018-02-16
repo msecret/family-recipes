@@ -1,19 +1,21 @@
 module Main exposing (..)
 
-import Html exposing (..)
-import Html.Events exposing (onClick)
+import Html
+import Html.Styled exposing (..)
+import Html.Styled.Attributes exposing (css, href, src)
 import Navigation exposing (..)
 import Types.Categories exposing (..)
 import Route exposing (..)
 import Msgs exposing (Msg)
 import View.Header as Header
 import View.Footer as Footer
+import View.Wrap as Wrap
 
 
 main =
     Navigation.program Msgs.OnLocationChange
         { init = init
-        , view = view
+        , view = view >> toUnstyled
         , update = update
         , subscriptions = subscriptions
         }
@@ -55,6 +57,7 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
+    Wrap.view (
     div []
         [ div []
             [ h1 [] [ text "Family recipes" ]
@@ -63,6 +66,7 @@ view model =
             ]
         , Footer.view
         ]
+    )
 
 
 renderWrap : Model -> Html Msg
@@ -92,7 +96,7 @@ renderWrap model =
                 NotFoundRoute ->
                     text "Not found"
     in
-        div [] [ pageContent ]
+        main_ [] [ pageContent ]
 
 
 subscriptions : Model -> Sub Msg

@@ -1,6 +1,7 @@
 module View.Footer exposing (..)
 
-import Html exposing (..)
+import Html
+import Html.Styled exposing (..)
 import View.Logo as Logo
 
 

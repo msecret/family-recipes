@@ -1,8 +1,9 @@
 module View.Header exposing (view, renderMenuLink)
 
-import Html exposing (..)
-import Html.Attributes exposing (href)
-import Html.Events exposing (onClick)
+import Html
+import Html.Styled exposing (..)
+import Html.Styled.Attributes exposing (css, href, src)
+import Html.Styled.Events exposing (onClick)
 import Char exposing (toUpper)
 import String exposing (uncons, cons)
 import Msgs exposing (Msg)

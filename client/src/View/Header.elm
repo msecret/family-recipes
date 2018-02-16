@@ -1,4 +1,4 @@
-module View.Header exposing (..)
+module View.Header exposing (view, renderMenuLink)
 
 import Html exposing (..)
 import Html.Attributes exposing (href)

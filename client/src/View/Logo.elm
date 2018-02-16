@@ -1,11 +1,7 @@
-module View.Logo exposing (..)
+module View.Logo exposing (view)
 
 import Html exposing (Html, div, h1, text, img)
 import Html.Attributes exposing (src)
-
-
-type alias Model =
-    {}
 
 
 view : Html msg

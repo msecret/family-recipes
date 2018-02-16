@@ -36,10 +36,4 @@ suite =
                                 Attr.href "/recipes?category=primi"
                             ]
             ]
-        , describe "capitalCase"
-            [ test "Capitalizes the first letter of a string" <|
-                \() ->
-                    Header.capitalCase "good"
-                        |> Expect.equal "Good"
-            ]
         ]

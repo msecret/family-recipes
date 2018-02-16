@@ -77,10 +77,11 @@ renderWrap model =
                     text ("Cook " ++ cookIdToString id)
 
                 RecipesRoute category ->
-                  let
-                      _ = Debug.log "recipes" category
-                  in
-                    text ("Recipes " ++ (categoryToString category))
+                    let
+                        _ =
+                            Debug.log "recipes" category
+                    in
+                        text ("Recipes " ++ (categoryToString category))
 
                 RecipeRoute id ->
                     text ("Recipe " ++ recipeIdToString id)

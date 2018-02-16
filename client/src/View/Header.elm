@@ -3,6 +3,8 @@ module View.Header exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (href)
 import Html.Events exposing (onClick)
+import Char exposing (toUpper)
+import String exposing (uncons, cons)
 import Msgs exposing (Msg)
 import Route exposing (..)
 import Types.Categories exposing (..)
@@ -22,7 +24,7 @@ view =
 
 renderMenu : CategoryList -> Html Msg
 renderMenu categories =
-    div [] (List.map renderMenuLink categories)
+    ul [] (List.map renderMenuLink categories)
 
 
 renderMenuLink : Category -> Html msg
@@ -32,5 +34,16 @@ renderMenuLink category =
             (getUrl (RecipesRoute (Just (category))))
     in
         li []
-            [ a [ href link ] [ text (categoryToString (Just category)) ]
+            [ a [ href link ]
+                [ text (capitalCase (categoryToString (Just category))) ]
             ]
+
+
+capitalCase : String -> String
+capitalCase str =
+    case (uncons str) of
+        Just ( f, rest ) ->
+            cons (toUpper f) rest
+
+        Nothing ->
+            ""

@@ -53,12 +53,14 @@ suite =
                     let
                         categoryName =
                             "antipasti"
-                        category = Categories.Antipasti
+
+                        category =
+                            Categories.Antipasti
                     in
                         Route.getUrl
                             (Route.RecipesRoute (Just category))
                             |> Expect.equal
-                                (Route.getUrlStart ++ "recipes?name=" ++ categoryName)
+                                (Route.getUrlStart ++ "recipes?category=" ++ categoryName)
             , test "should return cook route with id after /" <|
                 \() ->
                     let
@@ -122,7 +124,7 @@ cookLocation id =
 
 recipeLocation : String -> Navigation.Location
 recipeLocation id =
-    { mockLocation | pathname= "/recipe/" ++ id }
+    { mockLocation | pathname = "/recipe/" ++ id }
 
 
 recipesLocation : String -> Navigation.Location

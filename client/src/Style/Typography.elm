@@ -4,27 +4,19 @@ import Css exposing (..)
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css, src)
-
-
--- Move to vars section
-
-
-baseline =
-    16.0
+import Style.Theme exposing (..)
 
 
 toEm val =
-    Css.em (val / baseline)
-
-
-sansFamily =
-    [ (qt "Montserrat"), .value sansSerif ]
+    Css.em (val / baseLine)
 
 
 nav : Style
 nav =
     Css.batch
-        [ fontFamilies sansFamily
+        [ color colors.black
+        , fontFamilies sansFamily
         , fontSize (toEm 15)
+        , fontWeight bolder
         , textDecoration none
         ]

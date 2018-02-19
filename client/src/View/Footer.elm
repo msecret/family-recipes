@@ -14,5 +14,5 @@ type alias Model =
 
 view : Html msg
 view =
-    footer [ css [ backgroundColor colors.secondary ] ]
+    footer [ css [ backgroundColor colors.tertiary ] ]
         [ Logo.view ]

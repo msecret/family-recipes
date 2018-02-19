@@ -71,13 +71,13 @@ gcol : Float -> Style
 gcol amount =
     Css.batch
         [ colStyle
-        , width (calc (pct (amount / columns)) minus (px gutter))
+        , width (calc (pct (amount / columns * 100)) minus (px gutter))
         ]
 
 
 offset : Float -> Style
 offset amount =
-    marginRight (calc (pct (amount / columns)) minus (px gutter))
+    marginRight (calc (pct (amount / columns * 100)) minus (px gutter))
 
 
 

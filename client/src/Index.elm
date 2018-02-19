@@ -60,8 +60,7 @@ view model =
     Wrap.view (
     div []
         [ div []
-            [ h1 [] [ text "Family recipes" ]
-            , Header.view
+            [  Header.view
             , renderWrap model
             ]
         , Footer.view

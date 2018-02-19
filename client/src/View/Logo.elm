@@ -1,12 +1,14 @@
 module View.Logo exposing (view)
 
+import Css exposing (..)
 import Html
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (src)
+import Html.Styled.Attributes exposing (css, src)
+import View.Grid exposing (..)
 
 view : Html msg
 view =
-    div []
-        [ h1 [] [ text "Garibaldi Cirelli Family Cookbook" ]
-        , img [ src "public/img/logo.png" ] []
-        ]
+    div [ ]
+      [
+        img [ src "img/logo.png" ] []
+      ]

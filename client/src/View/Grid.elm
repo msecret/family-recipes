@@ -27,14 +27,6 @@ gutter =
     10
 
 
-{-| Set maximum grid width. If more space is available, the grid stays centered with
-padding on either side. Width must be a valid CSS dimension.
--}
-maxWidth : String -> Style
-maxWidth w =
-    property "max-width" w
-
-
 gridStyle : Style
 gridStyle =
     Css.batch
@@ -42,8 +34,10 @@ gridStyle =
         , displayFlex
         , flexFlow2 row wrap
         , margin4 (px 0) auto (px 0) auto
+        , maxWidth (px 1015)
         , padding (px 0)
         , position relative
+        , width (pct 100)
         , alignItems stretch
         , after
             [ boxSizing borderBox

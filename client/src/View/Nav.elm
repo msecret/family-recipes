@@ -1,4 +1,4 @@
-module View.Header exposing (view, renderMenuLink)
+module View.Nav exposing (renderLinks)
 
 import Css exposing (..)
 import Html
@@ -15,32 +15,12 @@ import View.Logo as Logo
 import Style.Typography as Typography
 
 
-view : Html Msg
-view =
-    header [ css [ grid ] ]
-        [ div [ css [ (gcol 2) ] ]
-            [ Logo.view
-            ]
-        , div [ css [ (offset 2) ] ] []
-        , div [ css [ (gcol 8) ] ]
-            [ renderMenu categories
-            ]
-        ]
-
-
-
--- TODO move to nav
-
-
-renderMenu : CategoryList -> Html Msg
-renderMenu categories =
+renderLinks : CategoryList -> Style -> Html Msg
+renderLinks categories linkStyle =
     ul
         [ css
-            [ alignItems center
-            , displayFlex
-            , flexFlow2 row wrap
+            [ displayFlex
             , height (pct 100)
-            , justifyContent spaceBetween
             , listStyle none
             , margin (px 0)
             , padding (px 0)
@@ -49,8 +29,8 @@ renderMenu categories =
         (List.map renderMenuLink categories)
 
 
-renderMenuLink : Category -> Html msg
-renderMenuLink category =
+renderMenuLink : Category -> Style -> Html msg
+renderMenuLink category linkStyle =
     let
         link =
             (getUrl (RecipesRoute (Just (category))))
@@ -60,7 +40,7 @@ renderMenuLink category =
                 [ display inlineBlock
                 ]
             ]
-            [ a [ href link, css [ Typography.nav ] ]
+            [ a [ href link, css [ linkStyle ] ]
                 [ text (capitalCase (categoryToString (Just category))) ]
             ]
 

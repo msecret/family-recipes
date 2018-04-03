@@ -57,15 +57,11 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    Wrap.view (
     div []
-        [ div []
-            [  Header.view
-            , renderWrap model
-            ]
+        [ Header.view
+        , Wrap.view (renderWrap model)
         , Footer.view
         ]
-    )
 
 
 renderWrap : Model -> Html Msg

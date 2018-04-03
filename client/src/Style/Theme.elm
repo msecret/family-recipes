@@ -20,6 +20,7 @@ colors :
     , secondary : Color
     , tertiary : Color
     , highlight : Color
+    , white : Color
     }
 colors =
     { primary = hex "CC4021"
@@ -27,4 +28,5 @@ colors =
     , tertiary = hex "2A8C87"
     , highlight = hex "D4B200"
     , black = hex "292929"
+    , white = hex "ffffff"
     }

@@ -3,4 +3,5 @@ class Image < ApplicationRecord
   validates :url, presence: true, length: { minimum: 3 }
 
   belongs_to :cook, optional: true
+  belongs_to :recipe, optional: true
 end

@@ -3,4 +3,5 @@ class Cook < ApplicationRecord
   validates :email, presence: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
 
   has_one :image
+  has_and_belongs_to_many :recipes
 end

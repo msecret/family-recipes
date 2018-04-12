@@ -54,4 +54,22 @@ Types::QueryType = GraphQL::ObjectType.define do
       Category.order(order: :asc)
     }
   end
+
+  field :recipe, Types::RecipeType do
+    description 'Retreive a recipe by id'
+
+    argument :id, !types.ID, "The ID of the recipe"
+
+    resolve -> (obj, args, ctx) {
+      Recipe.find(args[:id])
+    }
+  end
+
+  field :recipes, types[Types::RecipeType] do
+    description "Retrieve all recipes"
+
+    resolve -> (obj, args, ctx) {
+      Recipe.all
+    }
+  end
 end

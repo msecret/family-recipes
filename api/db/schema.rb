@@ -67,11 +67,11 @@ ActiveRecord::Schema.define(version: 20180406053912) do
     t.index ["image_id"], name: "index_recipes_on_image_id", using: :btree
   end
 
-  create_table "recipes_cooks", id: false, force: :cascade do |t|
-    t.integer "cooks_id"
-    t.integer "recipes_id"
-    t.index ["cooks_id"], name: "index_recipes_cooks_on_cooks_id", using: :btree
-    t.index ["recipes_id"], name: "index_recipes_cooks_on_recipes_id", using: :btree
+  create_table "cooks_recipes", id: false, force: :cascade do |t|
+    t.integer "cook_id"
+    t.integer "recipe_id"
+    t.index ["cook_id"], name: "index_recipes_cooks_on_cook_id", using: :btree
+    t.index ["recipe_id"], name: "index_recipes_cooks_on_recipe_id", using: :btree
   end
 
   add_foreign_key "images", "cooks"

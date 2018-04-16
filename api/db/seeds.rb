@@ -84,3 +84,19 @@ Category.create(
 )
 
 p "Created #{Category.count} categories"
+
+Recipe.destroy_all
+
+10.times do |i|
+  Recipe.create(
+    title: Faker::Name,
+    difficulty: Faker::Number.between(1, 800),
+    story: Faker::Lorem.sentence(1),
+    ingredients: Faker::Food.ingredient,
+    description: Faker::Lorem.sentence(3),
+    category: Category.order('RANDOM()').first,
+    image: Image.order('RANDOM()').first,
+  )
+end
+
+p "Created #{Recipe.count} recipes"

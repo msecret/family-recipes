@@ -10,27 +10,53 @@ require 'faker'
 
 Image.destroy_all
 
-15.times do
-  Image.create!(
-    name: Faker::Food.dish,
-    url: Faker::Internet.url('family-recipes.com'),
-    text: Faker::Food.measurement,
-    width_orig: Faker::Number.between(1, 800),
-    height_orig: Faker::Number.between(1, 800),
-    alt: Faker::Food.ingredient
-  )
-end
+Image.create!(
+  name: 'Anita Ferroggiaro',
+  url: 'anita.jpg',
+  alt: 'Picture of Anita Ferroggiaro',
+  width_orig: 960,
+  height_orig: 960,
+)
 
-10.times do
-  Image.create!(
-    name: Faker::Name.first_name,
-    url: Faker::Internet.url('family-recipes.com'),
-    text: Faker::Friends.quote,
-    width_orig: Faker::Number.between(1, 800),
-    height_orig: Faker::Number.between(1, 800),
-    alt: Faker::StarWars.quote
-  )
-end
+Image.create!(
+  name: 'Paul Ferroggiaro',
+  url: 'paul.jpg',
+  alt: 'Picture of Paul Ferroggiaro',
+  width_orig: 720,
+  height_orig: 720,
+)
+
+Image.create!(
+  name: 'Linda Lacampagne',
+  url: 'linda.jpg',
+  alt: 'Picture of Linda Lacampagne',
+  width_orig: 960,
+  height_orig: 960,
+)
+
+Image.create!(
+  name: 'Nancy Segreto',
+  url: 'nancy.jpg',
+  alt: 'Picture of Nancy Segreto',
+  width_orig: 180,
+  height_orig: 177,
+)
+
+Image.create!(
+  name: 'Joe Segreto',
+  url: 'joe.jpg',
+  alt: 'Picture of Joe Segreto',
+  width_orig: 316,
+  height_orig: 316,
+)
+
+Image.create!(
+  name: 'Ali Segreto',
+  url: 'ali.jpg',
+  alt: 'Picture of Ali Segreto',
+  width_orig: 334,
+  height_orig: 508,
+)
 
 p "Created #{Image.count} images"
 

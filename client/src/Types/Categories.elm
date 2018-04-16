@@ -12,6 +12,15 @@ type Category
     | Dolci
 
 
+type alias CategoryModel =
+    { id : Number
+    , name : String
+    , displayName : String
+    , order : Number
+    , iconName : String
+    }
+
+
 categoryToString : Maybe Category -> String
 categoryToString category =
     case category of

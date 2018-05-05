@@ -7,7 +7,7 @@ import Types.Image exposing (..)
 
 
 type alias Cook =
-    { id : Number
+    { id : Int
     , email : String
     , location : String
     , image : Image
@@ -15,8 +15,8 @@ type alias Cook =
     , lastName : String
     , fullName : String
     , dateOfBirth : String
-    , updatedAt : Number
-    , createdAt : Number
+    , updatedAt : Int
+    , createdAt : Int
     }
 
 
@@ -25,6 +25,11 @@ cookQuery =
     let
         cookIdVar =
             Var.required "cookId" .cookId Var.id
+
+        image =
+            object Image
+                |> with (field "url" [] string)
+                |> with (field "alt" [] string)
 
         cook =
             object Cook

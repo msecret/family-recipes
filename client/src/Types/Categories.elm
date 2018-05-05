@@ -13,10 +13,10 @@ type Category
 
 
 type alias CategoryModel =
-    { id : Number
+    { id : Int
     , name : String
     , displayName : String
-    , order : Number
+    , order : Int
     , iconName : String
     }
 

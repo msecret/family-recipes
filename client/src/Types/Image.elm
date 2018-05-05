@@ -2,14 +2,14 @@ module Types.Image exposing (..)
 
 
 type alias Image =
-    { id : Number
+    { id : Int
     , name : String
     , url : String
-    , widthOrig : Number
-    , heightOrig : Number
-    , width : Number
-    , height : Number
+    , widthOrig : Float
+    , heightOrig : Float
+    , width : Float
+    , height : Float
     , alt : String
-    , updatedAt : Number
-    , createdAt : Number
+    , updatedAt : Float
+    , createdAt : Float
     }

@@ -6,11 +6,11 @@ import Types.Categories exposing (CategoryModel)
 
 
 type alias Recipe =
-    { id : Number
+    { id : Int
     , title : String
     , description : String
     , memorandums : String
-    , difficulty : Number
+    , difficulty : Int
     , story : String
     , ingredients : String
     , image : Image

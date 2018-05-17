@@ -1,4 +1,4 @@
-module Types.Caok exposing (..)
+module Types.Cook exposing (..)
 
 import GraphQL.Request.Builder exposing (..)
 import GraphQL.Request.Builder.Arg as Arg
@@ -26,18 +26,18 @@ cookQuery =
         cookIdVar =
             Var.required "cookId" .cookId Var.id
 
-        image =
-            object Image
-                |> with (field "url" [] string)
-                |> with (field "alt" [] string)
-
         cook =
             object Cook
+                |> with (field "id" [] int)
                 |> with (field "email" [] string)
                 |> with (field "location" [] string)
+                |> with (field "image" [] imageQuery)
                 |> with (field "firstName" [] string)
                 |> with (field "lastName" [] string)
                 |> with (field "fullName" [] string)
+                |> with (field "dateOfBirth" [] string)
+                |> with (field "updatedAt" [] int)
+                |> with (field "createdAt" [] int)
 
         queryRoot =
             extract
@@ -47,3 +47,9 @@ cookQuery =
                 )
     in
         queryDocument queryRoot
+
+
+cookQueryRequest : Request Query Cook
+cookQueryRequest =
+    cookQuery
+        |> request { cookId = "123" }

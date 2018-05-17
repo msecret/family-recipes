@@ -1,15 +1,19 @@
 module Main exposing (..)
 
+import GraphQL.Request.Builder exposing (..)
+import GraphQL.Client.Http as GraphQLClient
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css, href, src)
 import Navigation exposing (..)
 import Types.Categories exposing (..)
+import Types.Cook exposing (Cook, cookQueryRequest)
 import Route exposing (..)
 import Msgs exposing (Msg)
 import View.Header as Header
 import View.Footer as Footer
 import View.Wrap as Wrap
+import Task exposing (Task)
 
 
 main =
@@ -26,6 +30,17 @@ type alias Model =
     }
 
 
+sendQueryRequest : Request Query a -> Task GraphQLClient.Error a
+sendQueryRequest request =
+    GraphQLClient.sendQuery "http://localhost:4000/graphql" request
+
+
+sendCookQuery : Cmd Msg
+sendCookQuery =
+    sendQueryRequest cookQueryRequest
+        |> Task.attempt Msgs.ReceiveQueryResponse
+
+
 initialModel : Route -> Model
 initialModel route =
     { route = route
@@ -38,7 +53,7 @@ init location =
         currentRoute =
             parseLocation location
     in
-        ( initialModel currentRoute, Cmd.none )
+        ( initialModel currentRoute, sendCookQuery )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -49,10 +64,13 @@ update msg model =
                 newRoute =
                     parseLocation location
             in
-                ( { model | route = newRoute }, Cmd.none )
+                ( { model | route = newRoute }, sendCookQuery )
 
         Msgs.LinkTo newRoute ->
             ( { model | route = newRoute }, Cmd.none )
+
+        Msgs.ReceiveQueryResponse res ->
+            ( model, Cmd.none )
 
 
 view : Model -> Html Msg

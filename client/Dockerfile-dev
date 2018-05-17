@@ -20,5 +20,4 @@ RUN cd /tmp && \
  ln -s /tmp/node_modules && \
  ln -s /tmp/elm-stuff
 COPY . .
-RUN cd src
-ENTRYPOINT ["elm-live", "--port=8000", "--host=0.0.0.0", "--pushstate"]
+ENTRYPOINT ["elm-live", "./src/Index.elm", "--port=8000", "--host=0.0.0.0", "--pushstate"]

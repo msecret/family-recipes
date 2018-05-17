@@ -33,7 +33,7 @@ view =
                 ]
             , div [ css [ (gcol 2), (offset 1) ] ]
                 [ h4 [ css [ Typography.h4, Typography.offColor ] ]
-                    [ text "About the site"
+                    [ text "About the poop"
                     ]
                 , a [ href (getUrl AboutRoute), css [ Typography.footerNav ] ]
                     [ text "The Story" ]

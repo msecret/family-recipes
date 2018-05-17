@@ -1,5 +1,7 @@
 module Types.Image exposing (..)
 
+import GraphQL.Request.Builder exposing (..)
+
 
 type alias Image =
     { id : Int
@@ -10,6 +12,20 @@ type alias Image =
     , width : Float
     , height : Float
     , alt : String
-    , updatedAt : Float
-    , createdAt : Float
+    , updatedAt : Int
+    , createdAt : Int
     }
+
+
+imageQuery =
+    object Image
+        |> with (field "id" [] int)
+        |> with (field "name" [] string)
+        |> with (field "url" [] string)
+        |> with (field "widthOrig" [] float)
+        |> with (field "heightOrig" [] float)
+        |> with (field "width" [] float)
+        |> with (field "height" [] float)
+        |> with (field "alt" [] string)
+        |> with (field "updatedAt" [] int)
+        |> with (field "createdAt" [] int)

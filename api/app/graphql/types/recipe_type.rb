@@ -12,7 +12,7 @@ Types::RecipeType = GraphQL::ObjectType.define do
 
   field :image, Types::ImageType, 'The main picture of the recipe'
   field :category, Types::CategoryType, 'The category the recipe belongs to'
-  field :cooks, [Types::CategoryType], 'The cooks of the recipe'
+  field :cooks, [Types::CookType], 'The cooks of the recipe'
 
   field :preparationTime do
     type types.Int

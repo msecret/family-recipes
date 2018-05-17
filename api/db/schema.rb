@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20180416200443) do
   create_table "cooks_recipes", id: false, force: :cascade do |t|
     t.integer "cook_id"
     t.integer "recipe_id"
-    t.index ["cook_id"], name: "index_cooks_recipes_on_cook_id", using: :btree
-    t.index ["recipe_id"], name: "index_cooks_recipes_on_recipe_id", using: :btree
+    t.index ["cook_id"], name: "index_recipes_cooks_on_cooks_id", using: :btree
+    t.index ["recipe_id"], name: "index_recipes_cooks_on_recipes_id", using: :btree
   end
 
   create_table "images", force: :cascade do |t|

@@ -52,4 +52,4 @@ cookQuery =
 cookQueryRequest : Request Query Cook
 cookQueryRequest =
     cookQuery
-        |> request { cookId = "123" }
+        |> request { cookId = "1" }

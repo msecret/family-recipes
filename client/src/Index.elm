@@ -142,7 +142,14 @@ renderWrap model =
                         text ("Recipes " ++ (categoryToString category))
 
                 RecipeRoute id ->
-                    text ("Recipe " ++ recipeIdToString id)
+                    let
+                        _ =
+                            Debug.log ("recipe route")
+
+                        _ =
+                            Debug.log (toString model.recipe)
+                    in
+                        text ("Recipe " ++ (toString model.recipe))
 
                 AboutRoute ->
                     text "About"

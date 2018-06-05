@@ -7,6 +7,7 @@ import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css, href, src)
 import Navigation exposing (..)
 import Types.Categories exposing (..)
+import Types.Recipe exposing (Recipe, recipeQueryRequest, RecipeResponse)
 import Types.Cook exposing (Cook, cookQueryRequest)
 import Route exposing (..)
 import Msgs exposing (Msg)
@@ -27,6 +28,7 @@ main =
 
 type alias Model =
     { route : Route
+    , recipe : Maybe RecipeResponse
     }
 
 
@@ -35,15 +37,16 @@ sendQueryRequest request =
     GraphQLClient.sendQuery "http://localhost:4000/graphql" request
 
 
-sendCookQuery : Cmd Msg
-sendCookQuery =
-    sendQueryRequest cookQueryRequest
-        |> Task.attempt Msgs.ReceiveQueryResponse
+sendRecipeQuery : RecipeId -> Cmd Msg
+sendRecipeQuery id =
+    sendQueryRequest (recipeQueryRequest id)
+        |> Task.attempt Msgs.ReceiveRecipeResponse
 
 
 initialModel : Route -> Model
 initialModel route =
     { route = route
+    , recipe = Nothing
     }
 
 
@@ -53,7 +56,24 @@ init location =
         currentRoute =
             parseLocation location
     in
-        ( initialModel currentRoute, sendCookQuery )
+        case currentRoute of
+            HomeRoute ->
+                ( initialModel currentRoute, Cmd.none )
+
+            CookRoute id ->
+                ( initialModel currentRoute, Cmd.none )
+
+            RecipesRoute category ->
+                ( initialModel currentRoute, Cmd.none )
+
+            RecipeRoute id ->
+                ( initialModel currentRoute, sendRecipeQuery id )
+
+            AboutRoute ->
+                ( initialModel currentRoute, Cmd.none )
+
+            NotFoundRoute ->
+                ( initialModel currentRoute, Cmd.none )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -64,13 +84,34 @@ update msg model =
                 newRoute =
                     parseLocation location
             in
-                ( { model | route = newRoute }, sendCookQuery )
+                case newRoute of
+                    HomeRoute ->
+                        ( { model | route = newRoute }, Cmd.none )
+
+                    CookRoute id ->
+                        ( { model | route = newRoute }, Cmd.none )
+
+                    RecipesRoute category ->
+                        ( { model | route = newRoute }, Cmd.none )
+
+                    RecipeRoute id ->
+                        ( { model | route = newRoute }, sendRecipeQuery id )
+
+                    AboutRoute ->
+                        ( { model | route = newRoute }, Cmd.none )
+
+                    NotFoundRoute ->
+                        ( { model | route = newRoute }, Cmd.none )
 
         Msgs.LinkTo newRoute ->
             ( { model | route = newRoute }, Cmd.none )
 
-        Msgs.ReceiveQueryResponse res ->
-            ( model, Cmd.none )
+        Msgs.ReceiveRecipeResponse res ->
+            let
+                log =
+                    Debug.log "fuckfuckfuckfuck"
+            in
+                ( { model | recipe = Just res }, Cmd.none )
 
 
 view : Model -> Html Msg

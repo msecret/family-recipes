@@ -20,6 +20,24 @@ type alias Cook =
     }
 
 
+cooksQl =
+    list cookQl
+
+
+cookQl =
+    object Cook
+        |> with (field "id" [] int)
+        |> with (field "email" [] string)
+        |> with (field "location" [] string)
+        |> with (field "image" [] imageQuery)
+        |> with (field "firstName" [] string)
+        |> with (field "lastName" [] string)
+        |> with (field "fullName" [] string)
+        |> with (field "dateOfBirth" [] string)
+        |> with (field "updatedAt" [] int)
+        |> with (field "createdAt" [] int)
+
+
 cookQuery : Document Query Cook { vars | cookId : String }
 cookQuery =
     let
@@ -27,17 +45,7 @@ cookQuery =
             Var.required "cookId" .cookId Var.id
 
         cook =
-            object Cook
-                |> with (field "id" [] int)
-                |> with (field "email" [] string)
-                |> with (field "location" [] string)
-                |> with (field "image" [] imageQuery)
-                |> with (field "firstName" [] string)
-                |> with (field "lastName" [] string)
-                |> with (field "fullName" [] string)
-                |> with (field "dateOfBirth" [] string)
-                |> with (field "updatedAt" [] int)
-                |> with (field "createdAt" [] int)
+            cookQl
 
         queryRoot =
             extract

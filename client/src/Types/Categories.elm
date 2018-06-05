@@ -1,5 +1,6 @@
 module Types.Categories exposing (..)
 
+import GraphQL.Request.Builder exposing (..)
 import String exposing (toLower)
 
 
@@ -19,6 +20,15 @@ type alias CategoryModel =
     , order : Int
     , iconName : String
     }
+
+
+categoryQuery =
+    object CategoryModel
+        |> with (field "id" [] int)
+        |> with (field "name" [] string)
+        |> with (field "displayName" [] string)
+        |> with (field "order" [] int)
+        |> with (field "iconName" [] string)
 
 
 categoryToString : Maybe Category -> String

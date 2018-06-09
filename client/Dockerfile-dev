@@ -6,6 +6,7 @@ COPY package.json yarn.lock elm-package.json /tmp/
 RUN apt-get -y update
 RUN apt-get -y install apt-utils
 RUN apt-get -y install curl inotify-tools gnupg
+RUN apt-get -y install netbase
 RUN apt-get install -y nginx
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash
 RUN apt-get install -y nodejs # check with node: --versionk

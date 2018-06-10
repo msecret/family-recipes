@@ -14,7 +14,7 @@ type Category
 
 
 type alias CategoryModel =
-    { id : Int
+    { id : String
     , name : String
     , displayName : String
     , order : Int
@@ -24,7 +24,7 @@ type alias CategoryModel =
 
 categoryQuery =
     object CategoryModel
-        |> with (field "id" [] int)
+        |> with (field "id" [] string)
         |> with (field "name" [] string)
         |> with (field "displayName" [] string)
         |> with (field "order" [] int)

@@ -11,7 +11,7 @@ import Types.Categories exposing (CategoryModel, categoryQuery)
 
 
 type alias Recipe =
-    { id : Int
+    { id : String
     , title : String
     , description : String
     , memorandums : String
@@ -36,7 +36,7 @@ recipeQuery =
 
         recipe =
             object Recipe
-                |> with (field "id" [] int)
+                |> with (field "id" [] string)
                 |> with (field "title" [] string)
                 |> with (field "description" [] string)
                 |> with (field "memorandums" [] string)

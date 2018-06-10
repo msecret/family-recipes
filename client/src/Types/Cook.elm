@@ -7,7 +7,7 @@ import Types.Image exposing (..)
 
 
 type alias Cook =
-    { id : Int
+    { id : String
     , email : String
     , location : String
     , image : Image
@@ -26,7 +26,7 @@ cooksQl =
 
 cookQl =
     object Cook
-        |> with (field "id" [] int)
+        |> with (field "id" [] string)
         |> with (field "email" [] string)
         |> with (field "location" [] string)
         |> with (field "image" [] imageQuery)

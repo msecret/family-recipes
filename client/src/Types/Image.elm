@@ -4,7 +4,7 @@ import GraphQL.Request.Builder exposing (..)
 
 
 type alias Image =
-    { id : Int
+    { id : String
     , name : String
     , url : String
     , widthOrig : Float
@@ -19,7 +19,7 @@ type alias Image =
 
 imageQuery =
     object Image
-        |> with (field "id" [] int)
+        |> with (field "id" [] string)
         |> with (field "name" [] string)
         |> with (field "url" [] string)
         |> with (field "widthOrig" [] float)

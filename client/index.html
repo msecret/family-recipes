@@ -19071,22 +19071,22 @@ var _user$project$Main$renderWrap = function (model) {
 						'Cook ',
 						_user$project$Route$cookIdToString(_p0._0)));
 			case 'RecipesRoute':
-				var _p2 = _p0._0;
-				var _p1 = A2(_elm_lang$core$Debug$log, 'recipes', _p2);
 				return _rtfeldman$elm_css$Html_Styled$text(
 					A2(
 						_elm_lang$core$Basics_ops['++'],
 						'Recipes ',
-						_user$project$Types_Categories$categoryToString(_p2)));
+						_user$project$Types_Categories$categoryToString(_p0._0)));
 			case 'RecipeRoute':
-				var _p3 = _elm_lang$core$Debug$log(
-					_elm_lang$core$Basics$toString(model.recipe));
-				var _p4 = _elm_lang$core$Debug$log('recipe route');
-				return _rtfeldman$elm_css$Html_Styled$text(
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						'Recipe ',
-						_elm_lang$core$Basics$toString(model.recipe)));
+				var _p1 = model.recipe;
+				if (_p1.ctor === 'Just') {
+					return _rtfeldman$elm_css$Html_Styled$text(
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'Recipe ',
+							_elm_lang$core$Basics$toString(_p1._0.title)));
+				} else {
+					return _rtfeldman$elm_css$Html_Styled$text('Error');
+				}
 			case 'AboutRoute':
 				return _rtfeldman$elm_css$Html_Styled$text('About');
 			default:
@@ -19136,8 +19136,8 @@ var _user$project$Main$sendRecipeQuery = function (id) {
 };
 var _user$project$Main$init = function (location) {
 	var currentRoute = _user$project$Route$parseLocation(location);
-	var _p5 = currentRoute;
-	switch (_p5.ctor) {
+	var _p2 = currentRoute;
+	switch (_p2.ctor) {
 		case 'HomeRoute':
 			return {
 				ctor: '_Tuple2',
@@ -19160,7 +19160,7 @@ var _user$project$Main$init = function (location) {
 			return {
 				ctor: '_Tuple2',
 				_0: _user$project$Main$initialModel(currentRoute),
-				_1: _user$project$Main$sendRecipeQuery(_p5._0)
+				_1: _user$project$Main$sendRecipeQuery(_p2._0)
 			};
 		case 'AboutRoute':
 			return {
@@ -19178,12 +19178,12 @@ var _user$project$Main$init = function (location) {
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p6 = msg;
-		switch (_p6.ctor) {
+		var _p3 = msg;
+		switch (_p3.ctor) {
 			case 'OnLocationChange':
-				var newRoute = _user$project$Route$parseLocation(_p6._0);
-				var _p7 = newRoute;
-				switch (_p7.ctor) {
+				var newRoute = _user$project$Route$parseLocation(_p3._0);
+				var _p4 = newRoute;
+				switch (_p4.ctor) {
 					case 'HomeRoute':
 						return {
 							ctor: '_Tuple2',
@@ -19214,7 +19214,7 @@ var _user$project$Main$update = F2(
 							_0: _elm_lang$core$Native_Utils.update(
 								model,
 								{route: newRoute}),
-							_1: _user$project$Main$sendRecipeQuery(_p7._0)
+							_1: _user$project$Main$sendRecipeQuery(_p4._0)
 						};
 					case 'AboutRoute':
 						return {
@@ -19238,20 +19238,30 @@ var _user$project$Main$update = F2(
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{route: _p6._0}),
+						{route: _p3._0}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			default:
-				var log = _elm_lang$core$Debug$log('fuckfuckfuckfuck');
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{
-							recipe: _elm_lang$core$Maybe$Just(_p6._0)
-						}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
+				var _p5 = _p3._0;
+				if (_p5.ctor === 'Ok') {
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								recipe: _elm_lang$core$Maybe$Just(_p5._0)
+							}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				} else {
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{recipe: _elm_lang$core$Maybe$Nothing}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				}
 		}
 	});
 var _user$project$Main$main = A2(
@@ -19259,9 +19269,9 @@ var _user$project$Main$main = A2(
 	_user$project$Msgs$OnLocationChange,
 	{
 		init: _user$project$Main$init,
-		view: function (_p8) {
+		view: function (_p6) {
 			return _rtfeldman$elm_css$Html_Styled$toUnstyled(
-				_user$project$Main$view(_p8));
+				_user$project$Main$view(_p6));
 		},
 		update: _user$project$Main$update,
 		subscriptions: _user$project$Main$subscriptions

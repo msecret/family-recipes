@@ -28,7 +28,7 @@ main =
 
 type alias Model =
     { route : Route
-    , recipe : Maybe RecipeResponse
+    , recipe : Maybe Recipe
     }
 
 
@@ -107,11 +107,12 @@ update msg model =
             ( { model | route = newRoute }, Cmd.none )
 
         Msgs.ReceiveRecipeResponse res ->
-            let
-                log =
-                    Debug.log "fuckfuckfuckfuck"
-            in
-                ( { model | recipe = Just res }, Cmd.none )
+            case res of
+              Ok result ->
+                ( { model | recipe = Just result }, Cmd.none )
+
+              Err err ->
+                ( { model | recipe = Nothing }, Cmd.none )
 
 
 view : Model -> Html Msg
@@ -135,21 +136,15 @@ renderWrap model =
                     text ("Cook " ++ cookIdToString id)
 
                 RecipesRoute category ->
-                    let
-                        _ =
-                            Debug.log "recipes" category
-                    in
-                        text ("Recipes " ++ (categoryToString category))
+                    text ("Recipes " ++ (categoryToString category))
 
                 RecipeRoute id ->
-                    let
-                        _ =
-                            Debug.log ("recipe route")
+                      case model.recipe of
+                        Just recipe ->
+                          text ("Recipe " ++ (toString recipe.title))
 
-                        _ =
-                            Debug.log (toString model.recipe)
-                    in
-                        text ("Recipe " ++ (toString model.recipe))
+                        Nothing ->
+                          text "Error"
 
                 AboutRoute ->
                     text "About"

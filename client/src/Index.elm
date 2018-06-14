@@ -11,6 +11,7 @@ import Types.Recipe exposing (Recipe, recipeQueryRequest, RecipeResponse)
 import Types.Cook exposing (Cook, cookQueryRequest)
 import Route exposing (..)
 import Msgs exposing (Msg)
+import View.Recipe as RecipePage
 import View.Header as Header
 import View.Footer as Footer
 import View.Wrap as Wrap
@@ -108,11 +109,15 @@ update msg model =
 
         Msgs.ReceiveRecipeResponse res ->
             case res of
-              Ok result ->
-                ( { model | recipe = Just result }, Cmd.none )
+                Ok result ->
+                    ( { model | recipe = Just result }, Cmd.none )
 
-              Err err ->
-                ( { model | recipe = Nothing }, Cmd.none )
+                Err err ->
+                    let
+                        dd1 =
+                            Debug.log "Recipe response error: " err
+                    in
+                        ( { model | recipe = Nothing }, Cmd.none )
 
 
 view : Model -> Html Msg
@@ -139,12 +144,12 @@ renderWrap model =
                     text ("Recipes " ++ (categoryToString category))
 
                 RecipeRoute id ->
-                      case model.recipe of
+                    case model.recipe of
                         Just recipe ->
-                          text ("Recipe " ++ (toString recipe.title))
+                            RecipePage.view recipe
 
                         Nothing ->
-                          text "Error"
+                            text "Error"
 
                 AboutRoute ->
                     text "About"

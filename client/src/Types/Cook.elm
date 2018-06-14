@@ -61,3 +61,8 @@ cookQueryRequest : Request Query Cook
 cookQueryRequest =
     cookQuery
         |> request { cookId = "1" }
+
+
+cooksToText : List Cook -> List String
+cooksToText cooks =
+    List.map .fullName cooks

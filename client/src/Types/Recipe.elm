@@ -18,7 +18,6 @@ type alias Recipe =
     , memorandums : String
     , difficulty : Int
     , story : String
-    , ingredients : String
     , image : Image
     , category : CategoryModel
     , cooks : List Cook
@@ -44,7 +43,6 @@ recipeQuery =
                 |> with (field "memorandums" [] string)
                 |> with (field "difficulty" [] int)
                 |> with (field "story" [] string)
-                |> with (field "ingredients" [] string)
                 |> with (field "image" [] imageQuery)
                 |> with (field "category" [] categoryQuery)
                 |> with (field "cooks" [] cooksQl)

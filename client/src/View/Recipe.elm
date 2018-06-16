@@ -56,7 +56,8 @@ ingredientList ingredients =
 
 ingredientItem : Ingredient -> Html msg
 ingredientItem ingredient =
-    li [] [ text (toText ingredient) ]
+    li [ css [ Typo.displaySm, marginBottom (toEm 14), fontWeight bolder ] ]
+        [ text (toText ingredient) ]
 
 
 view : Recipe -> Html msg

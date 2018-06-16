@@ -18403,9 +18403,7 @@ var _user$project$Types_Recipe$Recipe = function (a) {
 							return function (h) {
 								return function (i) {
 									return function (j) {
-										return function (k) {
-											return {id: a, title: b, description: c, memorandums: d, difficulty: e, story: f, ingredients: g, image: h, category: i, cooks: j, ingredients: k};
-										};
+										return {id: a, title: b, description: c, memorandums: d, difficulty: e, story: f, image: g, category: h, cooks: i, ingredients: j};
 									};
 								};
 							};
@@ -18449,52 +18447,45 @@ var _user$project$Types_Recipe$recipeQuery = function () {
 						_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 						A3(
 							_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-							'ingredients',
+							'story',
 							{ctor: '[]'},
 							_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
 						A2(
 							_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 							A3(
 								_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-								'story',
+								'difficulty',
 								{ctor: '[]'},
-								_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
+								_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$int),
 							A2(
 								_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 								A3(
 									_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-									'difficulty',
+									'memorandums',
 									{ctor: '[]'},
-									_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$int),
+									_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
 								A2(
 									_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 									A3(
 										_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-										'memorandums',
+										'description',
 										{ctor: '[]'},
 										_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
 									A2(
 										_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 										A3(
 											_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-											'description',
+											'title',
 											{ctor: '[]'},
 											_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
 										A2(
 											_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 											A3(
 												_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-												'title',
+												'id',
 												{ctor: '[]'},
 												_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
-											A2(
-												_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
-												A3(
-													_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-													'id',
-													{ctor: '[]'},
-													_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
-												_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$object(_user$project$Types_Recipe$Recipe))))))))))));
+											_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$object(_user$project$Types_Recipe$Recipe)))))))))));
 	var recipeIdVar = A3(
 		_jamesmacaulay$elm_graphql$GraphQL_Request_Builder_Variable$required,
 		'recipeId',
@@ -19047,7 +19038,25 @@ var _user$project$View_Grid$Top = {ctor: 'Top'};
 var _user$project$View_Recipe$ingredientItem = function (ingredient) {
 	return A2(
 		_rtfeldman$elm_css$Html_Styled$li,
-		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+				{
+					ctor: '::',
+					_0: _user$project$Style_Typography$displaySm,
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$marginBottom(
+							_user$project$Style_Theme$toEm(14)),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$fontWeight(_rtfeldman$elm_css$Css$bolder),
+							_1: {ctor: '[]'}
+						}
+					}
+				}),
+			_1: {ctor: '[]'}
+		},
 		{
 			ctor: '::',
 			_0: _rtfeldman$elm_css$Html_Styled$text(

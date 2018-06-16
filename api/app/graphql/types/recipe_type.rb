@@ -8,7 +8,6 @@ Types::RecipeType = GraphQL::ObjectType.define do
   field :memorandums, types.String, 'Any memoradums for the recipe'
   field :difficulty, types.Int, 'How difficult the recipe is to make'
   field :story, types.String, 'The potential story behind the recipe'
-  field :ingredients, types.String, 'All the ingredients to make the recipe'
 
   field :image, Types::ImageType, 'The main picture of the recipe'
   field :category, Types::CategoryType, 'The category the recipe belongs to'
@@ -18,7 +17,6 @@ Types::RecipeType = GraphQL::ObjectType.define do
     type types[Types::IngredientType]
     description 'All the ingredients to make the recipe'
     resolve -> (obj, args, ctx) {
-      debugger
       obj.ingredient_amounts
     }
   end

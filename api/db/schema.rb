@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180616215856) do
+ActiveRecord::Schema.define(version: 20180616234115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 20180616215856) do
     t.text     "memorandums"
     t.integer  "difficulty"
     t.text     "story"
-    t.text     "ingredients"
     t.string   "description"
     t.string   "main_photo_url"
     t.integer  "image_id"

@@ -14,6 +14,15 @@ Types::RecipeType = GraphQL::ObjectType.define do
   field :category, Types::CategoryType, 'The category the recipe belongs to'
   field :cooks, types[Types::CookType], 'A picture of the cook'
 
+  field :ingredients do
+    type types[Types::IngredientType]
+    description 'All the ingredients to make the recipe'
+    resolve -> (obj, args, ctx) {
+      debugger
+      obj.ingredient_amounts
+    }
+  end
+
   field :preparationTime do
     type types.Int
     description 'Amount of time to prepare the recipe'

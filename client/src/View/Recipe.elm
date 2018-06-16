@@ -12,6 +12,7 @@ import Style.Theme exposing (..)
 import Types.Recipe exposing (Recipe)
 import Types.Cook exposing (cooksToText)
 import Types.Image exposing (Image)
+import Types.Ingredient exposing (Ingredient, toText)
 import View.Grid exposing (..)
 
 
@@ -46,6 +47,16 @@ heroImageContainer image =
             [ img [ css [ U.visuallyHide ], src image.url, alt image.alt ] []
             ]
         ]
+
+
+ingredientList : List Ingredient -> Html msg
+ingredientList ingredients =
+    ul [] (List.map ingredientItem ingredients)
+
+
+ingredientItem : Ingredient -> Html msg
+ingredientItem ingredient =
+    li [] [ text (toText ingredient) ]
 
 
 view : Recipe -> Html msg
@@ -91,7 +102,7 @@ view recipe =
                     [ text "Ingredients"
                     ]
                 , p [ css [ Typo.display ] ]
-                    [ text recipe.ingredients ]
+                    [ ingredientList recipe.ingredients ]
                 ]
             ]
         ]

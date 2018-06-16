@@ -11790,6 +11790,38 @@ var _jamesmacaulay$elm_graphql$GraphQL_Client_Http$sendMutation = function (_p3)
 };
 var _jamesmacaulay$elm_graphql$GraphQL_Client_Http$customSendQuery = _jamesmacaulay$elm_graphql$GraphQL_Client_Http$send;
 var _jamesmacaulay$elm_graphql$GraphQL_Client_Http$customSendMutation = _jamesmacaulay$elm_graphql$GraphQL_Client_Http$send;
+var _lukewestby$elm_string_interpolate$String_Interpolate$applyInterpolation = F2(
+	function (replacements, match) {
+		var ordinalString = function (_p0) {
+			return A2(
+				_elm_lang$core$String$dropLeft,
+				1,
+				A2(_elm_lang$core$String$dropRight, 1, _p0));
+		}(match.match);
+		var ordinal = _elm_lang$core$String$toInt(ordinalString);
+		var _p1 = ordinal;
+		if (_p1.ctor === 'Err') {
+			return '';
+		} else {
+			var _p2 = A2(_elm_lang$core$Array$get, _p1._0, replacements);
+			if (_p2.ctor === 'Nothing') {
+				return '';
+			} else {
+				return _p2._0;
+			}
+		}
+	});
+var _lukewestby$elm_string_interpolate$String_Interpolate$interpolationRegex = _elm_lang$core$Regex$regex('\\{\\d+\\}');
+var _lukewestby$elm_string_interpolate$String_Interpolate$interpolate = F2(
+	function (string, args) {
+		var asArray = _elm_lang$core$Array$fromList(args);
+		return A4(
+			_elm_lang$core$Regex$replace,
+			_elm_lang$core$Regex$All,
+			_lukewestby$elm_string_interpolate$String_Interpolate$interpolationRegex,
+			_lukewestby$elm_string_interpolate$String_Interpolate$applyInterpolation(asArray),
+			string);
+	});
 var _rtfeldman$elm_css_util$Css_Helpers$toCssIdentifier = function (identifier) {
 	return A4(
 		_elm_lang$core$Regex$replace,
@@ -18260,6 +18292,107 @@ var _user$project$Types_Cook$cookQueryRequest = A2(
 	_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$request,
 	{cookId: '1'},
 	_user$project$Types_Cook$cookQuery);
+var _user$project$Types_Ingredient$toText = function (_p0) {
+	var _p1 = _p0;
+	var _p5 = _p1.unit;
+	var _p4 = _p1.name;
+	var _p3 = _p1.amount;
+	var _p2 = _p1.extra;
+	if (_p2.ctor === 'Just') {
+		return A2(
+			_lukewestby$elm_string_interpolate$String_Interpolate$interpolate,
+			'{0} {1} {2} - {3}  ',
+			{
+				ctor: '::',
+				_0: _p3,
+				_1: {
+					ctor: '::',
+					_0: _p5,
+					_1: {
+						ctor: '::',
+						_0: _p4,
+						_1: {
+							ctor: '::',
+							_0: _p2._0,
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			});
+	} else {
+		return A2(
+			_lukewestby$elm_string_interpolate$String_Interpolate$interpolate,
+			'{0} {1} {2} ',
+			{
+				ctor: '::',
+				_0: _p3,
+				_1: {
+					ctor: '::',
+					_0: _p5,
+					_1: {
+						ctor: '::',
+						_0: _p4,
+						_1: {ctor: '[]'}
+					}
+				}
+			});
+	}
+};
+var _user$project$Types_Ingredient$Ingredient = F7(
+	function (a, b, c, d, e, f, g) {
+		return {id: a, amount: b, unit: c, name: d, extra: e, updatedAt: f, createdAt: g};
+	});
+var _user$project$Types_Ingredient$ingredientQl = A2(
+	_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
+	A3(
+		_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
+		'createdAt',
+		{ctor: '[]'},
+		_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$int),
+	A2(
+		_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
+		A3(
+			_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
+			'updatedAt',
+			{ctor: '[]'},
+			_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$int),
+		A2(
+			_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
+			A3(
+				_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
+				'extra',
+				{ctor: '[]'},
+				_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$nullable(_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string)),
+			A2(
+				_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
+				A3(
+					_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
+					'name',
+					{ctor: '[]'},
+					_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
+				A2(
+					_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
+					A3(
+						_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
+						'unit',
+						{ctor: '[]'},
+						_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
+					A2(
+						_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
+						A3(
+							_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
+							'amount',
+							{ctor: '[]'},
+							_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
+						A2(
+							_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
+							A3(
+								_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
+								'id',
+								{ctor: '[]'},
+								_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
+							_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$object(_user$project$Types_Ingredient$Ingredient))))))));
+var _user$project$Types_Ingredient$ingredientsQl = _jamesmacaulay$elm_graphql$GraphQL_Request_Builder$list(_user$project$Types_Ingredient$ingredientQl);
 var _user$project$Types_Recipe$Recipe = function (a) {
 	return function (b) {
 		return function (c) {
@@ -18270,7 +18403,9 @@ var _user$project$Types_Recipe$Recipe = function (a) {
 							return function (h) {
 								return function (i) {
 									return function (j) {
-										return {id: a, title: b, description: c, memorandums: d, difficulty: e, story: f, ingredients: g, image: h, category: i, cooks: j};
+										return function (k) {
+											return {id: a, title: b, description: c, memorandums: d, difficulty: e, story: f, ingredients: g, image: h, category: i, cooks: j, ingredients: k};
+										};
 									};
 								};
 							};
@@ -18286,73 +18421,80 @@ var _user$project$Types_Recipe$recipeQuery = function () {
 		_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 		A3(
 			_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-			'cooks',
+			'ingredients',
 			{ctor: '[]'},
-			_user$project$Types_Cook$cooksQl),
+			_user$project$Types_Ingredient$ingredientsQl),
 		A2(
 			_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 			A3(
 				_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-				'category',
+				'cooks',
 				{ctor: '[]'},
-				_user$project$Types_Categories$categoryQuery),
+				_user$project$Types_Cook$cooksQl),
 			A2(
 				_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 				A3(
 					_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-					'image',
+					'category',
 					{ctor: '[]'},
-					_user$project$Types_Image$imageQuery),
+					_user$project$Types_Categories$categoryQuery),
 				A2(
 					_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 					A3(
 						_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-						'ingredients',
+						'image',
 						{ctor: '[]'},
-						_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
+						_user$project$Types_Image$imageQuery),
 					A2(
 						_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 						A3(
 							_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-							'story',
+							'ingredients',
 							{ctor: '[]'},
 							_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
 						A2(
 							_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 							A3(
 								_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-								'difficulty',
+								'story',
 								{ctor: '[]'},
-								_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$int),
+								_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
 							A2(
 								_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 								A3(
 									_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-									'memorandums',
+									'difficulty',
 									{ctor: '[]'},
-									_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
+									_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$int),
 								A2(
 									_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 									A3(
 										_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-										'description',
+										'memorandums',
 										{ctor: '[]'},
 										_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
 									A2(
 										_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 										A3(
 											_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-											'title',
+											'description',
 											{ctor: '[]'},
 											_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
 										A2(
 											_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 											A3(
 												_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-												'id',
+												'title',
 												{ctor: '[]'},
 												_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
-											_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$object(_user$project$Types_Recipe$Recipe)))))))))));
+											A2(
+												_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
+												A3(
+													_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
+													'id',
+													{ctor: '[]'},
+													_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
+												_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$object(_user$project$Types_Recipe$Recipe))))))))))));
 	var recipeIdVar = A3(
 		_jamesmacaulay$elm_graphql$GraphQL_Request_Builder_Variable$required,
 		'recipeId',
@@ -18902,6 +19044,23 @@ var _user$project$View_Grid$All = {ctor: 'All'};
 var _user$project$View_Grid$Bottom = {ctor: 'Bottom'};
 var _user$project$View_Grid$Middle = {ctor: 'Middle'};
 var _user$project$View_Grid$Top = {ctor: 'Top'};
+var _user$project$View_Recipe$ingredientItem = function (ingredient) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled$li,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Html_Styled$text(
+				_user$project$Types_Ingredient$toText(ingredient)),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$View_Recipe$ingredientList = function (ingredients) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled$ul,
+		{ctor: '[]'},
+		A2(_elm_lang$core$List$map, _user$project$View_Recipe$ingredientItem, ingredients));
+};
 var _user$project$View_Recipe$heroImage = function (imgUrl) {
 	return _rtfeldman$elm_css$Css$batch(
 		{
@@ -19386,7 +19545,7 @@ var _user$project$View_Recipe$view = function (recipe) {
 														},
 														{
 															ctor: '::',
-															_0: _rtfeldman$elm_css$Html_Styled$text(recipe.ingredients),
+															_0: _user$project$View_Recipe$ingredientList(recipe.ingredients),
 															_1: {ctor: '[]'}
 														}),
 													_1: {ctor: '[]'}

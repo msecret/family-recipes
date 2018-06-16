@@ -64,3 +64,66 @@ recipeQueryRequest : RecipeId -> Request Query Recipe
 recipeQueryRequest id =
     recipeQuery
         |> request { recipeId = (recipeIdToString id) }
+
+{"query":"query ($recipeId: ID!) {
+  recipe(id: $recipeId) {
+    id
+    title
+    description
+    memorandums
+    difficulty
+    story
+    ingredients
+    image {
+      id
+      name
+      url
+      widthOrig
+      heightOrig
+      width
+      height
+      alt
+      updatedAt
+      createdAt
+    }
+    category {
+      id
+      name
+      displayName
+      order
+      iconName
+    }
+    cooks {
+      id
+      email
+      location
+      image {
+        id
+        name
+        url
+        widthOrig
+        heightOrig
+        width
+        height
+        alt
+        updatedAt
+        createdAt
+      }
+      firstName
+      lastName
+      fullName
+      dateOfBirth
+      updatedAt
+      createdAt
+    }
+    ingredients {
+      id
+      amount
+      unit
+      name
+      extra
+      updatedAt
+      createdAt
+    }
+  }
+}","variables":{"recipeId":"2"}}

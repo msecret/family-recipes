@@ -18393,77 +18393,371 @@ var _user$project$Msgs$LinkTo = function (a) {
 var _user$project$Msgs$OnLocationChange = function (a) {
 	return {ctor: 'OnLocationChange', _0: a};
 };
-var _user$project$View_Recipe$toLi = function (s) {
-	return A2(
-		_rtfeldman$elm_css$Html_Styled$li,
-		{ctor: '[]'},
-		{
+var _user$project$Style_Sheets$fonts = A3(
+	_rtfeldman$elm_css$Html_Styled$node,
+	'link',
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Html_Styled_Attributes$rel('stylesheet'),
+		_1: {
 			ctor: '::',
-			_0: _rtfeldman$elm_css$Html_Styled$text(s),
-			_1: {ctor: '[]'}
-		});
+			_0: _rtfeldman$elm_css$Html_Styled_Attributes$type_('text/css'),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Html_Styled_Attributes$href('https://fonts.googleapis.com/css?family=Dancing+Script:700|Montserrat:300,700,800|Rufina'),
+				_1: {ctor: '[]'}
+			}
+		}
+	},
+	{ctor: '[]'});
+var _user$project$Style_Sheets$stylesheets = {
+	ctor: '::',
+	_0: _user$project$Style_Sheets$fonts,
+	_1: {ctor: '[]'}
 };
-var _user$project$View_Recipe$toHtmlList = function (strings) {
-	return A2(
-		_rtfeldman$elm_css$Html_Styled$ul,
-		{ctor: '[]'},
-		A2(_elm_lang$core$List$map, _user$project$View_Recipe$toLi, strings));
-};
-var _user$project$View_Recipe$view = function (recipe) {
-	return A2(
-		_rtfeldman$elm_css$Html_Styled$div,
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: A2(
-				_rtfeldman$elm_css$Html_Styled$h1,
+var _user$project$Style_Sheets$view = A2(
+	_rtfeldman$elm_css$Html_Styled$div,
+	{ctor: '[]'},
+	A2(
+		_elm_lang$core$List$map,
+		function (stylesheet) {
+			return A2(
+				_rtfeldman$elm_css$Html_Styled$div,
 				{ctor: '[]'},
 				{
 					ctor: '::',
-					_0: _rtfeldman$elm_css$Html_Styled$text(recipe.title),
+					_0: stylesheet,
 					_1: {ctor: '[]'}
-				}),
+				});
+		},
+		_user$project$Style_Sheets$stylesheets));
+var _user$project$Style_Theme$spacing = {section: 45};
+var _user$project$Style_Theme$colors = {
+	primary: _rtfeldman$elm_css$Css$hex('CC4021'),
+	secondary: _rtfeldman$elm_css$Css$hex('029053'),
+	tertiary: _rtfeldman$elm_css$Css$hex('2A8C87'),
+	highlight: _rtfeldman$elm_css$Css$hex('D4B200'),
+	black: _rtfeldman$elm_css$Css$hex('292929'),
+	white: _rtfeldman$elm_css$Css$hex('ffffff')
+};
+var _user$project$Style_Theme$decorativeFamily = {
+	ctor: '::',
+	_0: _rtfeldman$elm_css$Css$qt('Dancing Script'),
+	_1: {
+		ctor: '::',
+		_0: function (_) {
+			return _.value;
+		}(_rtfeldman$elm_css$Css$sansSerif),
+		_1: {ctor: '[]'}
+	}
+};
+var _user$project$Style_Theme$serifFamily = {
+	ctor: '::',
+	_0: _rtfeldman$elm_css$Css$qt('Rufina'),
+	_1: {
+		ctor: '::',
+		_0: function (_) {
+			return _.value;
+		}(_rtfeldman$elm_css$Css$sansSerif),
+		_1: {ctor: '[]'}
+	}
+};
+var _user$project$Style_Theme$sansFamily = {
+	ctor: '::',
+	_0: _rtfeldman$elm_css$Css$qt('Montserrat'),
+	_1: {
+		ctor: '::',
+		_0: function (_) {
+			return _.value;
+		}(_rtfeldman$elm_css$Css$sansSerif),
+		_1: {ctor: '[]'}
+	}
+};
+var _user$project$Style_Theme$wrapWidth = 1015;
+var _user$project$Style_Theme$baseLine = 16.0;
+var _user$project$Style_Theme$toEm = function (val) {
+	return _rtfeldman$elm_css$Css$em(val / _user$project$Style_Theme$baseLine);
+};
+var _user$project$Style_Layout$fullWidth = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$backgroundColor(_user$project$Style_Theme$colors.tertiary),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$height(
+				_user$project$Style_Theme$toEm(600)),
 			_1: {
 				ctor: '::',
-				_0: A2(
-					_rtfeldman$elm_css$Html_Styled$div,
-					{ctor: '[]'},
-					{
-						ctor: '::',
-						_0: _user$project$View_Recipe$toHtmlList(
-							_user$project$Types_Cook$cooksToText(recipe.cooks)),
-						_1: {ctor: '[]'}
-					}),
+				_0: _rtfeldman$elm_css$Css$left(
+					_rtfeldman$elm_css$Css$pct(50)),
 				_1: {
 					ctor: '::',
-					_0: A2(
-						_rtfeldman$elm_css$Html_Styled$img,
-						{
-							ctor: '::',
-							_0: _rtfeldman$elm_css$Html_Styled_Attributes$src(recipe.image.url),
-							_1: {
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Html_Styled_Attributes$alt(recipe.image.alt),
-								_1: {ctor: '[]'}
-							}
-						},
-						{ctor: '[]'}),
+					_0: _rtfeldman$elm_css$Css$marginLeft(
+						_rtfeldman$elm_css$Css$vw(-50)),
 					_1: {
 						ctor: '::',
-						_0: A2(
-							_rtfeldman$elm_css$Html_Styled$p,
-							{ctor: '[]'},
-							{
+						_0: _rtfeldman$elm_css$Css$marginRight(
+							_rtfeldman$elm_css$Css$vw(-50)),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
+							_1: {
 								ctor: '::',
-								_0: _rtfeldman$elm_css$Html_Styled$text(recipe.description),
-								_1: {ctor: '[]'}
-							}),
+								_0: _rtfeldman$elm_css$Css$right(
+									_rtfeldman$elm_css$Css$pct(50)),
+								_1: {
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Css$width(
+										_rtfeldman$elm_css$Css$vw(100)),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+var _user$project$Style_Typography$displaySm = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$fontFamilies(_user$project$Style_Theme$sansFamily),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$fontSize(
+				_user$project$Style_Theme$toEm(12)),
+			_1: {ctor: '[]'}
+		}
+	});
+var _user$project$Style_Typography$display = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$fontFamilies(_user$project$Style_Theme$sansFamily),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$fontSize(
+				_user$project$Style_Theme$toEm(16)),
+			_1: {ctor: '[]'}
+		}
+	});
+var _user$project$Style_Typography$body = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$fontFamilies(_user$project$Style_Theme$serifFamily),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$fontSize(
+				_user$project$Style_Theme$toEm(16)),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$lineHeight(
+					_user$project$Style_Theme$toEm(24)),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$marginBottom(
+						_rtfeldman$elm_css$Css$px(0)),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$marginTop(
+							_rtfeldman$elm_css$Css$px(0)),
 						_1: {ctor: '[]'}
 					}
 				}
 			}
-		});
-};
+		}
+	});
+var _user$project$Style_Typography$h5 = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$fontFamilies(_user$project$Style_Theme$sansFamily),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$fontSize(
+				_user$project$Style_Theme$toEm(14)),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$fontWeight(_rtfeldman$elm_css$Css$bolder),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$marginBottom(
+						_rtfeldman$elm_css$Css$px(0)),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$marginTop(
+							_rtfeldman$elm_css$Css$px(0)),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		}
+	});
+var _user$project$Style_Typography$h4 = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$color(_user$project$Style_Theme$colors.black),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$fontFamilies(_user$project$Style_Theme$sansFamily),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$fontSize(
+					_user$project$Style_Theme$toEm(16)),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$fontWeight(_rtfeldman$elm_css$Css$bolder),
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	});
+var _user$project$Style_Typography$h3 = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$fontFamilies(_user$project$Style_Theme$sansFamily),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$fontSize(
+				_user$project$Style_Theme$toEm(20)),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$fontWeight(_rtfeldman$elm_css$Css$bolder),
+				_1: {ctor: '[]'}
+			}
+		}
+	});
+var _user$project$Style_Typography$h2 = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$fontFamilies(_user$project$Style_Theme$sansFamily),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$fontSize(
+				_user$project$Style_Theme$toEm(26)),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$fontWeight(_rtfeldman$elm_css$Css$bolder),
+				_1: {ctor: '[]'}
+			}
+		}
+	});
+var _user$project$Style_Typography$byLine = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$fontFamilies(_user$project$Style_Theme$sansFamily),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$fontSize(
+				_user$project$Style_Theme$toEm(18)),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$fontWeight(_rtfeldman$elm_css$Css$lighter),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$listStyle(_rtfeldman$elm_css$Css$none),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$center),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		}
+	});
+var _user$project$Style_Typography$title = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$color(_user$project$Style_Theme$colors.black),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$fontFamilies(_user$project$Style_Theme$decorativeFamily),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$fontSize(
+					_user$project$Style_Theme$toEm(64)),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$fontWeight(_rtfeldman$elm_css$Css$bolder),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$marginBottom(
+							_user$project$Style_Theme$toEm(0)),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$center),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		}
+	});
+var _user$project$Style_Typography$offColor = _rtfeldman$elm_css$Css$color(_user$project$Style_Theme$colors.white);
+var _user$project$Style_Typography$nav = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$color(_user$project$Style_Theme$colors.black),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$fontFamilies(_user$project$Style_Theme$sansFamily),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$fontSize(
+					_user$project$Style_Theme$toEm(15)),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$fontWeight(_rtfeldman$elm_css$Css$bolder),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$textDecoration(_rtfeldman$elm_css$Css$none),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		}
+	});
+var _user$project$Style_Typography$footerNav = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _user$project$Style_Typography$nav,
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$color(_user$project$Style_Theme$colors.white),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$fontWeight(_rtfeldman$elm_css$Css$normal),
+				_1: {ctor: '[]'}
+			}
+		}
+	});
+var _user$project$Style_Util$visuallyHide = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$height(
+				_rtfeldman$elm_css$Css$px(1)),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$left(
+					_rtfeldman$elm_css$Css$px(-999999)),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$overflow(_rtfeldman$elm_css$Css$hidden),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$top(_rtfeldman$elm_css$Css$auto),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$width(
+								_rtfeldman$elm_css$Css$px(1)),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		}
+	});
 var _user$project$View_Grid$clip = F3(
 	function (lower, upper, k) {
 		return A2(
@@ -18563,7 +18857,7 @@ var _user$project$View_Grid$gridStyle = _rtfeldman$elm_css$Css$batch(
 		}
 	});
 var _user$project$View_Grid$grid = _user$project$View_Grid$gridStyle;
-var _user$project$View_Grid$gutter = 10;
+var _user$project$View_Grid$gutter = 15;
 var _user$project$View_Grid$columns = 12;
 var _user$project$View_Grid$gcol = function (amount) {
 	return _rtfeldman$elm_css$Css$batch(
@@ -18598,6 +18892,506 @@ var _user$project$View_Grid$All = {ctor: 'All'};
 var _user$project$View_Grid$Bottom = {ctor: 'Bottom'};
 var _user$project$View_Grid$Middle = {ctor: 'Middle'};
 var _user$project$View_Grid$Top = {ctor: 'Top'};
+var _user$project$View_Recipe$heroImage = function (imgUrl) {
+	return _rtfeldman$elm_css$Css$batch(
+		{
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$backgroundImage(
+				_rtfeldman$elm_css$Css$url(imgUrl)),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$backgroundPosition(_rtfeldman$elm_css$Css$center),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$backgroundSize(_rtfeldman$elm_css$Css$cover),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$marginLeft(_rtfeldman$elm_css$Css$auto),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$marginRight(_rtfeldman$elm_css$Css$auto),
+							_1: {
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Css$maxWidth(
+									_rtfeldman$elm_css$Css$px(1400)),
+								_1: {
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Css$height(
+										_rtfeldman$elm_css$Css$pct(100)),
+									_1: {
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Css$width(
+											_rtfeldman$elm_css$Css$pct(100)),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		});
+};
+var _user$project$View_Recipe$heroImageContainer = function (image) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled$div,
+		{
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+				{
+					ctor: '::',
+					_0: _user$project$Style_Layout$fullWidth,
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$marginBottom(
+							_user$project$Style_Theme$toEm(_user$project$Style_Theme$spacing.section)),
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_rtfeldman$elm_css$Html_Styled$div,
+				{
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+						{
+							ctor: '::',
+							_0: _user$project$View_Recipe$heroImage(image.url),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: A2(
+						_rtfeldman$elm_css$Html_Styled$img,
+						{
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+								{
+									ctor: '::',
+									_0: _user$project$Style_Util$visuallyHide,
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Html_Styled_Attributes$src(image.url),
+								_1: {
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled_Attributes$alt(image.alt),
+									_1: {ctor: '[]'}
+								}
+							}
+						},
+						{ctor: '[]'}),
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$View_Recipe$toLi = function (s) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled$li,
+		{
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+				{
+					ctor: '::',
+					_0: _user$project$Style_Typography$byLine,
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Html_Styled$text(s),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$View_Recipe$toHtmlList = function (strings) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled$ul,
+		{ctor: '[]'},
+		A2(_elm_lang$core$List$map, _user$project$View_Recipe$toLi, strings));
+};
+var _user$project$View_Recipe$view = function (recipe) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: A2(
+				_rtfeldman$elm_css$Html_Styled$h1,
+				{
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+						{
+							ctor: '::',
+							_0: _user$project$Style_Typography$title,
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Html_Styled$text(recipe.title),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_rtfeldman$elm_css$Html_Styled$div,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _user$project$View_Recipe$toHtmlList(
+							_user$project$Types_Cook$cooksToText(recipe.cooks)),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: _user$project$View_Recipe$heroImageContainer(recipe.image),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+									{
+										ctor: '::',
+										_0: _user$project$View_Grid$grid,
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Css$marginBottom(
+												_user$project$Style_Theme$toEm(_user$project$Style_Theme$spacing.section)),
+											_1: {ctor: '[]'}
+										}
+									}),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$div,
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+											{
+												ctor: '::',
+												_0: _user$project$View_Grid$gcol(3),
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$center),
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Html_Styled$h5,
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+													{
+														ctor: '::',
+														_0: _user$project$Style_Typography$h5,
+														_1: {
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Css$marginTop(
+																_user$project$Style_Theme$toEm(4)),
+															_1: {ctor: '[]'}
+														}
+													}),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text('Difficulty'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_rtfeldman$elm_css$Html_Styled$p,
+												{
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+														{
+															ctor: '::',
+															_0: _user$project$Style_Typography$displaySm,
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												},
+												{
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled$text(
+														_elm_lang$core$Basics$toString(recipe.difficulty)),
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$div,
+										{
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+												{
+													ctor: '::',
+													_0: _user$project$View_Grid$gcol(6),
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: A2(
+												_rtfeldman$elm_css$Html_Styled$p,
+												{
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+														{
+															ctor: '::',
+															_0: _user$project$Style_Typography$body,
+															_1: {
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Css$fontSize(
+																	_user$project$Style_Theme$toEm(16)),
+																_1: {ctor: '[]'}
+															}
+														}),
+													_1: {ctor: '[]'}
+												},
+												{
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled$text(recipe.story),
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Html_Styled$div,
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+													{
+														ctor: '::',
+														_0: _user$project$View_Grid$gcol(3),
+														_1: {
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$center),
+															_1: {ctor: '[]'}
+														}
+													}),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: A2(
+													_rtfeldman$elm_css$Html_Styled$h5,
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+															{
+																ctor: '::',
+																_0: _user$project$Style_Typography$h5,
+																_1: {
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Css$marginTop(
+																		_user$project$Style_Theme$toEm(4)),
+																	_1: {ctor: '[]'}
+																}
+															}),
+														_1: {ctor: '[]'}
+													},
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled$text('Cooking time'),
+														_1: {ctor: '[]'}
+													}),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_rtfeldman$elm_css$Html_Styled$p,
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																{
+																	ctor: '::',
+																	_0: _user$project$Style_Typography$displaySm,
+																	_1: {ctor: '[]'}
+																}),
+															_1: {ctor: '[]'}
+														},
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled$text(
+																A2(
+																	_elm_lang$core$Basics_ops['++'],
+																	_elm_lang$core$Basics$toString(recipe.id),
+																	' minutes')),
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_rtfeldman$elm_css$Html_Styled$div,
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+										{
+											ctor: '::',
+											_0: _user$project$View_Grid$grid,
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$marginBottom(
+													_user$project$Style_Theme$toEm(_user$project$Style_Theme$spacing.section)),
+												_1: {ctor: '[]'}
+											}
+										}),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$div,
+										{
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+												{
+													ctor: '::',
+													_0: _user$project$View_Grid$gcol(8),
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: A2(
+												_rtfeldman$elm_css$Html_Styled$h2,
+												{
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+														{
+															ctor: '::',
+															_0: _user$project$Style_Typography$h2,
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												},
+												{
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled$text('Instructions'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_rtfeldman$elm_css$Html_Styled$p,
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+															{
+																ctor: '::',
+																_0: _user$project$Style_Typography$body,
+																_1: {ctor: '[]'}
+															}),
+														_1: {
+															ctor: '::',
+															_0: A2(
+																_rtfeldman$elm_css$Html_Styled_Attributes$property,
+																'innerHTML',
+																_elm_lang$core$Json_Encode$string(recipe.description)),
+															_1: {ctor: '[]'}
+														}
+													},
+													{ctor: '[]'}),
+												_1: {ctor: '[]'}
+											}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Html_Styled$div,
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+													{
+														ctor: '::',
+														_0: _user$project$View_Grid$gcol(4),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: A2(
+													_rtfeldman$elm_css$Html_Styled$h3,
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+															{
+																ctor: '::',
+																_0: _user$project$Style_Typography$h3,
+																_1: {ctor: '[]'}
+															}),
+														_1: {ctor: '[]'}
+													},
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled$text('Ingredients'),
+														_1: {ctor: '[]'}
+													}),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_rtfeldman$elm_css$Html_Styled$p,
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																{
+																	ctor: '::',
+																	_0: _user$project$Style_Typography$display,
+																	_1: {ctor: '[]'}
+																}),
+															_1: {ctor: '[]'}
+														},
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled$text(recipe.ingredients),
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		});
+};
 var _user$project$View_Logo$viewInverse = A2(
 	_rtfeldman$elm_css$Html_Styled$div,
 	{ctor: '[]'},
@@ -18622,91 +19416,11 @@ var _user$project$View_Logo$view = A2(
 			_rtfeldman$elm_css$Html_Styled$img,
 			{
 				ctor: '::',
-				_0: _rtfeldman$elm_css$Html_Styled_Attributes$src('img/logo.png'),
+				_0: _rtfeldman$elm_css$Html_Styled_Attributes$src('https://s3-us-west-1.amazonaws.com/family-recipes/logo.png'),
 				_1: {ctor: '[]'}
 			},
 			{ctor: '[]'}),
 		_1: {ctor: '[]'}
-	});
-var _user$project$Style_Theme$colors = {
-	primary: _rtfeldman$elm_css$Css$hex('CC4021'),
-	secondary: _rtfeldman$elm_css$Css$hex('029053'),
-	tertiary: _rtfeldman$elm_css$Css$hex('2A8C87'),
-	highlight: _rtfeldman$elm_css$Css$hex('D4B200'),
-	black: _rtfeldman$elm_css$Css$hex('292929'),
-	white: _rtfeldman$elm_css$Css$hex('ffffff')
-};
-var _user$project$Style_Theme$sansFamily = {
-	ctor: '::',
-	_0: _rtfeldman$elm_css$Css$qt('Montserrat'),
-	_1: {
-		ctor: '::',
-		_0: function (_) {
-			return _.value;
-		}(_rtfeldman$elm_css$Css$sansSerif),
-		_1: {ctor: '[]'}
-	}
-};
-var _user$project$Style_Theme$baseLine = 16.0;
-var _user$project$Style_Typography$offColor = _rtfeldman$elm_css$Css$color(_user$project$Style_Theme$colors.white);
-var _user$project$Style_Typography$toEm = function (val) {
-	return _rtfeldman$elm_css$Css$em(val / _user$project$Style_Theme$baseLine);
-};
-var _user$project$Style_Typography$nav = _rtfeldman$elm_css$Css$batch(
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Css$color(_user$project$Style_Theme$colors.black),
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$fontFamilies(_user$project$Style_Theme$sansFamily),
-			_1: {
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$fontSize(
-					_user$project$Style_Typography$toEm(15)),
-				_1: {
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Css$fontWeight(_rtfeldman$elm_css$Css$bolder),
-					_1: {
-						ctor: '::',
-						_0: _rtfeldman$elm_css$Css$textDecoration(_rtfeldman$elm_css$Css$none),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		}
-	});
-var _user$project$Style_Typography$footerNav = _rtfeldman$elm_css$Css$batch(
-	{
-		ctor: '::',
-		_0: _user$project$Style_Typography$nav,
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$color(_user$project$Style_Theme$colors.white),
-			_1: {
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$fontWeight(_rtfeldman$elm_css$Css$normal),
-				_1: {ctor: '[]'}
-			}
-		}
-	});
-var _user$project$Style_Typography$h4 = _rtfeldman$elm_css$Css$batch(
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Css$color(_user$project$Style_Theme$colors.black),
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$fontFamilies(_user$project$Style_Theme$sansFamily),
-			_1: {
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$fontSize(
-					_user$project$Style_Typography$toEm(16)),
-				_1: {
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Css$fontWeight(_rtfeldman$elm_css$Css$bolder),
-					_1: {ctor: '[]'}
-				}
-			}
-		}
 	});
 var _user$project$View_Header$capitalCase = function (str) {
 	var _p0 = _elm_lang$core$String$uncons(str);
@@ -18897,7 +19611,7 @@ var _user$project$View_Wrap$view = function (content) {
 						_1: {
 							ctor: '::',
 							_0: _rtfeldman$elm_css$Css$maxWidth(
-								_rtfeldman$elm_css$Css$px(1015)),
+								_rtfeldman$elm_css$Css$px(_user$project$Style_Theme$wrapWidth)),
 							_1: {
 								ctor: '::',
 								_0: _rtfeldman$elm_css$Css$width(
@@ -19160,7 +19874,7 @@ var _user$project$Main$renderWrap = function (model) {
 				if (_p1.ctor === 'Just') {
 					return _user$project$View_Recipe$view(_p1._0);
 				} else {
-					return _rtfeldman$elm_css$Html_Styled$text('Error');
+					return _rtfeldman$elm_css$Html_Styled$text('');
 				}
 			case 'AboutRoute':
 				return _rtfeldman$elm_css$Html_Styled$text('About');
@@ -19183,15 +19897,19 @@ var _user$project$Main$view = function (model) {
 		{ctor: '[]'},
 		{
 			ctor: '::',
-			_0: _user$project$View_Header$view,
+			_0: _user$project$Style_Sheets$view,
 			_1: {
 				ctor: '::',
-				_0: _user$project$View_Wrap$view(
-					_user$project$Main$renderWrap(model)),
+				_0: _user$project$View_Header$view,
 				_1: {
 					ctor: '::',
-					_0: _user$project$View_Footer$view,
-					_1: {ctor: '[]'}
+					_0: _user$project$View_Wrap$view(
+						_user$project$Main$renderWrap(model)),
+					_1: {
+						ctor: '::',
+						_0: _user$project$View_Footer$view,
+						_1: {ctor: '[]'}
+					}
 				}
 			}
 		});

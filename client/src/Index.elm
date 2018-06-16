@@ -11,6 +11,7 @@ import Types.Recipe exposing (Recipe, recipeQueryRequest, RecipeResponse)
 import Types.Cook exposing (Cook, cookQueryRequest)
 import Route exposing (..)
 import Msgs exposing (Msg)
+import Style.Sheets as Sheets
 import View.Recipe as RecipePage
 import View.Header as Header
 import View.Footer as Footer
@@ -123,7 +124,8 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div []
-        [ Header.view
+        [ Sheets.view
+        , Header.view
         , Wrap.view (renderWrap model)
         , Footer.view
         ]
@@ -149,7 +151,7 @@ renderWrap model =
                             RecipePage.view recipe
 
                         Nothing ->
-                            text "Error"
+                            text ""
 
                 AboutRoute ->
                     text "About"

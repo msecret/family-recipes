@@ -24,7 +24,7 @@ columns =
 
 
 gutter =
-    10
+    15
 
 
 gridStyle : Style

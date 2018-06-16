@@ -5,4 +5,5 @@ class Recipe < ApplicationRecord
   belongs_to :image
   belongs_to :category
   has_and_belongs_to_many :cooks
+  has_many :ingredient_amounts
 end

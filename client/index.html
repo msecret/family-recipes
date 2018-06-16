@@ -18857,7 +18857,7 @@ var _user$project$View_Grid$gridStyle = _rtfeldman$elm_css$Css$batch(
 		}
 	});
 var _user$project$View_Grid$grid = _user$project$View_Grid$gridStyle;
-var _user$project$View_Grid$gutter = 15;
+var _user$project$View_Grid$gutter = 16;
 var _user$project$View_Grid$columns = 12;
 var _user$project$View_Grid$gcol = function (amount) {
 	return _rtfeldman$elm_css$Css$batch(
@@ -18866,13 +18866,23 @@ var _user$project$View_Grid$gcol = function (amount) {
 			_0: _user$project$View_Grid$colStyle,
 			_1: {
 				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$width(
-					A3(
-						_rtfeldman$elm_css$Css$calc,
-						_rtfeldman$elm_css$Css$pct((amount / _user$project$View_Grid$columns) * 100),
-						_rtfeldman$elm_css$Css$minus,
-						_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter))),
-				_1: {ctor: '[]'}
+				_0: _rtfeldman$elm_css$Css$paddingLeft(
+					_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter / 2)),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$paddingRight(
+						_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter / 2)),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$width(
+							A3(
+								_rtfeldman$elm_css$Css$calc,
+								_rtfeldman$elm_css$Css$pct((amount / _user$project$View_Grid$columns) * 100),
+								_rtfeldman$elm_css$Css$minus,
+								_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter))),
+						_1: {ctor: '[]'}
+					}
+				}
 			}
 		});
 };

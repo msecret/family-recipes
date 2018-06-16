@@ -24,7 +24,7 @@ columns =
 
 
 gutter =
-    15
+    16
 
 
 gridStyle : Style
@@ -65,6 +65,8 @@ gcol : Float -> Style
 gcol amount =
     Css.batch
         [ colStyle
+        , paddingLeft (px (gutter / 2))
+        , paddingRight (px (gutter / 2))
         , width (calc (pct (amount / columns * 100)) minus (px gutter))
         ]
 

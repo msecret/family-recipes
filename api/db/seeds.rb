@@ -176,6 +176,7 @@ dolci = Category.create(
 )
 
 
+# Recipes
 Recipe.destroy_all
 
 salt = Ingredient.create(
@@ -204,6 +205,19 @@ potato = Ingredient.create(
   name: 'potato',
   extra: 'old potatoes work best'
 )
+bread = Ingredient.create(
+  name: 'bread'
+)
+oliveoil = Ingredient.create(
+  name: 'olive oil'
+)
+pepper = Ingredient.create(
+  name: 'pepper'
+)
+garlic = Ingredient.create(
+  name: 'garlic'
+)
+
 ignocchi = Image.create(
   name: 'Gnocchi',
   url: ' https://s3-us-west-1.amazonaws.com/family-recipes/gnocchi-main.jpg',
@@ -272,7 +286,60 @@ IngredientAmount.create(
   recipe: rgnocchi
 )
 
+
+https://s3-us-west-1.amazonaws.com/family-recipes/DSC02357.jpg
+ibruschetta = Image.create(
+  name: 'Bruschetta',
+  url: ' https://s3-us-west-1.amazonaws.com/family-recipes/gnocchi-main.jpg',
+  alt: 'Bruschetta plate with tomatoes',
+  width: 1329,
+  height: 888,
+  width_orig: 1329,
+  height_orig: 888,
+)
+rbruschetta = Recipe.create(
+  title: 'Bruschetta',
+  difficulty: 2,
+  memorandums: '',
+  story: "David would make this simple dish while getting ready to go out in Torino",
+  description: "<p>The best type of bread for this recipe is unsalted Tuscan bread or homemade bread. Baugette French works well. Pre-sliced or packaged bread will not do. Toast the bread in the oven until brown and crisp. Rub at once with crushed garlic, brush lightly with olive oil and sprinkle generously with salt and freshly ground pepper.</p><p>Variations: top with freshly chopped tomatoes and basil or top with chicken livers.</p>",
+  cooks: [david],
+  category: antipasti,
+  image: ibruschetta,
+)
+IngredientAmount.create(
+  amount: '12',
+  unit: 'slice',
+  ingredient: bread,
+  recipe: rbruschetta
+)
+IngredientAmount.create(
+  amount: '2',
+  unit: 'clove',
+  ingredient: bread,
+  recipe: rbruschetta
+)
+IngredientAmount.create(
+  amount: 'some',
+  unit: '',
+  ingredient: oliveoil,
+  recipe: rbruschetta
+)
+IngredientAmount.create(
+  amount: '1',
+  unit: 'pinch',
+  ingredient: salt,
+  recipe: rbruschetta
+)
+IngredientAmount.create(
+  amount: '1',
+  unit: 'pinch',
+  ingredient: pepper,
+  recipe: rbruschetta
+)
+
 p "Created #{Category.count} categories"
 p "Created #{Image.count} images"
 p "Created #{Cook.count} cooks"
+p "Created #{Ingredient.count} ingredients"
 p "Created #{Recipe.count} recipes"

@@ -137,6 +137,15 @@ ali = Cook.create(
   image: iali
 )
 
+nino = Cook.create(
+  first_name: "Nino",
+  last_name: "Segreto",
+  email: "",
+  date_of_birth: Faker::Date.between(80.years.ago, Date.today),
+  location: 'Phoenix',
+  image: iali
+)
+
 
 Category.destroy_all
 
@@ -216,6 +225,30 @@ pepper = Ingredient.create(
 )
 garlic = Ingredient.create(
   name: 'garlic'
+)
+eggplant = Ingredient.create(
+  name: 'eggplant'
+)
+celery = Ingredient.create(
+  name: 'celery'
+)
+onion = Ingredient.create(
+  name: 'onion'
+)
+vinegar = Ingredient.create(
+  name: 'red wine vinegar'
+)
+sugar = Ingredient.create(
+  name: 'sugar'
+)
+green_olive = Ingredient.create(
+  name: 'green olive'
+)
+tomato_paste = Ingredient.create(
+  name: 'tomato paste'
+)
+caper = Ingredient.create(
+  name: 'caper'
 )
 
 ignocchi = Image.create(
@@ -336,6 +369,87 @@ IngredientAmount.create(
   unit: 'pinch',
   ingredient: pepper,
   recipe: rbruschetta
+)
+
+caponata = Recipe.create(
+  title: 'Caponata',
+  difficulty: 3,
+  memorandums: '',
+  story: "David would make this simple dish while getting ready to go out in Torino",
+  description: "<p>Wash the eggplants and dice them without peeling. Sprinkle with salt and leave in a colander for about 1 hour to drain off bitter juices. Wipe dry with paper towel. Deep-fry in hot oil until brown and drain on paper towels.</p><p>Clean the celery, discarding any coarse stalks. Cut the remaining stalks into short lengths and wash them under running water. Wipe dry and deep fry in  the same oil until golden brown.</p><p>Take 1 cup of the oil, pour it into another medium-sized pan and sauté the
+onion until it changes color. Dilute the tomato paste with a little warm water.
+Stir this into the onion, season with salt and cook for 15 minutes over a
+moderate heat. Stir in the sugar, vinegar, capers, olives, eggplants and celery.
+Sprinkle with plenty of freshly ground pepper, add salt if necessary, and
+simmer for 10 minutes. Serve cold.</p>",
+  cooks: [nino],
+  category: antipasti,
+)
+IngredientAmount.create(
+  amount: '2 1/2',
+  unit: 'lbs',
+  ingredient: eggplant,
+  recipe: caponata
+)
+IngredientAmount.create(
+  amount: '1',
+  unit: 'pinch',
+  ingredient: salt,
+  recipe: caponata
+)
+IngredientAmount.create(
+  amount: '1',
+  unit: 'pinch',
+  ingredient: pepper,
+  recipe: caponata
+)
+IngredientAmount.create(
+  amount: '1',
+  unit: 'tbs',
+  ingredient: oliveoil,
+  recipe: caponata
+)
+IngredientAmount.create(
+  amount: '1',
+  unit: 'bunch',
+  ingredient: celery,
+  recipe: caponata
+)
+IngredientAmount.create(
+  amount: '1',
+  unit: '',
+  ingredient: onion,
+  recipe: caponata
+)
+IngredientAmount.create(
+  amount: '1 1/4',
+  unit: 'cup',
+  ingredient: vinegar,
+  recipe: caponata
+)
+IngredientAmount.create(
+  amount: '4',
+  unit: 'tsp',
+  ingredient: sugar,
+  recipe: caponata
+)
+IngredientAmount.create(
+  amount: '1/2',
+  unit: 'cup',
+  ingredient: green_olive,
+  recipe: caponata
+)
+IngredientAmount.create(
+  amount: '1',
+  unit: 'small can',
+  ingredient: tomato_paste,
+  recipe: caponata
+)
+IngredientAmount.create(
+  amount: '2',
+  unit: 'tbl',
+  ingredient: caper,
+  recipe: caponata
 )
 
 p "Created #{Category.count} categories"

@@ -250,6 +250,30 @@ tomato_paste = Ingredient.create(
 caper = Ingredient.create(
   name: 'caper'
 )
+minced_walnut = Ingredient.create(
+  name: 'minced walnut'
+)
+toasted_pine_nut = Ingredient.create(
+  name: 'toasted pine nut'
+)
+toasted_pine_nut = Ingredient.create(
+  name: 'toasted pine nut'
+)
+italian_parsley = Ingredient.create(
+  name: 'chopped italian parsley'
+)
+parmesan = Ingredient.create(
+  name: 'parmesan cheese'
+)
+ricotta = Ingredient.create(
+  name: 'ricotta cheese'
+)
+melted_butter = Ingredient.create(
+  name: 'melted butter'
+)
+heavy_cream = Ingredient.create(
+  name: 'heavy_cream'
+)
 
 ignocchi = Image.create(
   name: 'Gnocchi',
@@ -319,8 +343,6 @@ IngredientAmount.create(
   recipe: rgnocchi
 )
 
-
-https://s3-us-west-1.amazonaws.com/family-recipes/DSC02357.jpg
 ibruschetta = Image.create(
   name: 'Bruschetta',
   url: ' https://s3-us-west-1.amazonaws.com/family-recipes/gnocchi-main.jpg',
@@ -369,6 +391,84 @@ IngredientAmount.create(
   unit: 'pinch',
   ingredient: pepper,
   recipe: rbruschetta
+)
+
+inoci = Image.create(
+  name: 'Salsa de Noci',
+  url: 'https://s3-us-west-1.amazonaws.com/family-recipes/salsadenoci.jpg',
+  alt: 'Heart-shaped pasta with salsa de noci',
+  width: 1385,
+  height: 925,
+  width_orig: 1385,
+  height_orig: 925,
+)
+noci = Recipe.create(
+  title: 'Salsa di Noci (Walnut Sauce)',
+  difficulty: 3,
+  memorandums: '',
+  story: "While not a family tradition, this is a typical Ligurian sauce that I discovered when living in Italy.",
+  description: "<p>Grind the walnuts, pine nuts, garlic, parsley and salt into a smooth paste. Add
+the cheese and about 1 tbl. of water. When blended, gradually add the olive
+oil and continue stirring until smooth. Mix in the heavy cream and butter
+and stir until sauce is creamy.</p><p>This sauce is typically served with pansotti, a half moon shaped stuffed pasta
+similar to ravioli, but it can be served with fettucine or other types of pasta.</p>",
+  cooks: [dancy],
+  category: primi,
+  image: inoci,
+)
+IngredientAmount.create(
+  amount: '1/2',
+  unit: 'lb',
+  ingredient: minced_walnut,
+  recipe: noci
+)
+IngredientAmount.create(
+  amount: '1/2',
+  unit: 'cup',
+  ingredient: toasted_pine_nut,
+  recipe: noci
+)
+IngredientAmount.create(
+  amount: '1',
+  unit: 'clove',
+  ingredient: garlic,
+  recipe: noci
+)
+IngredientAmount.create(
+  amount: '2 1/2',
+  unit: 'tbl',
+  ingredient: italian_parsley,
+  recipe: noci
+)
+IngredientAmount.create(
+  amount: '1/2',
+  unit: 'cup',
+  ingredient: parmesan,
+  recipe: noci
+)
+IngredientAmount.create(
+  amount: '1/2',
+  unit: 'cup',
+  ingredient: ricotta,
+  recipe: noci
+)
+IngredientAmount.create(
+  amount: '1/2',
+  unit: 'cup',
+  ingredient: oliveoil,
+  recipe: noci
+)
+IngredientAmount.create(
+  amount: '2',
+  unit: 'tbl',
+  ingredient: melted_butter,
+  recipe: noci
+)
+IngredientAmount.create(
+  amount: '1/4',
+  unit: 'cup',
+  ingredient: heavy_cream,
+  recipe: noci
 )
 
 caponata = Recipe.create(

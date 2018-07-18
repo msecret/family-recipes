@@ -272,7 +272,22 @@ melted_butter = Ingredient.create(
   name: 'melted butter'
 )
 heavy_cream = Ingredient.create(
-  name: 'heavy_cream'
+  name: 'heavy cream'
+)
+fresh_basil = Ingredient.create(
+  name: 'fresh basil'
+)
+yellow_onion = Ingredient.create(
+  name: 'yellow onion'
+)
+penne_pasta = Ingredient.create(
+  name: 'penne pasta'
+)
+large_eggplant = Ingredient.create(
+  name: 'large eggplant'
+)
+mozzarella_cheese = Ingredient.create(
+  name: 'mozzarella cheese'
 )
 
 ignocchi = Image.create(
@@ -393,6 +408,102 @@ IngredientAmount.create(
   recipe: rbruschetta
 )
 
+ipasta_al_forno = Image.create(
+  name: 'Pasta al Forno',
+  url: 'https://s3-us-west-1.amazonaws.com/family-recipes/pasta_al_forno2.jpg',
+  alt: 'Pasta al forno',
+  width: 1233,
+  height: 925,
+  width_orig: 1233,
+  height_orig: 925,
+)
+forno = Recipe.create(
+  title: 'Pasta al Forno',
+  difficulty: 5,
+  memorandums: '',
+  story: "",
+  description: "<p>Cut eggplant crosswise to 1⁄2 inch thickness and lightly salt – leave to drain in colander for 1 hour. Wipe off excess salt with paper towel.</p><p>To prepare tomato sauce, sauté onion and garlic in small amount of olive oil
+until golden brown. Add tomato puree, salt, pepper and basil and leave to
+simmer for 20-30 minutes.</p><p>Fry eggplant in canola oil until golden brown on both sides. Drain in paper
+towels until ready to use. Cut mozzarella in small cubes.
+Boil pasta as directed on box in salted water and drain in colander. Return to
+pot. Mix 1/3 of tomato sauce with pasta in same pot and add small amount
+of parmesan.</p><p>Coat bottom of pyrex with small amount of tomato sauce. Place one layer of
+pasta, add tomato sauce, eggplant, mozzarella and parmesan. Make another
+layer of pasta, tomato sauce, eggplant and mozzarella. Add additional layer of
+pasta and tomato sauce, eggplant and top with parmesan.</p><p>Bake in 350 degree oven for 1 hour. Check after 1 hour and ensure
+mozzarella is melted and pasta is heated throughout.</p>",
+  cooks: [joe],
+  category: primi,
+  image: ipasta_al_forno,
+)
+IngredientAmount.create(
+  amount: '28-30',
+  unit: 'oz',
+  ingredient: tomato_paste,
+  recipe: forno
+)
+IngredientAmount.create(
+  amount: '3',
+  unit: '',
+  ingredient: fresh_basil,
+  recipe: forno
+)
+IngredientAmount.create(
+  amount: '1/2',
+  unit: '',
+  ingredient: yellow_onion,
+  recipe: forno
+)
+IngredientAmount.create(
+  amount: '1/2',
+  unit: '',
+  ingredient: yellow_onion,
+  recipe: forno
+)
+IngredientAmount.create(
+  amount: '1',
+  unit: 'pinch',
+  ingredient: salt,
+  recipe: forno
+)
+IngredientAmount.create(
+  amount: '1',
+  unit: 'pinch',
+  ingredient: pepper,
+  recipe: forno
+)
+IngredientAmount.create(
+  amount: '1',
+  unit: '',
+  ingredient: garlic,
+  recipe: forno
+)
+IngredientAmount.create(
+  amount: '1 1/2',
+  unit: 'lbs',
+  ingredient: penne_pasta,
+  recipe: forno
+)
+IngredientAmount.create(
+  amount: '1',
+  unit: '',
+  ingredient: large_eggplant,
+  recipe: forno
+)
+IngredientAmount.create(
+  amount: '1 1/2',
+  unit: 'lbs',
+  ingredient: mozzerella_cheese,
+  recipe: forno
+)
+IngredientAmount.create(
+  amount: '1',
+  unit: 'cup',
+  ingredient: parmesan,
+  recipe: forno
+)
+
 inoci = Image.create(
   name: 'Salsa de Noci',
   url: 'https://s3-us-west-1.amazonaws.com/family-recipes/salsadenoci.jpg',
@@ -412,7 +523,7 @@ the cheese and about 1 tbl. of water. When blended, gradually add the olive
 oil and continue stirring until smooth. Mix in the heavy cream and butter
 and stir until sauce is creamy.</p><p>This sauce is typically served with pansotti, a half moon shaped stuffed pasta
 similar to ravioli, but it can be served with fettucine or other types of pasta.</p>",
-  cooks: [dancy],
+  cooks: [nancy],
   category: primi,
   image: inoci,
 )

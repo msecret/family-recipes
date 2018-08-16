@@ -38,6 +38,13 @@ renderMenuLink category linkStyle =
         li
             [ css
                 [ display inlineBlock
+                , backgroundImage (url "https://s3-us-west-1.amazonaws.com/family-recipes/nav-bg.svg")
+                , backgroundRepeat noRepeat
+                , backgroundSize cover
+                , backgroundPositionX (pct 100)
+                , backgroundPositionY (pct 100)
+                , height (px 29)
+                , padding2 (px 0) (px 9)
                 ]
             ]
             [ a [ href link, css [ linkStyle ] ]

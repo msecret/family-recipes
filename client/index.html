@@ -18614,7 +18614,8 @@ var _user$project$Style_Theme$toEm = function (val) {
 var _user$project$Style_Layout$fullWidth = _rtfeldman$elm_css$Css$batch(
 	{
 		ctor: '::',
-		_0: _rtfeldman$elm_css$Css$backgroundColor(_user$project$Style_Theme$colors.tertiary),
+		_0: _rtfeldman$elm_css$Css$backgroundImage(
+			_rtfeldman$elm_css$Css$url('https://s3-us-west-1.amazonaws.com/family-recipes/cloth_main.svg')),
 		_1: {
 			ctor: '::',
 			_0: _rtfeldman$elm_css$Css$height(
@@ -19623,7 +19624,35 @@ var _user$project$View_Header$renderMenuLink = function (category) {
 				{
 					ctor: '::',
 					_0: _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$inlineBlock),
-					_1: {ctor: '[]'}
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$backgroundImage(
+							_rtfeldman$elm_css$Css$url('https://s3-us-west-1.amazonaws.com/family-recipes/nav-bg.svg')),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$backgroundRepeat(_rtfeldman$elm_css$Css$noRepeat),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Css$backgroundPosition2,
+									_rtfeldman$elm_css$Css$pct(100),
+									_rtfeldman$elm_css$Css$pct(100)),
+								_1: {
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Css$height(
+										_rtfeldman$elm_css$Css$px(26)),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Css$padding2,
+											_rtfeldman$elm_css$Css$px(0),
+											_rtfeldman$elm_css$Css$px(9)),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
 				}),
 			_1: {ctor: '[]'}
 		},

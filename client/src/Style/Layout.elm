@@ -9,7 +9,7 @@ import Style.Theme exposing (..)
 fullWidth : Style
 fullWidth =
     Css.batch
-        [ backgroundColor colors.tertiary
+        [ backgroundImage (url "https://s3-us-west-1.amazonaws.com/family-recipes/cloth_main.svg")
         , height (toEm 600)
         , left (pct 50)
         , marginLeft (vw -50)

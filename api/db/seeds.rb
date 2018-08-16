@@ -146,6 +146,15 @@ nino = Cook.create(
   image: iali
 )
 
+david = Cook.create(
+  first_name: "David",
+  last_name: "Lacampagne",
+  email: "",
+  date_of_birth: Faker::Date.between(80.years.ago, Date.today),
+  location: 'Boston',
+  image: iali
+)
+
 
 Category.destroy_all
 
@@ -494,10 +503,10 @@ IngredientAmount.create(
 IngredientAmount.create(
   amount: '1 1/2',
   unit: 'lbs',
-  ingredient: mozzerella_cheese,
+  ingredient: mozzarella_cheese,
   recipe: forno
 )
-IngredientAmount.create(
+IngredientAmount.create
   amount: '1',
   unit: 'cup',
   ingredient: parmesan,

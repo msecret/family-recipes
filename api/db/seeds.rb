@@ -504,9 +504,9 @@ IngredientAmount.create(
   amount: '1 1/2',
   unit: 'lbs',
   ingredient: mozzarella_cheese,
-  recipe: forno
+  recipe: forno,
 )
-IngredientAmount.create
+IngredientAmount.create(
   amount: '1',
   unit: 'cup',
   ingredient: parmesan,

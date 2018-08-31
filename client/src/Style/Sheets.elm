@@ -9,7 +9,7 @@ fonts =
     node "link"
         [ rel "stylesheet"
         , type_ "text/css"
-        , href "https://fonts.googleapis.com/css?family=Dancing+Script:700|Montserrat:300,700,800|Rufina"
+        , href "https://fonts.googleapis.com/css?family=Dancing+Script:700|Montserrat:300,500,800|Rufina"
         ]
         []
 

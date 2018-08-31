@@ -98,7 +98,7 @@ body =
     Css.batch
         [ fontFamilies serifFamily
         , fontSize (toEm 16)
-        , lineHeight (toEm 24)
+        , lineHeight (toEm 28)
         , marginBottom (px 0)
         , marginTop (px 0)
         ]
@@ -111,6 +111,12 @@ display =
         , fontSize (toEm 16)
         ]
 
+displayMd : Style
+displayMd =
+    Css.batch
+        [ fontFamilies sansFamily
+        , fontSize (toEm 14)
+        ]
 
 displaySm : Style
 displaySm =

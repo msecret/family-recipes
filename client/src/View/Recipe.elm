@@ -5,6 +5,7 @@ import Json.Encode exposing (string)
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (alt, class, css, href, src, property)
+import Style.Components exposing (hR, list, rButton)
 import Style.Layout as L
 import Style.Typography as Typo
 import Style.Util as U
@@ -34,15 +35,22 @@ heroImage imgUrl =
         , backgroundSize cover
         , marginLeft auto
         , marginRight auto
-        , maxWidth (px 1400)
+        , maxWidth (px 1280)
         , height (pct 100)
         , width (pct 100)
         ]
 
+heroBackground =
+  Css.batch
+  [
+    backgroundImage
+      (url "https://s3-us-west-1.amazonaws.com/family-recipes/towel_whole.svg")
+  ]
+
 
 heroImageContainer : Image -> Html msg
 heroImageContainer image =
-    div [ css [ L.fullWidth, marginBottom (toEm spacing.section) ] ]
+    div [ css [ heroBackground, L.fullWidth, marginBottom (toEm spacing.section) ] ]
         [ div [ css [ (heroImage image.url) ] ]
             [ img [ css [ U.visuallyHide ], src image.url, alt image.alt ] []
             ]
@@ -51,13 +59,29 @@ heroImageContainer image =
 
 ingredientList : List Ingredient -> Html msg
 ingredientList ingredients =
-    ul [] (List.map ingredientItem ingredients)
+    ul [ css [ list ]] (List.map ingredientItem ingredients)
 
 
 ingredientItem : Ingredient -> Html msg
 ingredientItem ingredient =
-    li [ css [ Typo.displaySm, marginBottom (toEm 14), fontWeight bolder ] ]
+    li [ css [ Typo.displayMd, marginBottom (toEm 22), fontWeight bolder ] ]
         [ text (toText ingredient) ]
+
+difficultyText : Int -> String
+difficultyText amount =
+  case amount of
+    1 ->
+      "Very easy"
+    2 ->
+      "Easy"
+    3 ->
+      "Medium"
+    4 ->
+      "Hard"
+    5 ->
+      "Very hard"
+    _ ->
+      "Unknown"
 
 
 view : Recipe -> Html msg
@@ -71,24 +95,25 @@ view recipe =
         , heroImageContainer recipe.image
         , div [ css [ grid, marginBottom (toEm spacing.section) ] ]
             [ div [ css [ (gcol 3), textAlign center ] ]
-                [ h5 [ css [ Typo.h5, marginTop (toEm 4) ] ]
+                [ h5 [ css [ Typo.h5, marginTop (toEm 20) ] ]
                     [ text "Difficulty" ]
                 , p [ css [ Typo.displaySm ] ]
-                    [ text (toString recipe.difficulty) ]
+                    [ text (difficultyText recipe.difficulty) ]
                 ]
             , div [ css [ (gcol 6) ] ]
                 [ p [ css [ Typo.body, fontSize (toEm 16) ] ]
                     [ text recipe.story ]
                 ]
             , div [ css [ (gcol 3), textAlign center ] ]
-                [ h5 [ css [ Typo.h5, marginTop (toEm 4) ] ]
+                [ h5 [ css [ Typo.h5, marginTop (toEm 20) ] ]
                     [ text "Cooking time" ]
                 , p [ css [ Typo.displaySm ] ]
                     [ text (toString recipe.id ++ " minutes") ]
-                ]
-            ]
+                , button [ css [ rButton ] ] [ text "Print" ]
+                ] ]
+        , hr [css [ hR ] ] []
         , div [ css [ grid, marginBottom (toEm spacing.section) ] ]
-            [ div [ css [ (gcol 8) ] ]
+            [ div [ css [ (gcol 8), paddingRight (toEm 36) ] ]
                 [ h2 [ css [ Typo.h2 ] ]
                     [ text "Instructions"
                     ]
@@ -98,7 +123,7 @@ view recipe =
                     ]
                     []
                 ]
-            , div [ css [ (gcol 4) ] ]
+            , div [ css [ (gcol 4), paddingLeft (toEm 32), paddingTop (toEm 12) ] ]
                 [ h3 [ css [ Typo.h3 ] ]
                     [ text "Ingredients"
                     ]

@@ -111,6 +111,7 @@ display =
         , fontSize (toEm 16)
         ]
 
+
 displayMd : Style
 displayMd =
     Css.batch
@@ -118,9 +119,22 @@ displayMd =
         , fontSize (toEm 14)
         ]
 
+
 displaySm : Style
 displaySm =
     Css.batch
         [ fontFamilies sansFamily
         , fontSize (toEm 12)
+        ]
+
+
+categoryText : Style
+categoryText =
+    Css.batch
+        [ color colors.primary
+        , fontFamilies sansFamily
+        , fontWeight bold
+        , fontSize (toEm 13)
+        , letterSpacing (toEm 4)
+        , textTransform uppercase
         ]

@@ -5,7 +5,7 @@ import Json.Encode exposing (string)
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (alt, class, css, href, src, property)
-import Style.Components exposing (hR, list, rButton)
+import Style.Components exposing (hR, list, primaryButton, secondaryButton)
 import Style.Layout as L
 import Style.Typography as Typo
 import Style.Util as U
@@ -40,12 +40,12 @@ heroImage imgUrl =
         , width (pct 100)
         ]
 
+
 heroBackground =
-  Css.batch
-  [
-    backgroundImage
-      (url "https://s3-us-west-1.amazonaws.com/family-recipes/towel_whole.svg")
-  ]
+    Css.batch
+        [ backgroundImage
+            (url "https://s3-us-west-1.amazonaws.com/family-recipes/towel_whole.svg")
+        ]
 
 
 heroImageContainer : Image -> Html msg
@@ -59,7 +59,7 @@ heroImageContainer image =
 
 ingredientList : List Ingredient -> Html msg
 ingredientList ingredients =
-    ul [ css [ list ]] (List.map ingredientItem ingredients)
+    ul [ css [ list ] ] (List.map ingredientItem ingredients)
 
 
 ingredientItem : Ingredient -> Html msg
@@ -67,27 +67,52 @@ ingredientItem ingredient =
     li [ css [ Typo.displayMd, marginBottom (toEm 22), fontWeight bolder ] ]
         [ text (toText ingredient) ]
 
+
 difficultyText : Int -> String
 difficultyText amount =
-  case amount of
-    1 ->
-      "Very easy"
-    2 ->
-      "Easy"
-    3 ->
-      "Medium"
-    4 ->
-      "Hard"
-    5 ->
-      "Very hard"
-    _ ->
-      "Unknown"
+    case amount of
+        1 ->
+            "Very easy"
+
+        2 ->
+            "Easy"
+
+        3 ->
+            "Medium"
+
+        4 ->
+            "Hard"
+
+        5 ->
+            "Very hard"
+
+        _ ->
+            "Unknown"
+
+
+categoryDisplay : String -> Html msg
+categoryDisplay name =
+    div [ css [ width (px 101), marginRight auto, marginLeft auto, textAlign center ] ]
+        [ h5 [ css [ Typo.categoryText, marginBottom (toEm -14) ] ]
+            [ text name
+            ]
+        , div
+            [ css
+                [ backgroundImage (url ("https://s3-us-west-1.amazonaws.com/family-recipes/category-" ++ name ++ ".svg"))
+                , height (px 28)
+                , width (px 101)
+                ]
+            ]
+            []
+        ]
 
 
 view : Recipe -> Html msg
 view recipe =
-    div []
-        [ h1 [ css [ Typo.title ] ]
+    div [ css [ marginTop (toEm 40) ] ]
+        [ div []
+            [ (categoryDisplay "primi") ]
+        , h1 [ css [ Typo.title ] ]
             [ text recipe.title ]
         , div
             []
@@ -109,9 +134,11 @@ view recipe =
                     [ text "Cooking time" ]
                 , p [ css [ Typo.displaySm ] ]
                     [ text (toString recipe.id ++ " minutes") ]
-                , button [ css [ rButton ] ] [ text "Print" ]
-                ] ]
-        , hr [css [ hR ] ] []
+                , button [ css [ secondaryButton ] ] [ text "Print" ]
+                , button [ css [ primaryButton ] ] [ text "Email" ]
+                ]
+            ]
+        , hr [ css [ hR ] ] []
         , div [ css [ grid, marginBottom (toEm spacing.section) ] ]
             [ div [ css [ (gcol 8), paddingRight (toEm 36) ] ]
                 [ h2 [ css [ Typo.h2 ] ]

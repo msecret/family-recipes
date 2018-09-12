@@ -47,9 +47,21 @@ byLine : Style
 byLine =
     Css.batch
         [ fontFamilies sansFamily
-        , fontSize (toEm 18)
-        , fontWeight lighter
+        , fontSize (toEm 16)
         , listStyle none
+        , marginTop (toEm 10)
+        , marginLeft (px 0)
+        , paddingLeft (px 0)
+        , textAlign center
+        ]
+
+
+byByLine : Style
+byByLine =
+    Css.batch
+        [ fontFamilies sansFamily
+        , fontSize (toEm 12)
+        , marginBottom (px 0)
         , textAlign center
         ]
 

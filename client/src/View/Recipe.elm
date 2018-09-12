@@ -19,7 +19,7 @@ import View.Grid exposing (..)
 
 toHtmlList : List String -> Html msg
 toHtmlList strings =
-    ul [] (List.map toLi strings)
+    ul [ css [ U.unformattedList ] ] (List.map toLi strings)
 
 
 toLi : String -> Html msg
@@ -50,7 +50,7 @@ heroBackground =
 
 heroImageContainer : Image -> Html msg
 heroImageContainer image =
-    div [ css [ heroBackground, L.fullWidth, marginBottom (toEm spacing.section) ] ]
+    div [ css [ margin2 (toEm spacing.section) (px 0), heroBackground, L.fullWidth ] ]
         [ div [ css [ (heroImage image.url) ] ]
             [ img [ css [ U.visuallyHide ], src image.url, alt image.alt ] []
             ]
@@ -116,7 +116,9 @@ view recipe =
             [ text recipe.title ]
         , div
             []
-            [ toHtmlList (cooksToText recipe.cooks) ]
+            [ p [ css [ Typo.byByLine ] ] [ text "by" ]
+            , toHtmlList (cooksToText recipe.cooks)
+            ]
         , heroImageContainer recipe.image
         , div [ css [ grid, marginBottom (toEm spacing.section) ] ]
             [ div [ css [ (gcol 3), textAlign center ] ]

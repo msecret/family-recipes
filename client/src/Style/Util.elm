@@ -15,3 +15,12 @@ visuallyHide =
         , top auto
         , width (px 1)
         ]
+
+
+unformattedList =
+    Css.batch
+        [ marginBottom (px 0)
+        , marginTop (px 0)
+        , marginLeft (px 0)
+        , paddingLeft (px 0)
+        ]

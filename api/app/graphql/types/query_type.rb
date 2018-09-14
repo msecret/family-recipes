@@ -68,8 +68,16 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :recipes, types[Types::RecipeType] do
     description "Retrieve all recipes"
 
+    argument :categoryName, types.String, "Name of category"
+
     resolve -> (obj, args, ctx) {
-      Recipe.all
+      category = Category.find_by(name: args[:categoryName])
+      if category
+        Recipe.where(category: category)
+      else
+        Recipe.all.limit(1)
+      end
+      # TODO: what if the category wasn't found?
     }
   end
 end

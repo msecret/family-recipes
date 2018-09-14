@@ -1,10 +1,10 @@
 # This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
+# The data can then be loaded with the rails db:seed command (or create!d alongside the database with db:setup).
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+#   movies = Movie.create!([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+#   Character.create!(name: 'Luke', movie: movies.first)
 
 require 'faker'
 
@@ -74,7 +74,7 @@ iali = Image.create!(
 
 Cook.destroy_all
 
-linda = Cook.create(
+linda = Cook.create!(
   first_name: "Linda",
   last_name: "Lacampagne",
   email: "linda@aol.com",
@@ -83,7 +83,7 @@ linda = Cook.create(
   image: ilinda
 )
 
-paull = Cook.create(
+paull = Cook.create!(
   first_name: "Paul",
   last_name: "Lacampagne",
   email: "linda@aol.com",
@@ -92,101 +92,101 @@ paull = Cook.create(
   image: ilinda
 )
 
-joe = Cook.create(
+joe = Cook.create!(
   first_name: "Joe",
   last_name: "Segreto",
-  email: "",
+  email: "joe@me.com",
   date_of_birth: Faker::Date.between(80.years.ago, Date.today),
   location: 'Greenbrae',
-  image: ijoe
+  image: ilinda
 )
 
-paul = Cook.create(
+paul = Cook.create!(
   first_name: "Paul",
   last_name: "Ferroggiaro",
-  email: "",
+  email: "paule@p.com",
   date_of_birth: Faker::Date.between(80.years.ago, Date.today),
   location: 'Arroyo Grande',
-  image: ipaul
+  image: ilinda
 )
 
-anita = Cook.create(
+anita = Cook.create!(
   first_name: "Anita",
   last_name: "Ferroggiaro",
-  email: "",
+  email: "anita@aol.com",
   date_of_birth: Faker::Date.between(80.years.ago, Date.today),
   location: 'Daly City',
-  image: ianita
+  image: ilinda
 )
 
-nancy = Cook.create(
+nancy = Cook.create!(
   first_name: "Nancy",
   last_name: "Segreto",
-  email: "",
+  email: "nsegreto@me.com",
   date_of_birth: Faker::Date.between(80.years.ago, Date.today),
   location: 'Greenbrae',
-  image: inancy
+  image: ilinda
 )
 
-ali = Cook.create(
+ali = Cook.create!(
   first_name: "Ali",
   last_name: "Segreto",
-  email: "",
+  email: "ali@gmail.com",
   date_of_birth: Faker::Date.between(80.years.ago, Date.today),
   location: 'San Francisco',
-  image: iali
+  image: ilinda
 )
 
-nino = Cook.create(
+nino = Cook.create!(
   first_name: "Nino",
   last_name: "Segreto",
-  email: "",
+  email: "nino@n.com",
   date_of_birth: Faker::Date.between(80.years.ago, Date.today),
   location: 'Phoenix',
-  image: iali
+  image: ilinda
 )
 
-david = Cook.create(
+david = Cook.create!(
   first_name: "David",
   last_name: "Lacampagne",
-  email: "",
+  email: "david@d.com",
   date_of_birth: Faker::Date.between(80.years.ago, Date.today),
   location: 'Boston',
-  image: iali
+  image: ilinda
 )
 
 
 Category.destroy_all
 
-antipasti = Category.create(
+antipasti = Category.create!(
   name: 'antipasti',
   display_name: 'Antipasti',
   order: 1,
   icon_name: 'antipasti'
 )
 
-primi = Category.create(
+primi = Category.create!(
   name: 'primi',
   display_name: 'Primi',
   icon_name: 'primi',
   order: 2
 )
 
-secondi = Category.create(
+secondi = Category.create!(
   name: 'secondi',
   display_name: 'Secondi',
   icon_name: 'secondi',
   order: 3
 )
 
-contorni = Category.create(
+contorni = Category.create!(
   name: 'contorni',
   display_name: 'Contorni',
   icon_name: 'contorni',
   order: 4
 )
 
-dolci = Category.create(
+dolci = Category.create!(
   name: 'dolci',
   display_name: 'Dolci',
   icon_name: 'dolci',
@@ -197,109 +197,109 @@ dolci = Category.create(
 # Recipes
 Recipe.destroy_all
 
-salt = Ingredient.create(
+salt = Ingredient.create!(
   name: 'salt'
 )
-grated_cheese = Ingredient.create(
+grated_cheese = Ingredient.create!(
   name: 'grated cheese'
 )
-farina = Ingredient.create(
+farina = Ingredient.create!(
   name: 'farina de castgne'
 )
-flour = Ingredient.create(
+flour = Ingredient.create!(
   name: 'flour'
 )
-egg = Ingredient.create(
+egg = Ingredient.create!(
   name: 'egg'
 )
 
-egg_yolk = Ingredient.create(
+egg_yolk = Ingredient.create!(
   name: 'egg yolk'
 )
-butter = Ingredient.create(
+butter = Ingredient.create!(
   name: 'butter'
 )
-potato = Ingredient.create(
+potato = Ingredient.create!(
   name: 'potato',
   extra: 'old potatoes work best'
 )
-bread = Ingredient.create(
+bread = Ingredient.create!(
   name: 'bread'
 )
-oliveoil = Ingredient.create(
+oliveoil = Ingredient.create!(
   name: 'olive oil'
 )
-pepper = Ingredient.create(
+pepper = Ingredient.create!(
   name: 'pepper'
 )
-garlic = Ingredient.create(
+garlic = Ingredient.create!(
   name: 'garlic'
 )
-eggplant = Ingredient.create(
+eggplant = Ingredient.create!(
   name: 'eggplant'
 )
-celery = Ingredient.create(
+celery = Ingredient.create!(
   name: 'celery'
 )
-onion = Ingredient.create(
+onion = Ingredient.create!(
   name: 'onion'
 )
-vinegar = Ingredient.create(
+vinegar = Ingredient.create!(
   name: 'red wine vinegar'
 )
-sugar = Ingredient.create(
+sugar = Ingredient.create!(
   name: 'sugar'
 )
-green_olive = Ingredient.create(
+green_olive = Ingredient.create!(
   name: 'green olive'
 )
-tomato_paste = Ingredient.create(
+tomato_paste = Ingredient.create!(
   name: 'tomato paste'
 )
-caper = Ingredient.create(
+caper = Ingredient.create!(
   name: 'caper'
 )
-minced_walnut = Ingredient.create(
+minced_walnut = Ingredient.create!(
   name: 'minced walnut'
 )
-toasted_pine_nut = Ingredient.create(
+toasted_pine_nut = Ingredient.create!(
   name: 'toasted pine nut'
 )
-toasted_pine_nut = Ingredient.create(
+toasted_pine_nut = Ingredient.create!(
   name: 'toasted pine nut'
 )
-italian_parsley = Ingredient.create(
+italian_parsley = Ingredient.create!(
   name: 'chopped italian parsley'
 )
-parmesan = Ingredient.create(
+parmesan = Ingredient.create!(
   name: 'parmesan cheese'
 )
-ricotta = Ingredient.create(
+ricotta = Ingredient.create!(
   name: 'ricotta cheese'
 )
-melted_butter = Ingredient.create(
+melted_butter = Ingredient.create!(
   name: 'melted butter'
 )
-heavy_cream = Ingredient.create(
+heavy_cream = Ingredient.create!(
   name: 'heavy cream'
 )
-fresh_basil = Ingredient.create(
+fresh_basil = Ingredient.create!(
   name: 'fresh basil'
 )
-yellow_onion = Ingredient.create(
+yellow_onion = Ingredient.create!(
   name: 'yellow onion'
 )
-penne_pasta = Ingredient.create(
+penne_pasta = Ingredient.create!(
   name: 'penne pasta'
 )
-large_eggplant = Ingredient.create(
+large_eggplant = Ingredient.create!(
   name: 'large eggplant'
 )
-mozzarella_cheese = Ingredient.create(
+mozzarella_cheese = Ingredient.create!(
   name: 'mozzarella cheese'
 )
 
-ignocchi = Image.create(
+ignocchi = Image.create!(
   name: 'Gnocchi',
   url: ' https://s3-us-west-1.amazonaws.com/family-recipes/gnocchi-main.jpg',
   alt: 'Gnocchi de castgne with pesto',
@@ -308,7 +308,7 @@ ignocchi = Image.create(
   width_orig: 1184,
   height_orig: 888,
 )
-rgnocchi = Recipe.create(
+rgnocchi = Recipe.create!(
   title: 'Gnocchi de Castagne',
   difficulty: 4,
   memorandums: 'In honor of Mary Cirelli',
@@ -318,56 +318,55 @@ rgnocchi = Recipe.create(
   category: primi,
   image: ignocchi,
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1/4',
   unit: 'tsp',
   ingredient: salt,
   recipe: rgnocchi
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1/4',
   unit: 'cup',
   ingredient: grated_cheese,
   recipe: rgnocchi
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1',
   unit: 'cup',
   ingredient: farina,
   recipe: rgnocchi
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1',
   unit: 'cup',
   ingredient: flour,
   recipe: rgnocchi
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1',
   unit: '',
   ingredient: egg_yolk,
   recipe: rgnocchi
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1',
   unit: '',
   ingredient: egg,
   recipe: rgnocchi
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1/4',
   unit: 'cube',
   ingredient: butter,
   recipe: rgnocchi
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '2',
   unit: 'lb',
   ingredient: potato,
   recipe: rgnocchi
 )
-
-ibruschetta = Image.create(
+ibruschetta = Image.create!(
   name: 'Bruschetta',
   url: ' https://s3-us-west-1.amazonaws.com/family-recipes/gnocchi-main.jpg',
   alt: 'Bruschetta plate with tomatoes',
@@ -376,7 +375,7 @@ ibruschetta = Image.create(
   width_orig: 1329,
   height_orig: 888,
 )
-rbruschetta = Recipe.create(
+rbruschetta = Recipe.create!(
   title: 'Bruschetta',
   difficulty: 2,
   memorandums: '',
@@ -386,38 +385,38 @@ rbruschetta = Recipe.create(
   category: antipasti,
   image: ibruschetta,
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '12',
   unit: 'slice',
   ingredient: bread,
   recipe: rbruschetta
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '2',
   unit: 'clove',
   ingredient: bread,
   recipe: rbruschetta
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: 'some',
   unit: '',
   ingredient: oliveoil,
   recipe: rbruschetta
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1',
   unit: 'pinch',
   ingredient: salt,
   recipe: rbruschetta
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1',
   unit: 'pinch',
   ingredient: pepper,
   recipe: rbruschetta
 )
 
-ipasta_al_forno = Image.create(
+ipasta_al_forno = Image.create!(
   name: 'Pasta al Forno',
   url: 'https://s3-us-west-1.amazonaws.com/family-recipes/pasta_al_forno2.jpg',
   alt: 'Pasta al forno',
@@ -426,7 +425,7 @@ ipasta_al_forno = Image.create(
   width_orig: 1233,
   height_orig: 925,
 )
-forno = Recipe.create(
+forno = Recipe.create!(
   title: 'Pasta al Forno',
   difficulty: 5,
   memorandums: '',
@@ -446,74 +445,74 @@ mozzarella is melted and pasta is heated throughout.</p>",
   category: primi,
   image: ipasta_al_forno,
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '28-30',
   unit: 'oz',
   ingredient: tomato_paste,
   recipe: forno
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '3',
   unit: '',
   ingredient: fresh_basil,
   recipe: forno
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1/2',
   unit: '',
   ingredient: yellow_onion,
   recipe: forno
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1/2',
   unit: '',
   ingredient: yellow_onion,
   recipe: forno
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1',
   unit: 'pinch',
   ingredient: salt,
   recipe: forno
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1',
   unit: 'pinch',
   ingredient: pepper,
   recipe: forno
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1',
   unit: '',
   ingredient: garlic,
   recipe: forno
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1 1/2',
   unit: 'lbs',
   ingredient: penne_pasta,
   recipe: forno
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1',
   unit: '',
   ingredient: large_eggplant,
   recipe: forno
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1 1/2',
   unit: 'lbs',
   ingredient: mozzarella_cheese,
   recipe: forno,
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1',
   unit: 'cup',
   ingredient: parmesan,
   recipe: forno
 )
 
-inoci = Image.create(
+inoci = Image.create!(
   name: 'Salsa de Noci',
   url: 'https://s3-us-west-1.amazonaws.com/family-recipes/salsadenoci.jpg',
   alt: 'Heart-shaped pasta with salsa de noci',
@@ -522,7 +521,7 @@ inoci = Image.create(
   width_orig: 1385,
   height_orig: 925,
 )
-noci = Recipe.create(
+noci = Recipe.create!(
   title: 'Salsa di Noci (Walnut Sauce)',
   difficulty: 3,
   memorandums: '',
@@ -536,62 +535,71 @@ similar to ravioli, but it can be served with fettucine or other types of pasta.
   category: primi,
   image: inoci,
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1/2',
   unit: 'lb',
   ingredient: minced_walnut,
   recipe: noci
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1/2',
   unit: 'cup',
   ingredient: toasted_pine_nut,
   recipe: noci
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1',
   unit: 'clove',
   ingredient: garlic,
   recipe: noci
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '2 1/2',
   unit: 'tbl',
   ingredient: italian_parsley,
   recipe: noci
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1/2',
   unit: 'cup',
   ingredient: parmesan,
   recipe: noci
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1/2',
   unit: 'cup',
   ingredient: ricotta,
   recipe: noci
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1/2',
   unit: 'cup',
   ingredient: oliveoil,
   recipe: noci
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '2',
   unit: 'tbl',
   ingredient: melted_butter,
   recipe: noci
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1/4',
   unit: 'cup',
   ingredient: heavy_cream,
   recipe: noci
 )
 
-caponata = Recipe.create(
+icaponata = Image.create!(
+  name: 'Caponata fake',
+  url: 'https://s3-us-west-1.amazonaws.com/family-recipes/salsadenoci.jpg',
+  alt: 'Heart-shaped pasta with salsa de noci',
+  width: 1385,
+  height: 925,
+  width_orig: 1385,
+  height_orig: 925,
+)
+caponata = Recipe.create!(
   title: 'Caponata',
   difficulty: 3,
   memorandums: '',
@@ -604,76 +612,77 @@ Sprinkle with plenty of freshly ground pepper, add salt if necessary, and
 simmer for 10 minutes. Serve cold.</p>",
   cooks: [nino],
   category: antipasti,
+  image: icaponata,
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '2 1/2',
   unit: 'lbs',
   ingredient: eggplant,
   recipe: caponata
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1',
   unit: 'pinch',
   ingredient: salt,
   recipe: caponata
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1',
   unit: 'pinch',
   ingredient: pepper,
   recipe: caponata
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1',
   unit: 'tbs',
   ingredient: oliveoil,
   recipe: caponata
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1',
   unit: 'bunch',
   ingredient: celery,
   recipe: caponata
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1',
   unit: '',
   ingredient: onion,
   recipe: caponata
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1 1/4',
   unit: 'cup',
   ingredient: vinegar,
   recipe: caponata
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '4',
   unit: 'tsp',
   ingredient: sugar,
   recipe: caponata
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1/2',
   unit: 'cup',
   ingredient: green_olive,
   recipe: caponata
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '1',
   unit: 'small can',
   ingredient: tomato_paste,
   recipe: caponata
 )
-IngredientAmount.create(
+IngredientAmount.create!(
   amount: '2',
   unit: 'tbl',
   ingredient: caper,
   recipe: caponata
 )
 
-p "Created #{Category.count} categories"
-p "Created #{Image.count} images"
-p "Created #{Cook.count} cooks"
-p "Created #{Ingredient.count} ingredients"
-p "Created #{Recipe.count} recipes"
+p "created #{Category.count} categories"
+p "created #{Image.count} images"
+p "created #{Cook.count} cooks"
+p "created #{Ingredient.count} ingredients"
+p "created #{Recipe.count} recipes"

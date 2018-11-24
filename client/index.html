@@ -18997,6 +18997,9 @@ var _user$project$Types_Ingredient$ingredientQl = A2(
 								_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
 							_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$object(_user$project$Types_Ingredient$Ingredient))))))));
 var _user$project$Types_Ingredient$ingredientsQl = _jamesmacaulay$elm_graphql$GraphQL_Request_Builder$list(_user$project$Types_Ingredient$ingredientQl);
+var _user$project$Types_Recipe$recipeUrl = function (id) {
+	return A2(_elm_lang$core$Basics_ops['++'], '/recipe/', id);
+};
 var _user$project$Types_Recipe$Recipe = function (a) {
 	return function (b) {
 		return function (c) {
@@ -19018,78 +19021,111 @@ var _user$project$Types_Recipe$Recipe = function (a) {
 		};
 	};
 };
-var _user$project$Types_Recipe$recipeQuery = function () {
-	var recipe = A2(
+var _user$project$Types_Recipe$recipeQueryObject = A2(
+	_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
+	A3(
+		_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
+		'ingredients',
+		{ctor: '[]'},
+		_user$project$Types_Ingredient$ingredientsQl),
+	A2(
 		_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 		A3(
 			_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-			'ingredients',
+			'cooks',
 			{ctor: '[]'},
-			_user$project$Types_Ingredient$ingredientsQl),
+			_user$project$Types_Cook$cooksQl),
 		A2(
 			_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 			A3(
 				_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-				'cooks',
+				'category',
 				{ctor: '[]'},
-				_user$project$Types_Cook$cooksQl),
+				_user$project$Types_Categories$categoryQuery),
 			A2(
 				_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 				A3(
 					_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-					'category',
+					'image',
 					{ctor: '[]'},
-					_user$project$Types_Categories$categoryQuery),
+					_user$project$Types_Image$imageQuery),
 				A2(
 					_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 					A3(
 						_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-						'image',
+						'story',
 						{ctor: '[]'},
-						_user$project$Types_Image$imageQuery),
+						_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
 					A2(
 						_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 						A3(
 							_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-							'story',
+							'difficulty',
 							{ctor: '[]'},
-							_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
+							_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$int),
 						A2(
 							_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 							A3(
 								_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-								'difficulty',
+								'memorandums',
 								{ctor: '[]'},
-								_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$int),
+								_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
 							A2(
 								_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 								A3(
 									_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-									'memorandums',
+									'description',
 									{ctor: '[]'},
 									_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
 								A2(
 									_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 									A3(
 										_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-										'description',
+										'title',
 										{ctor: '[]'},
 										_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
 									A2(
 										_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 										A3(
 											_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-											'title',
+											'id',
 											{ctor: '[]'},
 											_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
-										A2(
-											_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
-											A3(
-												_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-												'id',
-												{ctor: '[]'},
-												_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
-											_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$object(_user$project$Types_Recipe$Recipe)))))))))));
+										_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$object(_user$project$Types_Recipe$Recipe)))))))))));
+var _user$project$Types_Recipe$recipesQueryObject = _jamesmacaulay$elm_graphql$GraphQL_Request_Builder$list(_user$project$Types_Recipe$recipeQueryObject);
+var _user$project$Types_Recipe$recipesByCategoryQuery = function () {
+	var recipes = _user$project$Types_Recipe$recipesQueryObject;
+	var categoryNameVar = A3(
+		_jamesmacaulay$elm_graphql$GraphQL_Request_Builder_Variable$required,
+		'categoryName',
+		function (_) {
+			return _.categoryName;
+		},
+		_jamesmacaulay$elm_graphql$GraphQL_Request_Builder_Variable$string);
+	var queryRoot = _jamesmacaulay$elm_graphql$GraphQL_Request_Builder$extract(
+		A3(
+			_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
+			'recipes',
+			{
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 'categoryName',
+					_1: _jamesmacaulay$elm_graphql$GraphQL_Request_Builder_Arg$variable(categoryNameVar)
+				},
+				_1: {ctor: '[]'}
+			},
+			recipes));
+	return _jamesmacaulay$elm_graphql$GraphQL_Request_Builder$queryDocument(queryRoot);
+}();
+var _user$project$Types_Recipe$recipesByCategoryQueryRequest = function (categoryName) {
+	return A2(
+		_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$request,
+		{categoryName: categoryName},
+		_user$project$Types_Recipe$recipesByCategoryQuery);
+};
+var _user$project$Types_Recipe$recipeQuery = function () {
+	var recipe = _user$project$Types_Recipe$recipeQueryObject;
 	var recipeIdVar = A3(
 		_jamesmacaulay$elm_graphql$GraphQL_Request_Builder_Variable$required,
 		'recipeId',
@@ -19120,6 +19156,9 @@ var _user$project$Types_Recipe$recipeQueryRequest = function (id) {
 			recipeId: _user$project$Route$recipeIdToString(id)
 		},
 		_user$project$Types_Recipe$recipeQuery);
+};
+var _user$project$Msgs$ReceiveRecipesResponse = function (a) {
+	return {ctor: 'ReceiveRecipesResponse', _0: a};
 };
 var _user$project$Msgs$ReceiveRecipeResponse = function (a) {
 	return {ctor: 'ReceiveRecipeResponse', _0: a};
@@ -19168,6 +19207,180 @@ var _user$project$Style_Sheets$view = A2(
 				});
 		},
 		_user$project$Style_Sheets$stylesheets));
+var _user$project$View_Grid$clip = F3(
+	function (lower, upper, k) {
+		return A2(
+			_elm_lang$core$Basics$max,
+			lower,
+			A2(_elm_lang$core$Basics$min, k, upper));
+	});
+var _user$project$View_Grid$suffix = function (device) {
+	var _p0 = device;
+	switch (_p0.ctor) {
+		case 'All':
+			return '';
+		case 'Desktop':
+			return '-desktop';
+		case 'Tablet':
+			return '-tablet';
+		default:
+			return '-phone';
+	}
+};
+var _user$project$View_Grid$colStyle = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$boxSizing(_rtfeldman$elm_css$Css$borderBox),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$verticalAlign(_rtfeldman$elm_css$Css$top),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$width(
+						_rtfeldman$elm_css$Css$pct(100)),
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	});
+var _user$project$View_Grid$gridStyle = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$boxSizing(_rtfeldman$elm_css$Css$borderBox),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$displayFlex,
+			_1: {
+				ctor: '::',
+				_0: A2(_rtfeldman$elm_css$Css$flexFlow2, _rtfeldman$elm_css$Css$row, _rtfeldman$elm_css$Css$wrap),
+				_1: {
+					ctor: '::',
+					_0: A4(
+						_rtfeldman$elm_css$Css$margin4,
+						_rtfeldman$elm_css$Css$px(0),
+						_rtfeldman$elm_css$Css$auto,
+						_rtfeldman$elm_css$Css$px(0),
+						_rtfeldman$elm_css$Css$auto),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$maxWidth(
+							_rtfeldman$elm_css$Css$px(1015)),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$padding(
+								_rtfeldman$elm_css$Css$px(0)),
+							_1: {
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
+								_1: {
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Css$width(
+										_rtfeldman$elm_css$Css$pct(100)),
+									_1: {
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Css$alignItems(_rtfeldman$elm_css$Css$stretch),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Css$after(
+												{
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Css$boxSizing(_rtfeldman$elm_css$Css$borderBox),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$listStyleType(_rtfeldman$elm_css$Css$none),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+var _user$project$View_Grid$grid = _user$project$View_Grid$gridStyle;
+var _user$project$View_Grid$gutter = 16;
+var _user$project$View_Grid$columns = 12;
+var _user$project$View_Grid$gcol = function (amount) {
+	return _rtfeldman$elm_css$Css$batch(
+		{
+			ctor: '::',
+			_0: _user$project$View_Grid$colStyle,
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$paddingLeft(
+					_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter / 2)),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$paddingRight(
+						_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter / 2)),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$width(
+							A3(
+								_rtfeldman$elm_css$Css$calc,
+								_rtfeldman$elm_css$Css$pct((amount / _user$project$View_Grid$columns) * 100),
+								_rtfeldman$elm_css$Css$minus,
+								_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter))),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+};
+var _user$project$View_Grid$offset = function (amount) {
+	return _rtfeldman$elm_css$Css$marginRight(
+		A3(
+			_rtfeldman$elm_css$Css$calc,
+			_rtfeldman$elm_css$Css$pct((amount / _user$project$View_Grid$columns) * 100),
+			_rtfeldman$elm_css$Css$minus,
+			_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter)));
+};
+var _user$project$View_Grid$columnSize = 76;
+var _user$project$View_Grid$Phone = {ctor: 'Phone'};
+var _user$project$View_Grid$Tablet = {ctor: 'Tablet'};
+var _user$project$View_Grid$Desktop = {ctor: 'Desktop'};
+var _user$project$View_Grid$All = {ctor: 'All'};
+var _user$project$View_Grid$Bottom = {ctor: 'Bottom'};
+var _user$project$View_Grid$Middle = {ctor: 'Middle'};
+var _user$project$View_Grid$Top = {ctor: 'Top'};
+var _user$project$View_Logo$viewInverse = A2(
+	_rtfeldman$elm_css$Html_Styled$div,
+	{ctor: '[]'},
+	{
+		ctor: '::',
+		_0: A2(
+			_rtfeldman$elm_css$Html_Styled$img,
+			{
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Html_Styled_Attributes$src('img/logo-inverse.png'),
+				_1: {ctor: '[]'}
+			},
+			{ctor: '[]'}),
+		_1: {ctor: '[]'}
+	});
+var _user$project$View_Logo$view = A2(
+	_rtfeldman$elm_css$Html_Styled$div,
+	{ctor: '[]'},
+	{
+		ctor: '::',
+		_0: A2(
+			_rtfeldman$elm_css$Html_Styled$img,
+			{
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Html_Styled_Attributes$src('https://s3-us-west-1.amazonaws.com/family-recipes/logo.png'),
+				_1: {ctor: '[]'}
+			},
+			{ctor: '[]'}),
+		_1: {ctor: '[]'}
+	});
 var _user$project$Style_Theme$spacing = {section: 45};
 var _user$project$Style_Theme$colors = {
 	primary: _rtfeldman$elm_css$Css$hex('CC4021'),
@@ -19215,6 +19428,65 @@ var _user$project$Style_Theme$baseLine = 16.0;
 var _user$project$Style_Theme$toEm = function (val) {
 	return _rtfeldman$elm_css$Css$em(val / _user$project$Style_Theme$baseLine);
 };
+var _user$project$View_Wrap$view = function (content) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled$div,
+		{
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Html_Styled_Attributes$class('main'),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+					{
+						ctor: '::',
+						_0: A2(
+							_rtfeldman$elm_css$Css$margin2,
+							_rtfeldman$elm_css$Css$em(1),
+							_rtfeldman$elm_css$Css$auto),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$maxWidth(
+								_rtfeldman$elm_css$Css$px(_user$project$Style_Theme$wrapWidth)),
+							_1: {
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Css$width(
+									_rtfeldman$elm_css$Css$pct(100)),
+								_1: {ctor: '[]'}
+							}
+						}
+					}),
+				_1: {ctor: '[]'}
+			}
+		},
+		{
+			ctor: '::',
+			_0: content,
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$Style_Typography$link = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$color(_rtfeldman$elm_css$Css$inherit),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$textDecoration(_rtfeldman$elm_css$Css$none),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$hover(
+					{
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$color(_user$project$Style_Theme$colors.primary),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$textDecoration(_rtfeldman$elm_css$Css$underline),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {ctor: '[]'}
+			}
+		}
+	});
 var _user$project$Style_Typography$categoryText = _rtfeldman$elm_css$Css$batch(
 	{
 		ctor: '::',
@@ -19251,7 +19523,16 @@ var _user$project$Style_Typography$displaySm = _rtfeldman$elm_css$Css$batch(
 			ctor: '::',
 			_0: _rtfeldman$elm_css$Css$fontSize(
 				_user$project$Style_Theme$toEm(12)),
-			_1: {ctor: '[]'}
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$listStyle(_rtfeldman$elm_css$Css$none),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$margin(
+						_rtfeldman$elm_css$Css$px(0)),
+					_1: {ctor: '[]'}
+				}
+			}
 		}
 	});
 var _user$project$Style_Typography$displayMd = _rtfeldman$elm_css$Css$batch(
@@ -19262,7 +19543,21 @@ var _user$project$Style_Typography$displayMd = _rtfeldman$elm_css$Css$batch(
 			ctor: '::',
 			_0: _rtfeldman$elm_css$Css$fontSize(
 				_user$project$Style_Theme$toEm(14)),
-			_1: {ctor: '[]'}
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$fontWeight(_rtfeldman$elm_css$Css$normal),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$margin(
+						_rtfeldman$elm_css$Css$px(0)),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$marginTop(
+							_rtfeldman$elm_css$Css$px(8)),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
 		}
 	});
 var _user$project$Style_Typography$display = _rtfeldman$elm_css$Css$batch(
@@ -19296,6 +19591,31 @@ var _user$project$Style_Typography$body = _rtfeldman$elm_css$Css$batch(
 						ctor: '::',
 						_0: _rtfeldman$elm_css$Css$marginTop(
 							_rtfeldman$elm_css$Css$px(0)),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		}
+	});
+var _user$project$Style_Typography$bodyTitle = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _user$project$Style_Typography$body,
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$fontSize(
+				_user$project$Style_Theme$toEm(22)),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$fontWeight(_rtfeldman$elm_css$Css$normal),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$letterSpacing(
+						_rtfeldman$elm_css$Css$px(1)),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$lineHeight(
+							_user$project$Style_Theme$toEm(20)),
 						_1: {ctor: '[]'}
 					}
 				}
@@ -19358,6 +19678,25 @@ var _user$project$Style_Typography$h3 = _rtfeldman$elm_css$Css$batch(
 				ctor: '::',
 				_0: _rtfeldman$elm_css$Css$fontWeight(_rtfeldman$elm_css$Css$bolder),
 				_1: {ctor: '[]'}
+			}
+		}
+	});
+var _user$project$Style_Typography$categoryTitle = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _user$project$Style_Typography$h3,
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$color(_user$project$Style_Theme$colors.primary),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$textTransform(_rtfeldman$elm_css$Css$uppercase),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$letterSpacing(
+						_rtfeldman$elm_css$Css$px(3)),
+					_1: {ctor: '[]'}
+				}
 			}
 		}
 	});
@@ -19492,6 +19831,424 @@ var _user$project$Style_Typography$footerNav = _rtfeldman$elm_css$Css$batch(
 			_1: {
 				ctor: '::',
 				_0: _rtfeldman$elm_css$Css$fontWeight(_rtfeldman$elm_css$Css$normal),
+				_1: {ctor: '[]'}
+			}
+		}
+	});
+var _user$project$View_Footer$view = A2(
+	_rtfeldman$elm_css$Html_Styled$footer,
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+			{
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$backgroundColor(_user$project$Style_Theme$colors.secondary),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$maxHeight(
+						_rtfeldman$elm_css$Css$em(6)),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_rtfeldman$elm_css$Css$padding2,
+							_rtfeldman$elm_css$Css$em(2),
+							_rtfeldman$elm_css$Css$em(0)),
+						_1: {ctor: '[]'}
+					}
+				}
+			}),
+		_1: {ctor: '[]'}
+	},
+	{
+		ctor: '::',
+		_0: A2(
+			_rtfeldman$elm_css$Html_Styled$div,
+			{
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+					{
+						ctor: '::',
+						_0: _user$project$View_Grid$grid,
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_rtfeldman$elm_css$Html_Styled$div,
+					{
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+							{
+								ctor: '::',
+								_0: _user$project$View_Grid$gcol(2),
+								_1: {
+									ctor: '::',
+									_0: _user$project$View_Grid$offset(1),
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _user$project$View_Logo$viewInverse,
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+								{
+									ctor: '::',
+									_0: _user$project$View_Grid$gcol(2),
+									_1: {
+										ctor: '::',
+										_0: _user$project$View_Grid$offset(1),
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: A2(
+								_rtfeldman$elm_css$Html_Styled$h4,
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+										{
+											ctor: '::',
+											_0: _user$project$Style_Typography$h4,
+											_1: {
+												ctor: '::',
+												_0: _user$project$Style_Typography$offColor,
+												_1: {ctor: '[]'}
+											}
+										}),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled$text('About the poop'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$a,
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled_Attributes$href(
+											_user$project$Route$getUrl(_user$project$Route$AboutRoute)),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+												{
+													ctor: '::',
+													_0: _user$project$Style_Typography$footerNav,
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										}
+									},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('The Story'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+									{
+										ctor: '::',
+										_0: _user$project$View_Grid$gcol(3),
+										_1: {
+											ctor: '::',
+											_0: _user$project$View_Grid$offset(1),
+											_1: {ctor: '[]'}
+										}
+									}),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Html_Styled$h4,
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+											{
+												ctor: '::',
+												_0: _user$project$Style_Typography$h4,
+												_1: {
+													ctor: '::',
+													_0: _user$project$Style_Typography$offColor,
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled$text('Recipes by Type'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_rtfeldman$elm_css$Html_Styled$div,
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+										{
+											ctor: '::',
+											_0: _user$project$View_Grid$gcol(2),
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$h4,
+										{
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+												{
+													ctor: '::',
+													_0: _user$project$Style_Typography$h4,
+													_1: {
+														ctor: '::',
+														_0: _user$project$Style_Typography$offColor,
+														_1: {ctor: '[]'}
+													}
+												}),
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled$text('Share'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}),
+		_1: {ctor: '[]'}
+	});
+var _user$project$View_Footer$Model = {};
+var _user$project$View_Header$capitalCase = function (str) {
+	var _p0 = _elm_lang$core$String$uncons(str);
+	if (_p0.ctor === 'Just') {
+		return A2(
+			_elm_lang$core$String$cons,
+			_elm_lang$core$Char$toUpper(_p0._0._0),
+			_p0._0._1);
+	} else {
+		return '';
+	}
+};
+var _user$project$View_Header$renderMenuLink = function (category) {
+	var link = _user$project$Route$getUrl(
+		_user$project$Route$RecipesRoute(
+			_elm_lang$core$Maybe$Just(category)));
+	return A2(
+		_rtfeldman$elm_css$Html_Styled$li,
+		{
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+				{
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$inlineBlock),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$backgroundImage(
+							_rtfeldman$elm_css$Css$url('https://s3-us-west-1.amazonaws.com/family-recipes/nav-bg.svg')),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$backgroundRepeat(_rtfeldman$elm_css$Css$noRepeat),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Css$backgroundPosition2,
+									_rtfeldman$elm_css$Css$pct(100),
+									_rtfeldman$elm_css$Css$pct(100)),
+								_1: {
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Css$height(
+										_rtfeldman$elm_css$Css$px(26)),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Css$padding2,
+											_rtfeldman$elm_css$Css$px(0),
+											_rtfeldman$elm_css$Css$px(9)),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_rtfeldman$elm_css$Html_Styled$a,
+				{
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Html_Styled_Attributes$href(link),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+							{
+								ctor: '::',
+								_0: _user$project$Style_Typography$nav,
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
+				},
+				{
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Html_Styled$text(
+						_user$project$View_Header$capitalCase(
+							_user$project$Types_Categories$categoryToString(
+								_elm_lang$core$Maybe$Just(category)))),
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$View_Header$renderMenu = function (categories) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled$ul,
+		{
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+				{
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$alignItems(_rtfeldman$elm_css$Css$center),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$displayFlex,
+						_1: {
+							ctor: '::',
+							_0: A2(_rtfeldman$elm_css$Css$flexFlow2, _rtfeldman$elm_css$Css$row, _rtfeldman$elm_css$Css$wrap),
+							_1: {
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Css$height(
+									_rtfeldman$elm_css$Css$pct(100)),
+								_1: {
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Css$justifyContent(_rtfeldman$elm_css$Css$spaceBetween),
+									_1: {
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Css$listStyle(_rtfeldman$elm_css$Css$none),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Css$margin(
+												_rtfeldman$elm_css$Css$px(0)),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$padding(
+													_rtfeldman$elm_css$Css$px(0)),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}),
+			_1: {ctor: '[]'}
+		},
+		A2(_elm_lang$core$List$map, _user$project$View_Header$renderMenuLink, categories));
+};
+var _user$project$View_Header$view = A2(
+	_rtfeldman$elm_css$Html_Styled$header,
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+			{
+				ctor: '::',
+				_0: _user$project$View_Grid$grid,
+				_1: {ctor: '[]'}
+			}),
+		_1: {ctor: '[]'}
+	},
+	{
+		ctor: '::',
+		_0: A2(
+			_rtfeldman$elm_css$Html_Styled$div,
+			{
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+					{
+						ctor: '::',
+						_0: _user$project$View_Grid$gcol(2),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: _user$project$View_Logo$view,
+				_1: {ctor: '[]'}
+			}),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_rtfeldman$elm_css$Html_Styled$div,
+				{
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+						{
+							ctor: '::',
+							_0: _user$project$View_Grid$offset(2),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				},
+				{ctor: '[]'}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_rtfeldman$elm_css$Html_Styled$div,
+					{
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+							{
+								ctor: '::',
+								_0: _user$project$View_Grid$gcol(8),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _user$project$View_Header$renderMenu(_user$project$Types_Categories$categories),
+						_1: {ctor: '[]'}
+					}),
 				_1: {ctor: '[]'}
 			}
 		}
@@ -19716,6 +20473,26 @@ var _user$project$Style_Components$hR = _rtfeldman$elm_css$Css$batch(
 			}
 		}
 	});
+var _user$project$Style_Layout$container = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$marginLeft(_rtfeldman$elm_css$Css$auto),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$marginRight(_rtfeldman$elm_css$Css$auto),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$maxWidth(
+					_rtfeldman$elm_css$Css$px(_user$project$Style_Theme$wrapWidth)),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$width(
+						_rtfeldman$elm_css$Css$pct(100)),
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	});
 var _user$project$Style_Layout$fullWidth = _rtfeldman$elm_css$Css$batch(
 	{
 		ctor: '::',
@@ -19803,150 +20580,6 @@ var _user$project$Style_Util$visuallyHide = _rtfeldman$elm_css$Css$batch(
 			}
 		}
 	});
-var _user$project$View_Grid$clip = F3(
-	function (lower, upper, k) {
-		return A2(
-			_elm_lang$core$Basics$max,
-			lower,
-			A2(_elm_lang$core$Basics$min, k, upper));
-	});
-var _user$project$View_Grid$suffix = function (device) {
-	var _p0 = device;
-	switch (_p0.ctor) {
-		case 'All':
-			return '';
-		case 'Desktop':
-			return '-desktop';
-		case 'Tablet':
-			return '-tablet';
-		default:
-			return '-phone';
-	}
-};
-var _user$project$View_Grid$colStyle = _rtfeldman$elm_css$Css$batch(
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Css$boxSizing(_rtfeldman$elm_css$Css$borderBox),
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
-			_1: {
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$verticalAlign(_rtfeldman$elm_css$Css$top),
-				_1: {
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Css$width(
-						_rtfeldman$elm_css$Css$pct(100)),
-					_1: {ctor: '[]'}
-				}
-			}
-		}
-	});
-var _user$project$View_Grid$gridStyle = _rtfeldman$elm_css$Css$batch(
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Css$boxSizing(_rtfeldman$elm_css$Css$borderBox),
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$displayFlex,
-			_1: {
-				ctor: '::',
-				_0: A2(_rtfeldman$elm_css$Css$flexFlow2, _rtfeldman$elm_css$Css$row, _rtfeldman$elm_css$Css$wrap),
-				_1: {
-					ctor: '::',
-					_0: A4(
-						_rtfeldman$elm_css$Css$margin4,
-						_rtfeldman$elm_css$Css$px(0),
-						_rtfeldman$elm_css$Css$auto,
-						_rtfeldman$elm_css$Css$px(0),
-						_rtfeldman$elm_css$Css$auto),
-					_1: {
-						ctor: '::',
-						_0: _rtfeldman$elm_css$Css$maxWidth(
-							_rtfeldman$elm_css$Css$px(1015)),
-						_1: {
-							ctor: '::',
-							_0: _rtfeldman$elm_css$Css$padding(
-								_rtfeldman$elm_css$Css$px(0)),
-							_1: {
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
-								_1: {
-									ctor: '::',
-									_0: _rtfeldman$elm_css$Css$width(
-										_rtfeldman$elm_css$Css$pct(100)),
-									_1: {
-										ctor: '::',
-										_0: _rtfeldman$elm_css$Css$alignItems(_rtfeldman$elm_css$Css$stretch),
-										_1: {
-											ctor: '::',
-											_0: _rtfeldman$elm_css$Css$after(
-												{
-													ctor: '::',
-													_0: _rtfeldman$elm_css$Css$boxSizing(_rtfeldman$elm_css$Css$borderBox),
-													_1: {ctor: '[]'}
-												}),
-											_1: {
-												ctor: '::',
-												_0: _rtfeldman$elm_css$Css$listStyleType(_rtfeldman$elm_css$Css$none),
-												_1: {ctor: '[]'}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	});
-var _user$project$View_Grid$grid = _user$project$View_Grid$gridStyle;
-var _user$project$View_Grid$gutter = 16;
-var _user$project$View_Grid$columns = 12;
-var _user$project$View_Grid$gcol = function (amount) {
-	return _rtfeldman$elm_css$Css$batch(
-		{
-			ctor: '::',
-			_0: _user$project$View_Grid$colStyle,
-			_1: {
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$paddingLeft(
-					_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter / 2)),
-				_1: {
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Css$paddingRight(
-						_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter / 2)),
-					_1: {
-						ctor: '::',
-						_0: _rtfeldman$elm_css$Css$width(
-							A3(
-								_rtfeldman$elm_css$Css$calc,
-								_rtfeldman$elm_css$Css$pct((amount / _user$project$View_Grid$columns) * 100),
-								_rtfeldman$elm_css$Css$minus,
-								_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter))),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-};
-var _user$project$View_Grid$offset = function (amount) {
-	return _rtfeldman$elm_css$Css$marginRight(
-		A3(
-			_rtfeldman$elm_css$Css$calc,
-			_rtfeldman$elm_css$Css$pct((amount / _user$project$View_Grid$columns) * 100),
-			_rtfeldman$elm_css$Css$minus,
-			_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter)));
-};
-var _user$project$View_Grid$columnSize = 76;
-var _user$project$View_Grid$Phone = {ctor: 'Phone'};
-var _user$project$View_Grid$Tablet = {ctor: 'Tablet'};
-var _user$project$View_Grid$Desktop = {ctor: 'Desktop'};
-var _user$project$View_Grid$All = {ctor: 'All'};
-var _user$project$View_Grid$Bottom = {ctor: 'Bottom'};
-var _user$project$View_Grid$Middle = {ctor: 'Middle'};
-var _user$project$View_Grid$Top = {ctor: 'Top'};
 var _user$project$View_Recipe$categoryDisplay = function (name) {
 	return A2(
 		_rtfeldman$elm_css$Html_Styled$div,
@@ -20726,198 +21359,88 @@ var _user$project$View_Recipe$view = function (recipe) {
 			}
 		});
 };
-var _user$project$View_Logo$viewInverse = A2(
-	_rtfeldman$elm_css$Html_Styled$div,
-	{ctor: '[]'},
-	{
-		ctor: '::',
-		_0: A2(
-			_rtfeldman$elm_css$Html_Styled$img,
-			{
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Html_Styled_Attributes$src('img/logo-inverse.png'),
-				_1: {ctor: '[]'}
-			},
-			{ctor: '[]'}),
-		_1: {ctor: '[]'}
-	});
-var _user$project$View_Logo$view = A2(
-	_rtfeldman$elm_css$Html_Styled$div,
-	{ctor: '[]'},
-	{
-		ctor: '::',
-		_0: A2(
-			_rtfeldman$elm_css$Html_Styled$img,
-			{
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Html_Styled_Attributes$src('https://s3-us-west-1.amazonaws.com/family-recipes/logo.png'),
-				_1: {ctor: '[]'}
-			},
-			{ctor: '[]'}),
-		_1: {ctor: '[]'}
-	});
-var _user$project$View_Header$capitalCase = function (str) {
-	var _p0 = _elm_lang$core$String$uncons(str);
-	if (_p0.ctor === 'Just') {
+var _user$project$View_Recipes$difficultyImage = F2(
+	function (i, difficulty) {
+		var which = (_elm_lang$core$Native_Utils.cmp(i, difficulty) > 0) ? 'none' : 'point';
 		return A2(
-			_elm_lang$core$String$cons,
-			_elm_lang$core$Char$toUpper(_p0._0._0),
-			_p0._0._1);
-	} else {
-		return '';
-	}
-};
-var _user$project$View_Header$renderMenuLink = function (category) {
-	var link = _user$project$Route$getUrl(
-		_user$project$Route$RecipesRoute(
-			_elm_lang$core$Maybe$Just(category)));
+			_elm_lang$core$Basics_ops['++'],
+			'https://s3-us-west-1.amazonaws.com/family-recipes/difficulty-',
+			A2(_elm_lang$core$Basics_ops['++'], which, '.svg'));
+	});
+var _user$project$View_Recipes$difficultyView = function (difficulty) {
 	return A2(
-		_rtfeldman$elm_css$Html_Styled$li,
+		_rtfeldman$elm_css$Html_Styled$div,
 		{
 			ctor: '::',
 			_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 				{
 					ctor: '::',
-					_0: _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$inlineBlock),
-					_1: {
-						ctor: '::',
-						_0: _rtfeldman$elm_css$Css$backgroundImage(
-							_rtfeldman$elm_css$Css$url('https://s3-us-west-1.amazonaws.com/family-recipes/nav-bg.svg')),
-						_1: {
-							ctor: '::',
-							_0: _rtfeldman$elm_css$Css$backgroundRepeat(_rtfeldman$elm_css$Css$noRepeat),
-							_1: {
-								ctor: '::',
-								_0: A2(
-									_rtfeldman$elm_css$Css$backgroundPosition2,
-									_rtfeldman$elm_css$Css$pct(100),
-									_rtfeldman$elm_css$Css$pct(100)),
-								_1: {
-									ctor: '::',
-									_0: _rtfeldman$elm_css$Css$height(
-										_rtfeldman$elm_css$Css$px(26)),
-									_1: {
-										ctor: '::',
-										_0: A2(
-											_rtfeldman$elm_css$Css$padding2,
-											_rtfeldman$elm_css$Css$px(0),
-											_rtfeldman$elm_css$Css$px(9)),
-										_1: {ctor: '[]'}
-									}
-								}
-							}
-						}
-					}
-				}),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: A2(
-				_rtfeldman$elm_css$Html_Styled$a,
-				{
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Html_Styled_Attributes$href(link),
-					_1: {
-						ctor: '::',
-						_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-							{
-								ctor: '::',
-								_0: _user$project$Style_Typography$nav,
-								_1: {ctor: '[]'}
-							}),
-						_1: {ctor: '[]'}
-					}
-				},
-				{
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Html_Styled$text(
-						_user$project$View_Header$capitalCase(
-							_user$project$Types_Categories$categoryToString(
-								_elm_lang$core$Maybe$Just(category)))),
+					_0: _rtfeldman$elm_css$Css$marginTop(
+						_rtfeldman$elm_css$Css$px(2)),
 					_1: {ctor: '[]'}
 				}),
 			_1: {ctor: '[]'}
+		},
+		A2(
+			_elm_lang$core$List$map,
+			function (i) {
+				return A2(
+					_rtfeldman$elm_css$Html_Styled$img,
+					{
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Html_Styled_Attributes$src(
+							A2(_user$project$View_Recipes$difficultyImage, i, difficulty)),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Css$marginRight(
+										_rtfeldman$elm_css$Css$px(4)),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}
+					},
+					{ctor: '[]'});
+			},
+			A2(_elm_lang$core$List$range, 1, 5)));
+};
+var _user$project$View_Recipes$authorView = function (s) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled$span,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Html_Styled$text(s),
+			_1: {ctor: '[]'}
 		});
 };
-var _user$project$View_Header$renderMenu = function (categories) {
+var _user$project$View_Recipes$inlineAuthorsView = function (strings) {
 	return A2(
-		_rtfeldman$elm_css$Html_Styled$ul,
+		_rtfeldman$elm_css$Html_Styled$span,
+		{ctor: '[]'},
+		A2(_elm_lang$core$List$map, _user$project$View_Recipes$authorView, strings));
+};
+var _user$project$View_Recipes$compactRecipe = function (recipe) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled$div,
 		{
 			ctor: '::',
 			_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 				{
 					ctor: '::',
-					_0: _rtfeldman$elm_css$Css$alignItems(_rtfeldman$elm_css$Css$center),
+					_0: _user$project$View_Grid$gcol(6),
 					_1: {
 						ctor: '::',
-						_0: _rtfeldman$elm_css$Css$displayFlex,
-						_1: {
-							ctor: '::',
-							_0: A2(_rtfeldman$elm_css$Css$flexFlow2, _rtfeldman$elm_css$Css$row, _rtfeldman$elm_css$Css$wrap),
-							_1: {
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Css$height(
-									_rtfeldman$elm_css$Css$pct(100)),
-								_1: {
-									ctor: '::',
-									_0: _rtfeldman$elm_css$Css$justifyContent(_rtfeldman$elm_css$Css$spaceBetween),
-									_1: {
-										ctor: '::',
-										_0: _rtfeldman$elm_css$Css$listStyle(_rtfeldman$elm_css$Css$none),
-										_1: {
-											ctor: '::',
-											_0: _rtfeldman$elm_css$Css$margin(
-												_rtfeldman$elm_css$Css$px(0)),
-											_1: {
-												ctor: '::',
-												_0: _rtfeldman$elm_css$Css$padding(
-													_rtfeldman$elm_css$Css$px(0)),
-												_1: {ctor: '[]'}
-											}
-										}
-									}
-								}
-							}
-						}
+						_0: _rtfeldman$elm_css$Css$marginTop(
+							_rtfeldman$elm_css$Css$px(20)),
+						_1: {ctor: '[]'}
 					}
 				}),
 			_1: {ctor: '[]'}
 		},
-		A2(_elm_lang$core$List$map, _user$project$View_Header$renderMenuLink, categories));
-};
-var _user$project$View_Header$view = A2(
-	_rtfeldman$elm_css$Html_Styled$header,
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-			{
-				ctor: '::',
-				_0: _user$project$View_Grid$grid,
-				_1: {ctor: '[]'}
-			}),
-		_1: {ctor: '[]'}
-	},
-	{
-		ctor: '::',
-		_0: A2(
-			_rtfeldman$elm_css$Html_Styled$div,
-			{
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-					{
-						ctor: '::',
-						_0: _user$project$View_Grid$gcol(2),
-						_1: {ctor: '[]'}
-					}),
-				_1: {ctor: '[]'}
-			},
-			{
-				ctor: '::',
-				_0: _user$project$View_Logo$view,
-				_1: {ctor: '[]'}
-			}),
-		_1: {
+		{
 			ctor: '::',
 			_0: A2(
 				_rtfeldman$elm_css$Html_Styled$div,
@@ -20926,133 +21449,12 @@ var _user$project$View_Header$view = A2(
 					_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 						{
 							ctor: '::',
-							_0: _user$project$View_Grid$offset(2),
+							_0: _user$project$View_Grid$grid,
 							_1: {ctor: '[]'}
 						}),
 					_1: {ctor: '[]'}
 				},
-				{ctor: '[]'}),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_rtfeldman$elm_css$Html_Styled$div,
-					{
-						ctor: '::',
-						_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-							{
-								ctor: '::',
-								_0: _user$project$View_Grid$gcol(8),
-								_1: {ctor: '[]'}
-							}),
-						_1: {ctor: '[]'}
-					},
-					{
-						ctor: '::',
-						_0: _user$project$View_Header$renderMenu(_user$project$Types_Categories$categories),
-						_1: {ctor: '[]'}
-					}),
-				_1: {ctor: '[]'}
-			}
-		}
-	});
-var _user$project$View_Wrap$view = function (content) {
-	return A2(
-		_rtfeldman$elm_css$Html_Styled$div,
-		{
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Html_Styled_Attributes$class('main'),
-			_1: {
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-					{
-						ctor: '::',
-						_0: A2(
-							_rtfeldman$elm_css$Css$margin2,
-							_rtfeldman$elm_css$Css$em(1),
-							_rtfeldman$elm_css$Css$auto),
-						_1: {
-							ctor: '::',
-							_0: _rtfeldman$elm_css$Css$maxWidth(
-								_rtfeldman$elm_css$Css$px(_user$project$Style_Theme$wrapWidth)),
-							_1: {
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Css$width(
-									_rtfeldman$elm_css$Css$pct(100)),
-								_1: {ctor: '[]'}
-							}
-						}
-					}),
-				_1: {ctor: '[]'}
-			}
-		},
-		{
-			ctor: '::',
-			_0: content,
-			_1: {ctor: '[]'}
-		});
-};
-var _user$project$View_Footer$view = A2(
-	_rtfeldman$elm_css$Html_Styled$footer,
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-			{
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$backgroundColor(_user$project$Style_Theme$colors.secondary),
-				_1: {
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Css$maxHeight(
-						_rtfeldman$elm_css$Css$em(6)),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_rtfeldman$elm_css$Css$padding2,
-							_rtfeldman$elm_css$Css$em(2),
-							_rtfeldman$elm_css$Css$em(0)),
-						_1: {ctor: '[]'}
-					}
-				}
-			}),
-		_1: {ctor: '[]'}
-	},
-	{
-		ctor: '::',
-		_0: A2(
-			_rtfeldman$elm_css$Html_Styled$div,
-			{
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-					{
-						ctor: '::',
-						_0: _user$project$View_Grid$grid,
-						_1: {ctor: '[]'}
-					}),
-				_1: {ctor: '[]'}
-			},
-			{
-				ctor: '::',
-				_0: A2(
-					_rtfeldman$elm_css$Html_Styled$div,
-					{
-						ctor: '::',
-						_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-							{
-								ctor: '::',
-								_0: _user$project$View_Grid$gcol(2),
-								_1: {
-									ctor: '::',
-									_0: _user$project$View_Grid$offset(1),
-									_1: {ctor: '[]'}
-								}
-							}),
-						_1: {ctor: '[]'}
-					},
-					{
-						ctor: '::',
-						_0: _user$project$View_Logo$viewInverse,
-						_1: {ctor: '[]'}
-					}),
-				_1: {
+				{
 					ctor: '::',
 					_0: A2(
 						_rtfeldman$elm_css$Html_Styled$div,
@@ -21061,64 +21463,53 @@ var _user$project$View_Footer$view = A2(
 							_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 								{
 									ctor: '::',
-									_0: _user$project$View_Grid$gcol(2),
-									_1: {
-										ctor: '::',
-										_0: _user$project$View_Grid$offset(1),
-										_1: {ctor: '[]'}
-									}
+									_0: _user$project$View_Grid$gcol(6),
+									_1: {ctor: '[]'}
 								}),
 							_1: {ctor: '[]'}
 						},
 						{
 							ctor: '::',
 							_0: A2(
-								_rtfeldman$elm_css$Html_Styled$h4,
+								_rtfeldman$elm_css$Html_Styled$a,
 								{
 									ctor: '::',
-									_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-										{
-											ctor: '::',
-											_0: _user$project$Style_Typography$h4,
-											_1: {
-												ctor: '::',
-												_0: _user$project$Style_Typography$offColor,
-												_1: {ctor: '[]'}
-											}
-										}),
+									_0: _rtfeldman$elm_css$Html_Styled_Attributes$href(
+										_user$project$Types_Recipe$recipeUrl(recipe.id)),
 									_1: {ctor: '[]'}
 								},
 								{
 									ctor: '::',
-									_0: _rtfeldman$elm_css$Html_Styled$text('About the poop'),
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$img,
+										{
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled_Attributes$src(recipe.image.url),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled_Attributes$alt(recipe.image.alt),
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Css$width(
+																_rtfeldman$elm_css$Css$pct(100)),
+															_1: {
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Css$height(
+																	_rtfeldman$elm_css$Css$px(138)),
+																_1: {ctor: '[]'}
+															}
+														}),
+													_1: {ctor: '[]'}
+												}
+											}
+										},
+										{ctor: '[]'}),
 									_1: {ctor: '[]'}
 								}),
-							_1: {
-								ctor: '::',
-								_0: A2(
-									_rtfeldman$elm_css$Html_Styled$a,
-									{
-										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled_Attributes$href(
-											_user$project$Route$getUrl(_user$project$Route$AboutRoute)),
-										_1: {
-											ctor: '::',
-											_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-												{
-													ctor: '::',
-													_0: _user$project$Style_Typography$footerNav,
-													_1: {ctor: '[]'}
-												}),
-											_1: {ctor: '[]'}
-										}
-									},
-									{
-										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('The Story'),
-										_1: {ctor: '[]'}
-									}),
-								_1: {ctor: '[]'}
-							}
+							_1: {ctor: '[]'}
 						}),
 					_1: {
 						ctor: '::',
@@ -21129,41 +21520,274 @@ var _user$project$View_Footer$view = A2(
 								_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 									{
 										ctor: '::',
-										_0: _user$project$View_Grid$gcol(3),
-										_1: {
-											ctor: '::',
-											_0: _user$project$View_Grid$offset(1),
-											_1: {ctor: '[]'}
-										}
+										_0: _user$project$View_Grid$gcol(6),
+										_1: {ctor: '[]'}
 									}),
 								_1: {ctor: '[]'}
 							},
 							{
 								ctor: '::',
 								_0: A2(
-									_rtfeldman$elm_css$Html_Styled$h4,
+									_rtfeldman$elm_css$Html_Styled$a,
 									{
 										ctor: '::',
 										_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 											{
 												ctor: '::',
-												_0: _user$project$Style_Typography$h4,
-												_1: {
-													ctor: '::',
-													_0: _user$project$Style_Typography$offColor,
-													_1: {ctor: '[]'}
-												}
+												_0: _user$project$Style_Typography$link,
+												_1: {ctor: '[]'}
 											}),
-										_1: {ctor: '[]'}
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled_Attributes$href(
+												_user$project$Types_Recipe$recipeUrl(recipe.id)),
+											_1: {ctor: '[]'}
+										}
 									},
 									{
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Html_Styled$text('Recipes by Type'),
+										_0: A2(
+											_rtfeldman$elm_css$Html_Styled$h3,
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+													{
+														ctor: '::',
+														_0: _user$project$Style_Typography$bodyTitle,
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text(recipe.title),
+												_1: {ctor: '[]'}
+											}),
 										_1: {ctor: '[]'}
 									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Html_Styled$p,
+										{
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+												{
+													ctor: '::',
+													_0: _user$project$Style_Typography$displaySm,
+													_1: {
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Css$margin(
+															_rtfeldman$elm_css$Css$px(0)),
+														_1: {ctor: '[]'}
+													}
+												}),
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled$text('by '),
+											_1: {
+												ctor: '::',
+												_0: _user$project$View_Recipes$inlineAuthorsView(
+													_user$project$Types_Cook$cooksToText(recipe.cooks)),
+												_1: {ctor: '[]'}
+											}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Html_Styled$h4,
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+													{
+														ctor: '::',
+														_0: _user$project$Style_Typography$displayMd,
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Html_Styled$text('Difficulty'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: _user$project$View_Recipes$difficultyView(recipe.difficulty),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_rtfeldman$elm_css$Html_Styled$h4,
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+															{
+																ctor: '::',
+																_0: _user$project$Style_Typography$displayMd,
+																_1: {ctor: '[]'}
+															}),
+														_1: {ctor: '[]'}
+													},
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Html_Styled$text('Cooking time '),
+														_1: {ctor: '[]'}
+													}),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_rtfeldman$elm_css$Html_Styled$span,
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																{
+																	ctor: '::',
+																	_0: _user$project$Style_Typography$displaySm,
+																	_1: {
+																		ctor: '::',
+																		_0: _rtfeldman$elm_css$Css$color(_user$project$Style_Theme$colors.primary),
+																		_1: {ctor: '[]'}
+																	}
+																}),
+															_1: {ctor: '[]'}
+														},
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled$text('45 min'),
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}
+								}
+							}),
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$View_Recipes$categoryByline = function (categoryName) {
+	var _p0 = categoryName;
+	switch (_p0) {
+		case 'antipasti':
+			return 'The appetizer before the meal';
+		case 'primi':
+			return 'The first main part of the meal, usually pasta';
+		case 'secondi':
+			return 'The main course of the meal, usually meat';
+		case 'contorni':
+			return 'Side dishes to the meal, vegtables and other assortments';
+		case 'dolci':
+			return 'The sweets and desserts for after the meal';
+		default:
+			return '';
+	}
+};
+var _user$project$View_Recipes$view = F2(
+	function (category, recipes) {
+		return A2(
+			_rtfeldman$elm_css$Html_Styled$div,
+			{
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+					{
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$marginTop(
+							_user$project$Style_Theme$toEm(40)),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_rtfeldman$elm_css$Html_Styled$div,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(
+							_rtfeldman$elm_css$Html_Styled$h1,
+							{
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+									{
+										ctor: '::',
+										_0: _user$project$Style_Typography$categoryTitle,
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$inlineBlock),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$marginRight(
+													_rtfeldman$elm_css$Css$px(20)),
+												_1: {ctor: '[]'}
+											}
+										}
+									}),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Html_Styled$text(category),
 								_1: {ctor: '[]'}
 							}),
 						_1: {
+							ctor: '::',
+							_0: A2(
+								_rtfeldman$elm_css$Html_Styled$span,
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+										{
+											ctor: '::',
+											_0: _user$project$Style_Typography$body,
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$color(_user$project$Style_Theme$colors.primary),
+												_1: {ctor: '[]'}
+											}
+										}),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled$text(
+										_user$project$View_Recipes$categoryByline(category)),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_rtfeldman$elm_css$Html_Styled$div,
+						{
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+								{
+									ctor: '::',
+									_0: _user$project$Style_Layout$fullWidth,
+									_1: {
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Css$height(
+											_rtfeldman$elm_css$Css$px(64)),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Css$backgroundImage(
+												_rtfeldman$elm_css$Css$url('https://s3-us-west-1.amazonaws.com/family-recipes/bg-3stripe.svg')),
+											_1: {ctor: '[]'}
+										}
+									}
+								}),
+							_1: {ctor: '[]'}
+						},
+						{
 							ctor: '::',
 							_0: A2(
 								_rtfeldman$elm_css$Html_Styled$div,
@@ -21172,44 +21796,62 @@ var _user$project$View_Footer$view = A2(
 									_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 										{
 											ctor: '::',
-											_0: _user$project$View_Grid$gcol(2),
-											_1: {ctor: '[]'}
+											_0: _user$project$Style_Layout$container,
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$backgroundImage(
+													_rtfeldman$elm_css$Css$url('https://s3-us-west-1.amazonaws.com/family-recipes/bg-antipasti.svg')),
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Css$backgroundRepeat(_rtfeldman$elm_css$Css$repeatX),
+													_1: {
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Css$backgroundSize(
+															_rtfeldman$elm_css$Css$pct(15)),
+														_1: {
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Css$top(
+																_rtfeldman$elm_css$Css$pct(32)),
+															_1: {
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
+																_1: {
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Css$height(
+																		_rtfeldman$elm_css$Css$px(30)),
+																	_1: {ctor: '[]'}
+																}
+															}
+														}
+													}
+												}
+											}
 										}),
 									_1: {ctor: '[]'}
 								},
-								{
-									ctor: '::',
-									_0: A2(
-										_rtfeldman$elm_css$Html_Styled$h4,
-										{
-											ctor: '::',
-											_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-												{
-													ctor: '::',
-													_0: _user$project$Style_Typography$h4,
-													_1: {
-														ctor: '::',
-														_0: _user$project$Style_Typography$offColor,
-														_1: {ctor: '[]'}
-													}
-												}),
-											_1: {ctor: '[]'}
-										},
-										{
-											ctor: '::',
-											_0: _rtfeldman$elm_css$Html_Styled$text('Share'),
-											_1: {ctor: '[]'}
-										}),
-									_1: {ctor: '[]'}
-								}),
+								{ctor: '[]'}),
 							_1: {ctor: '[]'}
-						}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+									{
+										ctor: '::',
+										_0: _user$project$View_Grid$grid,
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							},
+							A2(_elm_lang$core$List$map, _user$project$View_Recipes$compactRecipe, recipes)),
+						_1: {ctor: '[]'}
 					}
 				}
-			}),
-		_1: {ctor: '[]'}
+			});
 	});
-var _user$project$View_Footer$Model = {};
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
@@ -21226,15 +21868,19 @@ var _user$project$Main$renderWrap = function (model) {
 						'Cook ',
 						_user$project$Route$cookIdToString(_p0._0)));
 			case 'RecipesRoute':
-				return _rtfeldman$elm_css$Html_Styled$text(
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						'Recipes ',
-						_user$project$Types_Categories$categoryToString(_p0._0)));
-			case 'RecipeRoute':
-				var _p1 = model.recipe;
+				var _p1 = model.recipes;
 				if (_p1.ctor === 'Just') {
-					return _user$project$View_Recipe$view(_p1._0);
+					return A2(
+						_user$project$View_Recipes$view,
+						_user$project$Types_Categories$categoryToString(_p0._0),
+						_p1._0);
+				} else {
+					return _rtfeldman$elm_css$Html_Styled$text('No recipes found');
+				}
+			case 'RecipeRoute':
+				var _p2 = model.recipe;
+				if (_p2.ctor === 'Just') {
+					return _user$project$View_Recipe$view(_p2._0);
 				} else {
 					return _rtfeldman$elm_css$Html_Styled$text('');
 				}
@@ -21277,7 +21923,7 @@ var _user$project$Main$view = function (model) {
 		});
 };
 var _user$project$Main$initialModel = function (route) {
-	return {route: route, recipe: _elm_lang$core$Maybe$Nothing};
+	return {route: route, recipe: _elm_lang$core$Maybe$Nothing, recipes: _elm_lang$core$Maybe$Nothing};
 };
 var _user$project$Main$sendQueryRequest = function (request) {
 	return A2(_jamesmacaulay$elm_graphql$GraphQL_Client_Http$sendQuery, 'http://localhost:4000/graphql', request);
@@ -21288,48 +21934,6 @@ var _user$project$Main$sendRecipeQuery = function (id) {
 		_user$project$Msgs$ReceiveRecipeResponse,
 		_user$project$Main$sendQueryRequest(
 			_user$project$Types_Recipe$recipeQueryRequest(id)));
-};
-var _user$project$Main$init = function (location) {
-	var currentRoute = _user$project$Route$parseLocation(location);
-	var _p2 = currentRoute;
-	switch (_p2.ctor) {
-		case 'HomeRoute':
-			return {
-				ctor: '_Tuple2',
-				_0: _user$project$Main$initialModel(currentRoute),
-				_1: _elm_lang$core$Platform_Cmd$none
-			};
-		case 'CookRoute':
-			return {
-				ctor: '_Tuple2',
-				_0: _user$project$Main$initialModel(currentRoute),
-				_1: _elm_lang$core$Platform_Cmd$none
-			};
-		case 'RecipesRoute':
-			return {
-				ctor: '_Tuple2',
-				_0: _user$project$Main$initialModel(currentRoute),
-				_1: _elm_lang$core$Platform_Cmd$none
-			};
-		case 'RecipeRoute':
-			return {
-				ctor: '_Tuple2',
-				_0: _user$project$Main$initialModel(currentRoute),
-				_1: _user$project$Main$sendRecipeQuery(_p2._0)
-			};
-		case 'AboutRoute':
-			return {
-				ctor: '_Tuple2',
-				_0: _user$project$Main$initialModel(currentRoute),
-				_1: _elm_lang$core$Platform_Cmd$none
-			};
-		default:
-			return {
-				ctor: '_Tuple2',
-				_0: _user$project$Main$initialModel(currentRoute),
-				_1: _elm_lang$core$Platform_Cmd$none
-			};
-	}
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
@@ -21396,7 +22000,7 @@ var _user$project$Main$update = F2(
 						{route: _p3._0}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
-			default:
+			case 'ReceiveRecipeResponse':
 				var _p5 = _p3._0;
 				if (_p5.ctor === 'Ok') {
 					return {
@@ -21418,23 +22022,95 @@ var _user$project$Main$update = F2(
 						_1: _elm_lang$core$Platform_Cmd$none
 					};
 				}
+			default:
+				var _p6 = _p3._0;
+				if (_p6.ctor === 'Ok') {
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								recipes: _elm_lang$core$Maybe$Just(_p6._0)
+							}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				} else {
+					var dd1 = A2(_elm_lang$core$Debug$log, 'Recipes response error: ', _p6._0);
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{recipes: _elm_lang$core$Maybe$Nothing}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				}
 		}
 	});
+var _user$project$Main$sendRecipesQuery = function (category) {
+	return A2(
+		_elm_lang$core$Task$attempt,
+		_user$project$Msgs$ReceiveRecipesResponse,
+		_user$project$Main$sendQueryRequest(
+			_user$project$Types_Recipe$recipesByCategoryQueryRequest(
+				_user$project$Types_Categories$categoryToString(category))));
+};
+var _user$project$Main$init = function (location) {
+	var currentRoute = _user$project$Route$parseLocation(location);
+	var _p7 = currentRoute;
+	switch (_p7.ctor) {
+		case 'HomeRoute':
+			return {
+				ctor: '_Tuple2',
+				_0: _user$project$Main$initialModel(currentRoute),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		case 'CookRoute':
+			return {
+				ctor: '_Tuple2',
+				_0: _user$project$Main$initialModel(currentRoute),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		case 'RecipesRoute':
+			return {
+				ctor: '_Tuple2',
+				_0: _user$project$Main$initialModel(currentRoute),
+				_1: _user$project$Main$sendRecipesQuery(_p7._0)
+			};
+		case 'RecipeRoute':
+			return {
+				ctor: '_Tuple2',
+				_0: _user$project$Main$initialModel(currentRoute),
+				_1: _user$project$Main$sendRecipeQuery(_p7._0)
+			};
+		case 'AboutRoute':
+			return {
+				ctor: '_Tuple2',
+				_0: _user$project$Main$initialModel(currentRoute),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		default:
+			return {
+				ctor: '_Tuple2',
+				_0: _user$project$Main$initialModel(currentRoute),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+	}
+};
 var _user$project$Main$main = A2(
 	_elm_lang$navigation$Navigation$program,
 	_user$project$Msgs$OnLocationChange,
 	{
 		init: _user$project$Main$init,
-		view: function (_p6) {
+		view: function (_p8) {
 			return _rtfeldman$elm_css$Html_Styled$toUnstyled(
-				_user$project$Main$view(_p6));
+				_user$project$Main$view(_p8));
 		},
 		update: _user$project$Main$update,
 		subscriptions: _user$project$Main$subscriptions
 	})();
-var _user$project$Main$Model = F2(
-	function (a, b) {
-		return {route: a, recipe: b};
+var _user$project$Main$Model = F3(
+	function (a, b, c) {
+		return {route: a, recipe: b, recipes: c};
 	});
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};

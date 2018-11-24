@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180616234115) do
+ActiveRecord::Schema.define(version: 20181124001310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20180616234115) do
     t.string   "location"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "image_id"
+    t.index ["image_id"], name: "index_cooks_on_image_id", using: :btree
   end
 
   create_table "cooks_recipes", id: false, force: :cascade do |t|
@@ -52,8 +54,6 @@ ActiveRecord::Schema.define(version: 20180616234115) do
     t.text     "alt"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "cook_id"
-    t.index ["cook_id"], name: "index_images_on_cook_id", using: :btree
   end
 
   create_table "ingredient_amounts", force: :cascade do |t|
@@ -94,5 +94,5 @@ ActiveRecord::Schema.define(version: 20180616234115) do
     t.index ["image_id"], name: "index_recipes_on_image_id", using: :btree
   end
 
-  add_foreign_key "images", "cooks"
+  add_foreign_key "cooks", "images"
 end

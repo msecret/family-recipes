@@ -1,4 +1,4 @@
-module Style.Layout exposing (..)
+module Style.Layout exposing (container, fullWidth)
 
 import Css exposing (..)
 import Html.Styled exposing (..)
@@ -16,4 +16,14 @@ fullWidth =
         , position relative
         , right (pct 50)
         , width (vw 100)
+        ]
+
+
+container : Style
+container =
+    Css.batch
+        [ marginLeft auto
+        , marginRight auto
+        , maxWidth (px wrapWidth)
+        , width (pct 100)
         ]

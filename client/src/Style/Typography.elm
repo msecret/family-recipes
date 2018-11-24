@@ -1,4 +1,4 @@
-module Style.Typography exposing (..)
+module Style.Typography exposing (body, bodyTitle, byByLine, byLine, categoryText, categoryTitle, display, displayMd, displaySm, footerNav, h2, h3, h4, h5, link, nav, offColor, title)
 
 import Css exposing (..)
 import Html
@@ -84,6 +84,16 @@ h3 =
         ]
 
 
+categoryTitle : Style
+categoryTitle =
+    Css.batch
+        [ h3
+        , color colors.primary
+        , textTransform uppercase
+        , letterSpacing (px 3)
+        ]
+
+
 h4 : Style
 h4 =
     Css.batch
@@ -116,6 +126,17 @@ body =
         ]
 
 
+bodyTitle : Style
+bodyTitle =
+    Css.batch
+        [ body
+        , fontSize (toEm 22)
+        , fontWeight normal
+        , letterSpacing (px 1)
+        , lineHeight (toEm 20)
+        ]
+
+
 display : Style
 display =
     Css.batch
@@ -129,6 +150,9 @@ displayMd =
     Css.batch
         [ fontFamilies sansFamily
         , fontSize (toEm 14)
+        , fontWeight normal
+        , margin (px 0)
+        , marginTop (px 8)
         ]
 
 
@@ -137,6 +161,8 @@ displaySm =
     Css.batch
         [ fontFamilies sansFamily
         , fontSize (toEm 12)
+        , listStyle none
+        , margin (px 0)
         ]
 
 
@@ -149,4 +175,16 @@ categoryText =
         , fontSize (toEm 13)
         , letterSpacing (toEm 4)
         , textTransform uppercase
+        ]
+
+
+link : Style
+link =
+    Css.batch
+        [ color inherit
+        , textDecoration none
+        , hover
+            [ color colors.primary
+            , textDecoration underline
+            ]
         ]

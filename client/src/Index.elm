@@ -1,22 +1,23 @@
-module Main exposing (..)
+module Main exposing (Model, init, initialModel, main, renderWrap, sendQueryRequest, sendRecipeQuery, sendRecipesQuery, subscriptions, update, view)
 
-import GraphQL.Request.Builder exposing (..)
 import GraphQL.Client.Http as GraphQLClient
+import GraphQL.Request.Builder exposing (..)
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css, href, src)
-import Navigation exposing (..)
-import Types.Categories exposing (..)
-import Types.Recipe exposing (Recipe, recipeQueryRequest, RecipeResponse)
-import Types.Cook exposing (Cook, cookQueryRequest)
-import Route exposing (..)
 import Msgs exposing (Msg)
+import Navigation exposing (..)
+import Route exposing (..)
 import Style.Sheets as Sheets
-import View.Recipe as RecipePage
-import View.Header as Header
-import View.Footer as Footer
-import View.Wrap as Wrap
 import Task exposing (Task)
+import Types.Categories exposing (..)
+import Types.Cook exposing (Cook, cookQueryRequest)
+import Types.Recipe exposing (Recipe, RecipeResponse, recipeQueryRequest, recipesByCategoryQueryRequest)
+import View.Footer as Footer
+import View.Header as Header
+import View.Recipe as RecipePage
+import View.Recipes as RecipesPage
+import View.Wrap as Wrap
 
 
 main =
@@ -31,6 +32,7 @@ main =
 type alias Model =
     { route : Route
     , recipe : Maybe Recipe
+    , recipes : Maybe (List Recipe)
     }
 
 
@@ -45,10 +47,17 @@ sendRecipeQuery id =
         |> Task.attempt Msgs.ReceiveRecipeResponse
 
 
+sendRecipesQuery : Maybe Category -> Cmd Msg
+sendRecipesQuery category =
+    sendQueryRequest (recipesByCategoryQueryRequest (categoryToString category))
+        |> Task.attempt Msgs.ReceiveRecipesResponse
+
+
 initialModel : Route -> Model
 initialModel route =
     { route = route
     , recipe = Nothing
+    , recipes = Nothing
     }
 
 
@@ -58,24 +67,24 @@ init location =
         currentRoute =
             parseLocation location
     in
-        case currentRoute of
-            HomeRoute ->
-                ( initialModel currentRoute, Cmd.none )
+    case currentRoute of
+        HomeRoute ->
+            ( initialModel currentRoute, Cmd.none )
 
-            CookRoute id ->
-                ( initialModel currentRoute, Cmd.none )
+        CookRoute id ->
+            ( initialModel currentRoute, Cmd.none )
 
-            RecipesRoute category ->
-                ( initialModel currentRoute, Cmd.none )
+        RecipesRoute category ->
+            ( initialModel currentRoute, sendRecipesQuery category )
 
-            RecipeRoute id ->
-                ( initialModel currentRoute, sendRecipeQuery id )
+        RecipeRoute id ->
+            ( initialModel currentRoute, sendRecipeQuery id )
 
-            AboutRoute ->
-                ( initialModel currentRoute, Cmd.none )
+        AboutRoute ->
+            ( initialModel currentRoute, Cmd.none )
 
-            NotFoundRoute ->
-                ( initialModel currentRoute, Cmd.none )
+        NotFoundRoute ->
+            ( initialModel currentRoute, Cmd.none )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -86,24 +95,24 @@ update msg model =
                 newRoute =
                     parseLocation location
             in
-                case newRoute of
-                    HomeRoute ->
-                        ( { model | route = newRoute }, Cmd.none )
+            case newRoute of
+                HomeRoute ->
+                    ( { model | route = newRoute }, Cmd.none )
 
-                    CookRoute id ->
-                        ( { model | route = newRoute }, Cmd.none )
+                CookRoute id ->
+                    ( { model | route = newRoute }, Cmd.none )
 
-                    RecipesRoute category ->
-                        ( { model | route = newRoute }, Cmd.none )
+                RecipesRoute category ->
+                    ( { model | route = newRoute }, Cmd.none )
 
-                    RecipeRoute id ->
-                        ( { model | route = newRoute }, sendRecipeQuery id )
+                RecipeRoute id ->
+                    ( { model | route = newRoute }, sendRecipeQuery id )
 
-                    AboutRoute ->
-                        ( { model | route = newRoute }, Cmd.none )
+                AboutRoute ->
+                    ( { model | route = newRoute }, Cmd.none )
 
-                    NotFoundRoute ->
-                        ( { model | route = newRoute }, Cmd.none )
+                NotFoundRoute ->
+                    ( { model | route = newRoute }, Cmd.none )
 
         Msgs.LinkTo newRoute ->
             ( { model | route = newRoute }, Cmd.none )
@@ -118,7 +127,19 @@ update msg model =
                         dd1 =
                             Debug.log "Recipe response error: " err
                     in
-                        ( { model | recipe = Nothing }, Cmd.none )
+                    ( { model | recipe = Nothing }, Cmd.none )
+
+        Msgs.ReceiveRecipesResponse res ->
+            case res of
+                Ok result ->
+                    ( { model | recipes = Just result }, Cmd.none )
+
+                Err err ->
+                    let
+                        dd1 =
+                            Debug.log "Recipes response error: " err
+                    in
+                    ( { model | recipes = Nothing }, Cmd.none )
 
 
 view : Model -> Html Msg
@@ -143,7 +164,12 @@ renderWrap model =
                     text ("Cook " ++ cookIdToString id)
 
                 RecipesRoute category ->
-                    text ("Recipes " ++ (categoryToString category))
+                    case model.recipes of
+                        Just recipes ->
+                            RecipesPage.view (categoryToString category) recipes
+
+                        Nothing ->
+                            text "No recipes found"
 
                 RecipeRoute id ->
                     case model.recipe of
@@ -159,7 +185,7 @@ renderWrap model =
                 NotFoundRoute ->
                     text "Not found"
     in
-        main_ [] [ pageContent ]
+    main_ [] [ pageContent ]
 
 
 subscriptions : Model -> Sub Msg

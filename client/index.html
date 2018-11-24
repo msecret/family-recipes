@@ -18416,8 +18416,6 @@ var _user$project$Types_Categories$categoryToString = function (category) {
 		switch (_p0._0.ctor) {
 			case 'Antipasti':
 				return 'antipasti';
-			case 'Zuppe':
-				return 'zuppe';
 			case 'Primi':
 				return 'primi';
 			case 'Secondi':
@@ -18473,15 +18471,12 @@ var _user$project$Types_Categories$Dolci = {ctor: 'Dolci'};
 var _user$project$Types_Categories$Contorni = {ctor: 'Contorni'};
 var _user$project$Types_Categories$Secondi = {ctor: 'Secondi'};
 var _user$project$Types_Categories$Primi = {ctor: 'Primi'};
-var _user$project$Types_Categories$Zuppe = {ctor: 'Zuppe'};
 var _user$project$Types_Categories$Antipasti = {ctor: 'Antipasti'};
 var _user$project$Types_Categories$categoryFromString = function (category) {
 	var _p1 = category;
 	switch (_p1) {
 		case 'antipasti':
 			return _elm_lang$core$Maybe$Just(_user$project$Types_Categories$Antipasti);
-		case 'zuppe':
-			return _elm_lang$core$Maybe$Just(_user$project$Types_Categories$Zuppe);
 		case 'primi':
 			return _elm_lang$core$Maybe$Just(_user$project$Types_Categories$Primi);
 		case 'secondi':
@@ -18499,21 +18494,17 @@ var _user$project$Types_Categories$categories = {
 	_0: _user$project$Types_Categories$Antipasti,
 	_1: {
 		ctor: '::',
-		_0: _user$project$Types_Categories$Zuppe,
+		_0: _user$project$Types_Categories$Primi,
 		_1: {
 			ctor: '::',
-			_0: _user$project$Types_Categories$Primi,
+			_0: _user$project$Types_Categories$Secondi,
 			_1: {
 				ctor: '::',
-				_0: _user$project$Types_Categories$Secondi,
+				_0: _user$project$Types_Categories$Contorni,
 				_1: {
 					ctor: '::',
-					_0: _user$project$Types_Categories$Contorni,
-					_1: {
-						ctor: '::',
-						_0: _user$project$Types_Categories$Dolci,
-						_1: {ctor: '[]'}
-					}
+					_0: _user$project$Types_Categories$Dolci,
+					_1: {ctor: '[]'}
 				}
 			}
 		}

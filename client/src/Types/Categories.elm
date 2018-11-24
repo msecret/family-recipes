@@ -1,4 +1,4 @@
-module Types.Categories exposing (..)
+module Types.Categories exposing (Category(..), CategoryList, CategoryModel, categories, categoryFromString, categoryQuery, categoryToString)
 
 import GraphQL.Request.Builder exposing (..)
 import String exposing (toLower)
@@ -6,7 +6,6 @@ import String exposing (toLower)
 
 type Category
     = Antipasti
-    | Zuppe
     | Primi
     | Secondi
     | Contorni
@@ -40,9 +39,6 @@ categoryToString category =
         Just Antipasti ->
             "antipasti"
 
-        Just Zuppe ->
-            "zuppe"
-
         Just Primi ->
             "primi"
 
@@ -61,9 +57,6 @@ categoryFromString category =
     case category of
         "antipasti" ->
             Just Antipasti
-
-        "zuppe" ->
-            Just Zuppe
 
         "primi" ->
             Just Primi
@@ -87,4 +80,4 @@ type alias CategoryList =
 
 categories : CategoryList
 categories =
-    [ Antipasti, Zuppe, Primi, Secondi, Contorni, Dolci ]
+    [ Antipasti, Primi, Secondi, Contorni, Dolci ]

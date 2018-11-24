@@ -14,6 +14,7 @@ import Types.Cook exposing (cooksToText)
 import Types.Image exposing (Image)
 import Types.Ingredient exposing (Ingredient, toText)
 import Types.Recipe exposing (Recipe, recipeUrl)
+import View.Category exposing (categoryBgView)
 import View.Grid exposing (..)
 
 
@@ -129,16 +130,7 @@ view category recipes =
                 ]
             ]
             [ div
-                [ css
-                    [ L.container
-                    , backgroundImage (url ("https://s3-us-west-1.amazonaws.com/family-recipes/bg-" ++ category ++ ".svg"))
-                    , backgroundRepeat repeatX
-                    , backgroundSize (pct 15)
-                    , top (pct 32)
-                    , position relative
-                    , height (px 30)
-                    ]
-                ]
+                [ css [ categoryBgView category ] ]
                 []
             ]
         , div [ css [ grid ] ]

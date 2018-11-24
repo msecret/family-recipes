@@ -19216,180 +19216,6 @@ var _user$project$Style_Sheets$view = A2(
 				});
 		},
 		_user$project$Style_Sheets$stylesheets));
-var _user$project$View_Grid$clip = F3(
-	function (lower, upper, k) {
-		return A2(
-			_elm_lang$core$Basics$max,
-			lower,
-			A2(_elm_lang$core$Basics$min, k, upper));
-	});
-var _user$project$View_Grid$suffix = function (device) {
-	var _p0 = device;
-	switch (_p0.ctor) {
-		case 'All':
-			return '';
-		case 'Desktop':
-			return '-desktop';
-		case 'Tablet':
-			return '-tablet';
-		default:
-			return '-phone';
-	}
-};
-var _user$project$View_Grid$colStyle = _rtfeldman$elm_css$Css$batch(
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Css$boxSizing(_rtfeldman$elm_css$Css$borderBox),
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
-			_1: {
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$verticalAlign(_rtfeldman$elm_css$Css$top),
-				_1: {
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Css$width(
-						_rtfeldman$elm_css$Css$pct(100)),
-					_1: {ctor: '[]'}
-				}
-			}
-		}
-	});
-var _user$project$View_Grid$gridStyle = _rtfeldman$elm_css$Css$batch(
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Css$boxSizing(_rtfeldman$elm_css$Css$borderBox),
-		_1: {
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Css$displayFlex,
-			_1: {
-				ctor: '::',
-				_0: A2(_rtfeldman$elm_css$Css$flexFlow2, _rtfeldman$elm_css$Css$row, _rtfeldman$elm_css$Css$wrap),
-				_1: {
-					ctor: '::',
-					_0: A4(
-						_rtfeldman$elm_css$Css$margin4,
-						_rtfeldman$elm_css$Css$px(0),
-						_rtfeldman$elm_css$Css$auto,
-						_rtfeldman$elm_css$Css$px(0),
-						_rtfeldman$elm_css$Css$auto),
-					_1: {
-						ctor: '::',
-						_0: _rtfeldman$elm_css$Css$maxWidth(
-							_rtfeldman$elm_css$Css$px(1015)),
-						_1: {
-							ctor: '::',
-							_0: _rtfeldman$elm_css$Css$padding(
-								_rtfeldman$elm_css$Css$px(0)),
-							_1: {
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
-								_1: {
-									ctor: '::',
-									_0: _rtfeldman$elm_css$Css$width(
-										_rtfeldman$elm_css$Css$pct(100)),
-									_1: {
-										ctor: '::',
-										_0: _rtfeldman$elm_css$Css$alignItems(_rtfeldman$elm_css$Css$stretch),
-										_1: {
-											ctor: '::',
-											_0: _rtfeldman$elm_css$Css$after(
-												{
-													ctor: '::',
-													_0: _rtfeldman$elm_css$Css$boxSizing(_rtfeldman$elm_css$Css$borderBox),
-													_1: {ctor: '[]'}
-												}),
-											_1: {
-												ctor: '::',
-												_0: _rtfeldman$elm_css$Css$listStyleType(_rtfeldman$elm_css$Css$none),
-												_1: {ctor: '[]'}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	});
-var _user$project$View_Grid$grid = _user$project$View_Grid$gridStyle;
-var _user$project$View_Grid$gutter = 16;
-var _user$project$View_Grid$columns = 12;
-var _user$project$View_Grid$gcol = function (amount) {
-	return _rtfeldman$elm_css$Css$batch(
-		{
-			ctor: '::',
-			_0: _user$project$View_Grid$colStyle,
-			_1: {
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$paddingLeft(
-					_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter / 2)),
-				_1: {
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Css$paddingRight(
-						_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter / 2)),
-					_1: {
-						ctor: '::',
-						_0: _rtfeldman$elm_css$Css$width(
-							A3(
-								_rtfeldman$elm_css$Css$calc,
-								_rtfeldman$elm_css$Css$pct((amount / _user$project$View_Grid$columns) * 100),
-								_rtfeldman$elm_css$Css$minus,
-								_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter))),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-};
-var _user$project$View_Grid$offset = function (amount) {
-	return _rtfeldman$elm_css$Css$marginRight(
-		A3(
-			_rtfeldman$elm_css$Css$calc,
-			_rtfeldman$elm_css$Css$pct((amount / _user$project$View_Grid$columns) * 100),
-			_rtfeldman$elm_css$Css$minus,
-			_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter)));
-};
-var _user$project$View_Grid$columnSize = 76;
-var _user$project$View_Grid$Phone = {ctor: 'Phone'};
-var _user$project$View_Grid$Tablet = {ctor: 'Tablet'};
-var _user$project$View_Grid$Desktop = {ctor: 'Desktop'};
-var _user$project$View_Grid$All = {ctor: 'All'};
-var _user$project$View_Grid$Bottom = {ctor: 'Bottom'};
-var _user$project$View_Grid$Middle = {ctor: 'Middle'};
-var _user$project$View_Grid$Top = {ctor: 'Top'};
-var _user$project$View_Logo$viewInverse = A2(
-	_rtfeldman$elm_css$Html_Styled$div,
-	{ctor: '[]'},
-	{
-		ctor: '::',
-		_0: A2(
-			_rtfeldman$elm_css$Html_Styled$img,
-			{
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Html_Styled_Attributes$src('img/logo-inverse.png'),
-				_1: {ctor: '[]'}
-			},
-			{ctor: '[]'}),
-		_1: {ctor: '[]'}
-	});
-var _user$project$View_Logo$view = A2(
-	_rtfeldman$elm_css$Html_Styled$div,
-	{ctor: '[]'},
-	{
-		ctor: '::',
-		_0: A2(
-			_rtfeldman$elm_css$Html_Styled$img,
-			{
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Html_Styled_Attributes$src('https://s3-us-west-1.amazonaws.com/family-recipes/logo.png'),
-				_1: {ctor: '[]'}
-			},
-			{ctor: '[]'}),
-		_1: {ctor: '[]'}
-	});
 var _user$project$Style_Theme$spacing = {section: 45};
 var _user$project$Style_Theme$colors = {
 	primary: _rtfeldman$elm_css$Css$hex('CC4021'),
@@ -19436,42 +19262,6 @@ var _user$project$Style_Theme$wrapWidth = 1015;
 var _user$project$Style_Theme$baseLine = 16.0;
 var _user$project$Style_Theme$toEm = function (val) {
 	return _rtfeldman$elm_css$Css$em(val / _user$project$Style_Theme$baseLine);
-};
-var _user$project$View_Wrap$view = function (content) {
-	return A2(
-		_rtfeldman$elm_css$Html_Styled$div,
-		{
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Html_Styled_Attributes$class('main'),
-			_1: {
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-					{
-						ctor: '::',
-						_0: A2(
-							_rtfeldman$elm_css$Css$margin2,
-							_rtfeldman$elm_css$Css$em(1),
-							_rtfeldman$elm_css$Css$auto),
-						_1: {
-							ctor: '::',
-							_0: _rtfeldman$elm_css$Css$maxWidth(
-								_rtfeldman$elm_css$Css$px(_user$project$Style_Theme$wrapWidth)),
-							_1: {
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Css$width(
-									_rtfeldman$elm_css$Css$pct(100)),
-								_1: {ctor: '[]'}
-							}
-						}
-					}),
-				_1: {ctor: '[]'}
-			}
-		},
-		{
-			ctor: '::',
-			_0: content,
-			_1: {ctor: '[]'}
-		});
 };
 var _user$project$Style_Typography$link = _rtfeldman$elm_css$Css$batch(
 	{
@@ -19849,6 +19639,216 @@ var _user$project$Style_Typography$footerNav = _rtfeldman$elm_css$Css$batch(
 			}
 		}
 	});
+var _user$project$View_Grid$clip = F3(
+	function (lower, upper, k) {
+		return A2(
+			_elm_lang$core$Basics$max,
+			lower,
+			A2(_elm_lang$core$Basics$min, k, upper));
+	});
+var _user$project$View_Grid$suffix = function (device) {
+	var _p0 = device;
+	switch (_p0.ctor) {
+		case 'All':
+			return '';
+		case 'Desktop':
+			return '-desktop';
+		case 'Tablet':
+			return '-tablet';
+		default:
+			return '-phone';
+	}
+};
+var _user$project$View_Grid$colStyle = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$boxSizing(_rtfeldman$elm_css$Css$borderBox),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$verticalAlign(_rtfeldman$elm_css$Css$top),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$width(
+						_rtfeldman$elm_css$Css$pct(100)),
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	});
+var _user$project$View_Grid$gridStyle = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$boxSizing(_rtfeldman$elm_css$Css$borderBox),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$displayFlex,
+			_1: {
+				ctor: '::',
+				_0: A2(_rtfeldman$elm_css$Css$flexFlow2, _rtfeldman$elm_css$Css$row, _rtfeldman$elm_css$Css$wrap),
+				_1: {
+					ctor: '::',
+					_0: A4(
+						_rtfeldman$elm_css$Css$margin4,
+						_rtfeldman$elm_css$Css$px(0),
+						_rtfeldman$elm_css$Css$auto,
+						_rtfeldman$elm_css$Css$px(0),
+						_rtfeldman$elm_css$Css$auto),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$maxWidth(
+							_rtfeldman$elm_css$Css$px(1015)),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$padding(
+								_rtfeldman$elm_css$Css$px(0)),
+							_1: {
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
+								_1: {
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Css$width(
+										_rtfeldman$elm_css$Css$pct(100)),
+									_1: {
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Css$alignItems(_rtfeldman$elm_css$Css$stretch),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Css$after(
+												{
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Css$boxSizing(_rtfeldman$elm_css$Css$borderBox),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$listStyleType(_rtfeldman$elm_css$Css$none),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+var _user$project$View_Grid$grid = _user$project$View_Grid$gridStyle;
+var _user$project$View_Grid$gutter = 16;
+var _user$project$View_Grid$columns = 12;
+var _user$project$View_Grid$gcol = function (amount) {
+	return _rtfeldman$elm_css$Css$batch(
+		{
+			ctor: '::',
+			_0: _user$project$View_Grid$colStyle,
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$paddingLeft(
+					_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter / 2)),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$paddingRight(
+						_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter / 2)),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$width(
+							A3(
+								_rtfeldman$elm_css$Css$calc,
+								_rtfeldman$elm_css$Css$pct((amount / _user$project$View_Grid$columns) * 100),
+								_rtfeldman$elm_css$Css$minus,
+								_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter))),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+};
+var _user$project$View_Grid$offset = function (amount) {
+	return _rtfeldman$elm_css$Css$marginRight(
+		A3(
+			_rtfeldman$elm_css$Css$calc,
+			_rtfeldman$elm_css$Css$pct((amount / _user$project$View_Grid$columns) * 100),
+			_rtfeldman$elm_css$Css$minus,
+			_rtfeldman$elm_css$Css$px(_user$project$View_Grid$gutter)));
+};
+var _user$project$View_Grid$columnSize = 76;
+var _user$project$View_Grid$Phone = {ctor: 'Phone'};
+var _user$project$View_Grid$Tablet = {ctor: 'Tablet'};
+var _user$project$View_Grid$Desktop = {ctor: 'Desktop'};
+var _user$project$View_Grid$All = {ctor: 'All'};
+var _user$project$View_Grid$Bottom = {ctor: 'Bottom'};
+var _user$project$View_Grid$Middle = {ctor: 'Middle'};
+var _user$project$View_Grid$Top = {ctor: 'Top'};
+var _user$project$View_Logo$viewInverse = A2(
+	_rtfeldman$elm_css$Html_Styled$div,
+	{ctor: '[]'},
+	{
+		ctor: '::',
+		_0: A2(
+			_rtfeldman$elm_css$Html_Styled$img,
+			{
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Html_Styled_Attributes$src('img/logo-inverse.png'),
+				_1: {ctor: '[]'}
+			},
+			{ctor: '[]'}),
+		_1: {ctor: '[]'}
+	});
+var _user$project$View_Logo$view = A2(
+	_rtfeldman$elm_css$Html_Styled$div,
+	{ctor: '[]'},
+	{
+		ctor: '::',
+		_0: A2(
+			_rtfeldman$elm_css$Html_Styled$img,
+			{
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Html_Styled_Attributes$src('https://s3-us-west-1.amazonaws.com/family-recipes/logo.png'),
+				_1: {ctor: '[]'}
+			},
+			{ctor: '[]'}),
+		_1: {ctor: '[]'}
+	});
+var _user$project$View_Wrap$view = function (content) {
+	return A2(
+		_rtfeldman$elm_css$Html_Styled$div,
+		{
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Html_Styled_Attributes$class('main'),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+					{
+						ctor: '::',
+						_0: A2(
+							_rtfeldman$elm_css$Css$margin2,
+							_rtfeldman$elm_css$Css$em(1),
+							_rtfeldman$elm_css$Css$auto),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$maxWidth(
+								_rtfeldman$elm_css$Css$px(_user$project$Style_Theme$wrapWidth)),
+							_1: {
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Css$width(
+									_rtfeldman$elm_css$Css$pct(100)),
+								_1: {ctor: '[]'}
+							}
+						}
+					}),
+				_1: {ctor: '[]'}
+			}
+		},
+		{
+			ctor: '::',
+			_0: content,
+			_1: {ctor: '[]'}
+		});
+};
 var _user$project$View_Footer$view = A2(
 	_rtfeldman$elm_css$Html_Styled$footer,
 	{
@@ -19856,7 +19856,7 @@ var _user$project$View_Footer$view = A2(
 		_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 			{
 				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$backgroundColor(_user$project$Style_Theme$colors.secondary),
+				_0: _rtfeldman$elm_css$Css$backgroundColor(_user$project$Style_Theme$colors.tertiary),
 				_1: {
 					ctor: '::',
 					_0: _rtfeldman$elm_css$Css$maxHeight(
@@ -20594,6 +20594,46 @@ var _user$project$Style_Util$visuallyHide = _rtfeldman$elm_css$Css$batch(
 			}
 		}
 	});
+var _user$project$View_Category$categoryBgView = function (category) {
+	return _rtfeldman$elm_css$Css$batch(
+		{
+			ctor: '::',
+			_0: _user$project$Style_Layout$container,
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$backgroundImage(
+					_rtfeldman$elm_css$Css$url(
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'https://s3-us-west-1.amazonaws.com/family-recipes/bg-',
+							A2(_elm_lang$core$Basics_ops['++'], category, '.svg')))),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$backgroundRepeat(_rtfeldman$elm_css$Css$repeatX),
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$backgroundSize(
+							_rtfeldman$elm_css$Css$pct(15)),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$top(
+								_rtfeldman$elm_css$Css$pct(32)),
+							_1: {
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
+								_1: {
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Css$height(
+										_rtfeldman$elm_css$Css$px(30)),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			}
+		});
+};
 var _user$project$View_Recipe$categoryDisplay = function (name) {
 	return A2(
 		_rtfeldman$elm_css$Html_Styled$div,
@@ -20633,7 +20673,7 @@ var _user$project$View_Recipe$categoryDisplay = function (name) {
 							_1: {
 								ctor: '::',
 								_0: _rtfeldman$elm_css$Css$marginBottom(
-									_user$project$Style_Theme$toEm(-14)),
+									_user$project$Style_Theme$toEm(8)),
 								_1: {ctor: '[]'}
 							}
 						}),
@@ -20739,6 +20779,25 @@ var _user$project$View_Recipe$ingredientList = function (ingredients) {
 		},
 		A2(_elm_lang$core$List$map, _user$project$View_Recipe$ingredientItem, ingredients));
 };
+var _user$project$View_Recipe$heroContainerCategory = _rtfeldman$elm_css$Css$batch(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css$backgroundSize(
+			_rtfeldman$elm_css$Css$pct(7)),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css$left(_rtfeldman$elm_css$Css$zero),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$maxWidth(_rtfeldman$elm_css$Css$none),
+				_1: {
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	});
 var _user$project$View_Recipe$heroBackground = _rtfeldman$elm_css$Css$batch(
 	{
 		ctor: '::',
@@ -20786,72 +20845,143 @@ var _user$project$View_Recipe$heroImage = function (imgUrl) {
 			}
 		});
 };
-var _user$project$View_Recipe$heroImageContainer = function (image) {
-	return A2(
-		_rtfeldman$elm_css$Html_Styled$div,
-		{
-			ctor: '::',
-			_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-				{
-					ctor: '::',
-					_0: A2(
-						_rtfeldman$elm_css$Css$margin2,
-						_user$project$Style_Theme$toEm(_user$project$Style_Theme$spacing.section),
-						_rtfeldman$elm_css$Css$px(0)),
-					_1: {
+var _user$project$View_Recipe$heroImageContainer = F2(
+	function (image, categoryName) {
+		return A2(
+			_rtfeldman$elm_css$Html_Styled$div,
+			{
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+					{
 						ctor: '::',
-						_0: _user$project$View_Recipe$heroBackground,
+						_0: A2(
+							_rtfeldman$elm_css$Css$margin2,
+							_user$project$Style_Theme$toEm(_user$project$Style_Theme$spacing.section),
+							_rtfeldman$elm_css$Css$px(0)),
 						_1: {
 							ctor: '::',
-							_0: _user$project$Style_Layout$fullWidth,
-							_1: {ctor: '[]'}
+							_0: _user$project$View_Recipe$heroBackground,
+							_1: {
+								ctor: '::',
+								_0: _user$project$Style_Layout$fullWidth,
+								_1: {ctor: '[]'}
+							}
 						}
-					}
-				}),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: A2(
-				_rtfeldman$elm_css$Html_Styled$div,
-				{
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
-						{
-							ctor: '::',
-							_0: _user$project$View_Recipe$heroImage(image.url),
-							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
-				},
-				{
+					}),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_rtfeldman$elm_css$Html_Styled$div,
+					{
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+							{
+								ctor: '::',
+								_0: _user$project$View_Category$categoryBgView(categoryName),
+								_1: {
+									ctor: '::',
+									_0: _user$project$View_Recipe$heroContainerCategory,
+									_1: {
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Css$top(
+											_rtfeldman$elm_css$Css$px(15)),
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{ctor: '[]'}),
+				_1: {
 					ctor: '::',
 					_0: A2(
-						_rtfeldman$elm_css$Html_Styled$img,
+						_rtfeldman$elm_css$Html_Styled$div,
 						{
 							ctor: '::',
 							_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 								{
 									ctor: '::',
-									_0: _user$project$Style_Util$visuallyHide,
-									_1: {ctor: '[]'}
+									_0: _user$project$View_Recipe$heroImage(image.url),
+									_1: {
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Css$zIndex(
+												_rtfeldman$elm_css$Css$int(3)),
+											_1: {ctor: '[]'}
+										}
+									}
 								}),
-							_1: {
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Html_Styled_Attributes$src(image.url),
-								_1: {
-									ctor: '::',
-									_0: _rtfeldman$elm_css$Html_Styled_Attributes$alt(image.alt),
-									_1: {ctor: '[]'}
-								}
-							}
+							_1: {ctor: '[]'}
 						},
-						{ctor: '[]'}),
-					_1: {ctor: '[]'}
-				}),
-			_1: {ctor: '[]'}
-		});
-};
+						{
+							ctor: '::',
+							_0: A2(
+								_rtfeldman$elm_css$Html_Styled$img,
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+										{
+											ctor: '::',
+											_0: _user$project$Style_Util$visuallyHide,
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Html_Styled_Attributes$src(image.url),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Html_Styled_Attributes$alt(image.alt),
+											_1: {ctor: '[]'}
+										}
+									}
+								},
+								{ctor: '[]'}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_rtfeldman$elm_css$Html_Styled$div,
+							{
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+									{
+										ctor: '::',
+										_0: _user$project$View_Category$categoryBgView(categoryName),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_rtfeldman$elm_css$Css$backgroundPosition2,
+												_rtfeldman$elm_css$Css$px(80),
+												_rtfeldman$elm_css$Css$zero),
+											_1: {
+												ctor: '::',
+												_0: _user$project$View_Recipe$heroContainerCategory,
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Css$top(_rtfeldman$elm_css$Css$inherit),
+													_1: {
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Css$bottom(
+															_rtfeldman$elm_css$Css$px(5)),
+														_1: {ctor: '[]'}
+													}
+												}
+											}
+										}
+									}),
+								_1: {ctor: '[]'}
+							},
+							{ctor: '[]'}),
+						_1: {ctor: '[]'}
+					}
+				}
+			});
+	});
 var _user$project$View_Recipe$toLi = function (s) {
 	return A2(
 		_rtfeldman$elm_css$Html_Styled$li,
@@ -20912,7 +21042,7 @@ var _user$project$View_Recipe$view = function (recipe) {
 				{ctor: '[]'},
 				{
 					ctor: '::',
-					_0: _user$project$View_Recipe$categoryDisplay('primi'),
+					_0: _user$project$View_Recipe$categoryDisplay(recipe.category.name),
 					_1: {ctor: '[]'}
 				}),
 			_1: {
@@ -20967,7 +21097,7 @@ var _user$project$View_Recipe$view = function (recipe) {
 						}),
 					_1: {
 						ctor: '::',
-						_0: _user$project$View_Recipe$heroImageContainer(recipe.image),
+						_0: A2(_user$project$View_Recipe$heroImageContainer, recipe.image, recipe.category.name),
 						_1: {
 							ctor: '::',
 							_0: A2(
@@ -21232,7 +21362,11 @@ var _user$project$View_Recipe$view = function (recipe) {
 																					_0: _user$project$Style_Components$secondaryButton,
 																					_1: {ctor: '[]'}
 																				}),
-																			_1: {ctor: '[]'}
+																			_1: {
+																				ctor: '::',
+																				_0: _rtfeldman$elm_css$Html_Styled_Attributes$href('mailto:?subject=Family recipe site&amp;body=http://www.family-recipes.com.'),
+																				_1: {ctor: '[]'}
+																			}
 																		},
 																		{
 																			ctor: '::',
@@ -21885,40 +22019,8 @@ var _user$project$View_Recipes$view = F2(
 									_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 										{
 											ctor: '::',
-											_0: _user$project$Style_Layout$container,
-											_1: {
-												ctor: '::',
-												_0: _rtfeldman$elm_css$Css$backgroundImage(
-													_rtfeldman$elm_css$Css$url(
-														A2(
-															_elm_lang$core$Basics_ops['++'],
-															'https://s3-us-west-1.amazonaws.com/family-recipes/bg-',
-															A2(_elm_lang$core$Basics_ops['++'], category, '.svg')))),
-												_1: {
-													ctor: '::',
-													_0: _rtfeldman$elm_css$Css$backgroundRepeat(_rtfeldman$elm_css$Css$repeatX),
-													_1: {
-														ctor: '::',
-														_0: _rtfeldman$elm_css$Css$backgroundSize(
-															_rtfeldman$elm_css$Css$pct(15)),
-														_1: {
-															ctor: '::',
-															_0: _rtfeldman$elm_css$Css$top(
-																_rtfeldman$elm_css$Css$pct(32)),
-															_1: {
-																ctor: '::',
-																_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
-																_1: {
-																	ctor: '::',
-																	_0: _rtfeldman$elm_css$Css$height(
-																		_rtfeldman$elm_css$Css$px(30)),
-																	_1: {ctor: '[]'}
-																}
-															}
-														}
-													}
-												}
-											}
+											_0: _user$project$View_Category$categoryBgView(category),
+											_1: {ctor: '[]'}
 										}),
 									_1: {ctor: '[]'}
 								},

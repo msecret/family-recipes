@@ -14,6 +14,7 @@ import Types.Cook exposing (cooksToText)
 import Types.Image exposing (Image)
 import Types.Ingredient exposing (Ingredient, toText)
 import Types.Recipe exposing (Recipe)
+import View.Category exposing (categoryBgView)
 import View.Grid exposing (..)
 
 
@@ -48,12 +49,39 @@ heroBackground =
         ]
 
 
-heroImageContainer : Image -> Html msg
-heroImageContainer image =
+heroContainerCategory =
+    Css.batch
+        [ backgroundSize (pct 7)
+        , left zero
+        , maxWidth none
+        , position absolute
+        ]
+
+
+heroImageContainer : Image -> String -> Html msg
+heroImageContainer image categoryName =
     div [ css [ margin2 (toEm spacing.section) (px 0), heroBackground, L.fullWidth ] ]
-        [ div [ css [ heroImage image.url ] ]
+        [ div
+            [ css
+                [ categoryBgView categoryName
+                , heroContainerCategory
+                , top (px 15)
+                ]
+            ]
+            []
+        , div [ css [ heroImage image.url, position relative, zIndex (int 3) ] ]
             [ img [ css [ U.visuallyHide ], src image.url, alt image.alt ] []
             ]
+        , div
+            [ css
+                [ categoryBgView categoryName
+                , backgroundPosition2 (px 80) zero
+                , heroContainerCategory
+                , top inherit
+                , bottom (px 5)
+                ]
+            ]
+            []
         ]
 
 
@@ -99,7 +127,7 @@ difficultyText amount =
 categoryDisplay : String -> Html msg
 categoryDisplay name =
     div [ css [ width (px 101), marginRight auto, marginLeft auto, textAlign center ] ]
-        [ h5 [ css [ Typo.categoryText, marginBottom (toEm -14) ] ]
+        [ h5 [ css [ Typo.categoryText, marginBottom (toEm 8) ] ]
             [ text name
             ]
         , div
@@ -117,7 +145,7 @@ view : Recipe -> Html msg
 view recipe =
     div [ css [ marginTop (toEm 40) ] ]
         [ div []
-            [ categoryDisplay "primi" ]
+            [ categoryDisplay recipe.category.name ]
         , h1 [ css [ Typo.title ] ]
             [ text recipe.title ]
         , div
@@ -125,7 +153,7 @@ view recipe =
             [ p [ css [ Typo.byByLine ] ] [ text "by" ]
             , toHtmlList (cooksToText recipe.cooks)
             ]
-        , heroImageContainer recipe.image
+        , heroImageContainer recipe.image recipe.category.name
         , div [ css [ grid, marginBottom (toEm spacing.section) ] ]
             [ div [ css [ gcol 3, textAlign center ] ]
                 [ h5 [ css [ Typo.h4 ] ]
@@ -147,7 +175,11 @@ view recipe =
                 , p [ css [ Typo.displayMd, marginTop (px 0) ] ]
                     [ text (toString recipe.cookingTime) ]
                 , div [ css [ marginTop (px 15) ] ]
-                    [ button [ css [ secondaryButton ] ] [ text "Print" ]
+                    [ button
+                        [ css [ secondaryButton ]
+                        , href "mailto:?subject=Family recipe site&amp;body=http://www.family-recipes.com."
+                        ]
+                        [ text "Print" ]
                     , button [ css [ primaryButton ] ] [ text "Email" ]
                     ]
                 ]

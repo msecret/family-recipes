@@ -5,7 +5,7 @@ import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (alt, class, css, href, property, src)
 import Json.Encode exposing (string)
-import Style.Components exposing (hR, list, primaryButton, secondaryButton)
+import Style.Components exposing (hR, list, primaryButton, tertiaryButton)
 import Style.Layout as L
 import Style.Theme exposing (..)
 import Style.Typography as Typo
@@ -150,7 +150,7 @@ view recipe =
             [ text recipe.title ]
         , div
             []
-            [ p [ css [ Typo.byByLine ] ] [ text "by" ]
+            [ p [ css [ Typo.byByLine, color colors.primary ] ] [ text "by" ]
             , toHtmlList (cooksToText recipe.cooks)
             ]
         , heroImageContainer recipe.image recipe.category.name
@@ -176,7 +176,7 @@ view recipe =
                     [ text (toString recipe.cookingTime) ]
                 , div [ css [ marginTop (px 15) ] ]
                     [ button
-                        [ css [ secondaryButton ]
+                        [ css [ tertiaryButton ]
                         , href "mailto:?subject=Family recipe site&amp;body=http://www.family-recipes.com."
                         ]
                         [ text "Print" ]

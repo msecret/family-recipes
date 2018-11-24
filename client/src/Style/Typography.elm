@@ -35,9 +35,9 @@ title : Style
 title =
     Css.batch
         [ color colors.black
-        , fontFamilies decorativeFamily
+        , fontFamilies serifFamily
         , fontSize (toEm 64)
-        , fontWeight bolder
+        , fontWeight normal
         , marginBottom (toEm 0)
         , textAlign center
         ]

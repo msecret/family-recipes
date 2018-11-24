@@ -1,4 +1,4 @@
-module Style.Components exposing (..)
+module Style.Components exposing (hR, list, primaryButton, rButton, secondaryButton, tertiaryButton)
 
 import Css exposing (..)
 import Css.Foreign exposing (..)
@@ -75,5 +75,16 @@ secondaryButton =
         , borderColor colors.secondary
         , after
             [ borderColor colors.secondary
+            ]
+        ]
+
+
+tertiaryButton =
+    Css.batch
+        [ rButton
+        , backgroundColor colors.tertiary
+        , borderColor colors.tertiary
+        , after
+            [ borderColor colors.tertiary
             ]
         ]

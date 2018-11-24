@@ -177,10 +177,13 @@ view recipe =
                 , div [ css [ marginTop (px 15) ] ]
                     [ button
                         [ css [ tertiaryButton ]
-                        , href "mailto:?subject=Family recipe site&amp;body=http://www.family-recipes.com."
                         ]
                         [ text "Print" ]
-                    , button [ css [ primaryButton ] ] [ text "Email" ]
+                    , a
+                        [ css [ primaryButton, marginLeft (px 10) ]
+                        , href "mailto:?subject=Family recipe site&amp;body=http://www.family-recipes.com."
+                        ]
+                        [ text "Email" ]
                     ]
                 ]
             ]

@@ -1,28 +1,28 @@
-module View.Header exposing (view, renderMenuLink)
+module View.Header exposing (renderMenuLink, view)
 
 import Css exposing (..)
 import Html
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css, href, src)
 import Html.Styled.Events exposing (onClick)
-import Char exposing (toUpper)
-import String exposing (uncons, cons)
 import Msgs exposing (Msg)
 import Route exposing (..)
+import String exposing (cons, uncons)
+import Style.Typography as Typography
+import Style.Util exposing (capitalCase)
 import Types.Categories exposing (..)
 import View.Grid exposing (..)
 import View.Logo as Logo
-import Style.Typography as Typography
 
 
 view : Html Msg
 view =
     header [ css [ grid ] ]
-        [ div [ css [ (gcol 2) ] ]
+        [ div [ css [ gcol 2 ] ]
             [ Logo.view
             ]
-        , div [ css [ (offset 2) ] ] []
-        , div [ css [ (gcol 8) ] ]
+        , div [ css [ offset 2 ] ] []
+        , div [ css [ gcol 8 ] ]
             [ renderMenu categories
             ]
         ]
@@ -53,28 +53,18 @@ renderMenuLink : Category -> Html msg
 renderMenuLink category =
     let
         link =
-            (getUrl (RecipesRoute (Just (category))))
+            getUrl (RecipesRoute (Just category))
     in
-        li
-            [ css
-                [ display inlineBlock
-                , backgroundImage (url "https://s3-us-west-1.amazonaws.com/family-recipes/nav-bg.svg")
-                , backgroundRepeat noRepeat
-                , backgroundPosition2 (pct 100) (pct 100)
-                , height (px 26)
-                , padding2 (px 0) (px 9)
-                ]
+    li
+        [ css
+            [ display inlineBlock
+            , backgroundImage (url "https://s3-us-west-1.amazonaws.com/family-recipes/nav-bg.svg")
+            , backgroundRepeat noRepeat
+            , backgroundPosition2 (pct 100) (pct 100)
+            , height (px 26)
+            , padding2 (px 0) (px 9)
             ]
-            [ a [ href link, css [ Typography.nav ] ]
-                [ text (capitalCase (categoryToString (Just category))) ]
-            ]
-
-
-capitalCase : String -> String
-capitalCase str =
-    case (uncons str) of
-        Just ( f, rest ) ->
-            cons (toUpper f) rest
-
-        Nothing ->
-            ""
+        ]
+        [ a [ href link, css [ Typography.nav ] ]
+            [ text (capitalCase (categoryToString (Just category))) ]
+        ]

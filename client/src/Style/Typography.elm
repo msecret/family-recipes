@@ -13,7 +13,7 @@ nav =
         [ color colors.black
         , fontFamilies sansFamily
         , fontSize (toEm 15)
-        , fontWeight bolder
+        , fontWeight normal
         , textDecoration none
         ]
 

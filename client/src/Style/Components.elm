@@ -38,6 +38,7 @@ rButton =
         , padding2 (toEm 6) (toEm 24)
         , position relative
         , textTransform uppercase
+        , textDecoration none
         , after
             [ property "content" "''"
             , border3 (px 2) solid colors.secondary

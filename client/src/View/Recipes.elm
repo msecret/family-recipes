@@ -80,7 +80,7 @@ difficultyView difficulty =
 
 compactRecipe : Recipe -> Html msg
 compactRecipe recipe =
-    div [ css [ gcol 6, marginTop (px 20) ] ]
+    div [ css [ gcol 6, marginTop (px 30) ] ]
         [ div [ css [ grid ] ]
             [ div [ css [ gcol 6 ] ]
                 [ a [ href (recipeUrl recipe.id) ]
@@ -123,6 +123,7 @@ view category recipes =
         , div
             [ css
                 [ L.fullWidth
+                , marginBottom (px 20)
                 , height (px 64)
                 , backgroundImage (url "https://s3-us-west-1.amazonaws.com/family-recipes/bg-3stripe.svg")
                 ]
@@ -130,7 +131,7 @@ view category recipes =
             [ div
                 [ css
                     [ L.container
-                    , backgroundImage (url "https://s3-us-west-1.amazonaws.com/family-recipes/bg-antipasti.svg")
+                    , backgroundImage (url ("https://s3-us-west-1.amazonaws.com/family-recipes/bg-" ++ category ++ ".svg"))
                     , backgroundRepeat repeatX
                     , backgroundSize (pct 15)
                     , top (pct 32)

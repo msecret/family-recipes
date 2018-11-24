@@ -24,7 +24,7 @@ toHtmlList strings =
 
 toLi : String -> Html msg
 toLi s =
-    li [ css [ Typo.byLine ] ] [ text s ]
+    li [ css [ Typo.byLine, marginTop (px 4) ] ] [ text s ]
 
 
 heroImage : String -> Style
@@ -64,7 +64,13 @@ ingredientList ingredients =
 
 ingredientItem : Ingredient -> Html msg
 ingredientItem ingredient =
-    li [ css [ Typo.displayMd, marginBottom (toEm 22), fontWeight bolder ] ]
+    li
+        [ css
+            [ Typo.displayMd
+            , marginBottom (toEm 22)
+            , fontWeight bolder
+            ]
+        ]
         [ text (toText ingredient) ]
 
 
@@ -98,7 +104,7 @@ categoryDisplay name =
             ]
         , div
             [ css
-                [ backgroundImage (url ("https://s3-us-west-1.amazonaws.com/family-recipes/category-" ++ name ++ ".svg"))
+                [ backgroundImage (url ("https://s3-us-west-1.amazonaws.com/family-recipes/plate-empty-" ++ name ++ ".svg"))
                 , height (px 28)
                 , width (px 101)
                 ]

@@ -20657,7 +20657,7 @@ var _user$project$View_Recipe$categoryDisplay = function (name) {
 									_rtfeldman$elm_css$Css$url(
 										A2(
 											_elm_lang$core$Basics_ops['++'],
-											'https://s3-us-west-1.amazonaws.com/family-recipes/category-',
+											'https://s3-us-west-1.amazonaws.com/family-recipes/plate-empty-',
 											A2(_elm_lang$core$Basics_ops['++'], name, '.svg')))),
 								_1: {
 									ctor: '::',
@@ -20861,7 +20861,12 @@ var _user$project$View_Recipe$toLi = function (s) {
 				{
 					ctor: '::',
 					_0: _user$project$Style_Typography$byLine,
-					_1: {ctor: '[]'}
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$marginTop(
+							_rtfeldman$elm_css$Css$px(4)),
+						_1: {ctor: '[]'}
+					}
 				}),
 			_1: {ctor: '[]'}
 		},
@@ -21513,7 +21518,7 @@ var _user$project$View_Recipes$compactRecipe = function (recipe) {
 					_1: {
 						ctor: '::',
 						_0: _rtfeldman$elm_css$Css$marginTop(
-							_rtfeldman$elm_css$Css$px(20)),
+							_rtfeldman$elm_css$Css$px(30)),
 						_1: {ctor: '[]'}
 					}
 				}),
@@ -21854,13 +21859,18 @@ var _user$project$View_Recipes$view = F2(
 									_0: _user$project$Style_Layout$fullWidth,
 									_1: {
 										ctor: '::',
-										_0: _rtfeldman$elm_css$Css$height(
-											_rtfeldman$elm_css$Css$px(64)),
+										_0: _rtfeldman$elm_css$Css$marginBottom(
+											_rtfeldman$elm_css$Css$px(20)),
 										_1: {
 											ctor: '::',
-											_0: _rtfeldman$elm_css$Css$backgroundImage(
-												_rtfeldman$elm_css$Css$url('https://s3-us-west-1.amazonaws.com/family-recipes/bg-3stripe.svg')),
-											_1: {ctor: '[]'}
+											_0: _rtfeldman$elm_css$Css$height(
+												_rtfeldman$elm_css$Css$px(64)),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$backgroundImage(
+													_rtfeldman$elm_css$Css$url('https://s3-us-west-1.amazonaws.com/family-recipes/bg-3stripe.svg')),
+												_1: {ctor: '[]'}
+											}
 										}
 									}
 								}),
@@ -21879,7 +21889,11 @@ var _user$project$View_Recipes$view = F2(
 											_1: {
 												ctor: '::',
 												_0: _rtfeldman$elm_css$Css$backgroundImage(
-													_rtfeldman$elm_css$Css$url('https://s3-us-west-1.amazonaws.com/family-recipes/bg-antipasti.svg')),
+													_rtfeldman$elm_css$Css$url(
+														A2(
+															_elm_lang$core$Basics_ops['++'],
+															'https://s3-us-west-1.amazonaws.com/family-recipes/bg-',
+															A2(_elm_lang$core$Basics_ops['++'], category, '.svg')))),
 												_1: {
 													ctor: '::',
 													_0: _rtfeldman$elm_css$Css$backgroundRepeat(_rtfeldman$elm_css$Css$repeatX),

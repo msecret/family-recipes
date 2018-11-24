@@ -101,6 +101,7 @@ h4 =
         , fontFamilies sansFamily
         , fontSize (toEm 16)
         , fontWeight bolder
+        , margin (px 0)
         ]
 
 

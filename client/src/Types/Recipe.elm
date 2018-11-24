@@ -17,6 +17,8 @@ type alias Recipe =
     , description : String
     , memorandums : String
     , difficulty : Int
+    , cookingTime : String
+    , serves : Int
     , story : String
     , image : Image
     , category : CategoryModel
@@ -40,6 +42,8 @@ recipeQueryObject =
         |> with (field "description" [] string)
         |> with (field "memorandums" [] string)
         |> with (field "difficulty" [] int)
+        |> with (field "cookingTime" [] string)
+        |> with (field "serves" [] int)
         |> with (field "story" [] string)
         |> with (field "image" [] imageQuery)
         |> with (field "category" [] categoryQuery)

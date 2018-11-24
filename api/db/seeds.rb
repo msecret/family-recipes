@@ -308,6 +308,8 @@ ignocchi = Image.create!(
 rgnocchi = Recipe.create!(
   title: 'Gnocchi de Castagne',
   difficulty: 4,
+  cooking_time: '40 minutes',
+  serves: 4,
   memorandums: 'In honor of Mary Cirelli',
   story: 'This is our family’s all time favorite way to eat gnocchi. Both grandmotherswere experts at preparing these. As a child, I remember the bags of chestnutflour arriving from our cousins in Italy. These are always served with pestosauce. To splurge, I add cream cheese to the pesto and use freshly grated Parmesan cheese!',
   description: '<p>Cook and mash potatoes. Put them through a wire strainer. Add butter, setaside and cool. Add egg and egg yolk, flour, grated cheese and salt. Kneaduntil smooth and manageable, adding a little more flour if needed.</p><p>Roll dough into long, ropelike strips and cut into 3/4 in pieces. Use the tines of a fork (backside) to roll the gnocchi and make the indentations. The gnocchi should resemble a shell. Store on a floured board until ready to cook.</p><p>Boil in rapidly boiling salted water. When gnocchi come to the top. Removethem from the pot. Drain and serve with your favorite sauce and grated cheese. *** Prepare instant mashed potatoes to make 6-8 servings according to the package instructions. Use no other seasonings.</p><p>Use 3/4-cup flour and 3/4-cup castagne flour, 1 tsp. olive oil and 2 eggs, lightly beaten. When rolling the gnocchi, you will need extra flour – be sureto add white flour so that the castagne flavor is not too strong. Complete gnocchi as directed above.</p>',
@@ -375,6 +377,8 @@ ibruschetta = Image.create!(
 rbruschetta = Recipe.create!(
   title: 'Bruschetta',
   difficulty: 2,
+  cooking_time: '20 minutes',
+  serves: 6,
   memorandums: '',
   story: 'David would make this simple dish while getting ready to go out in Torino',
   description: '<p>The best type of bread for this recipe is unsalted Tuscan bread or homemade bread. Baugette French works well. Pre-sliced or packaged bread will not do. Toast the bread in the oven until brown and crisp. Rub at once with crushed garlic, brush lightly with olive oil and sprinkle generously with salt and freshly ground pepper.</p><p>Variations: top with freshly chopped tomatoes and basil or top with chicken livers.</p>',
@@ -425,6 +429,8 @@ ipasta_al_forno = Image.create!(
 forno = Recipe.create!(
   title: 'Pasta al Forno',
   difficulty: 5,
+  cooking_time: '1 hour 30 minutes',
+  serves: 8,
   memorandums: '',
   story: '',
   description: "<p>Cut eggplant crosswise to 1⁄2 inch thickness and lightly salt – leave to drain in colander for 1 hour. Wipe off excess salt with paper towel.</p><p>To prepare tomato sauce, sauté onion and garlic in small amount of olive oil
@@ -521,6 +527,8 @@ inoci = Image.create!(
 noci = Recipe.create!(
   title: 'Salsa di Noci (Walnut Sauce)',
   difficulty: 3,
+  cooking_time: '30 minutes',
+  serves: 4,
   memorandums: '',
   story: 'While not a family tradition, this is a typical Ligurian sauce that I discovered when living in Italy.',
   description: "<p>Grind the walnuts, pine nuts, garlic, parsley and salt into a smooth paste. Add
@@ -599,6 +607,8 @@ icaponata = Image.create!(
 caponata = Recipe.create!(
   title: 'Caponata',
   difficulty: 3,
+  cooking_time: '50 minutes',
+  serves: 4,
   memorandums: '',
   story: 'David would make this simple dish while getting ready to go out in Torino',
   description: "<p>Wash the eggplants and dice them without peeling. Sprinkle with salt and leave in a colander for about 1 hour to drain off bitter juices. Wipe dry with paper towel. Deep-fry in hot oil until brown and drain on paper towels.</p><p>Clean the celery, discarding any coarse stalks. Cut the remaining stalks into short lengths and wash them under running water. Wipe dry and deep fry in  the same oil until golden brown.</p><p>Take 1 cup of the oil, pour it into another medium-sized pan and sauté the

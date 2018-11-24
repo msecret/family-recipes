@@ -19010,7 +19010,11 @@ var _user$project$Types_Recipe$Recipe = function (a) {
 							return function (h) {
 								return function (i) {
 									return function (j) {
-										return {id: a, title: b, description: c, memorandums: d, difficulty: e, story: f, image: g, category: h, cooks: i, ingredients: j};
+										return function (k) {
+											return function (l) {
+												return {id: a, title: b, description: c, memorandums: d, difficulty: e, cookingTime: f, serves: g, story: h, image: i, category: j, cooks: k, ingredients: l};
+											};
+										};
 									};
 								};
 							};
@@ -19060,38 +19064,52 @@ var _user$project$Types_Recipe$recipeQueryObject = A2(
 						_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 						A3(
 							_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-							'difficulty',
+							'serves',
 							{ctor: '[]'},
 							_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$int),
 						A2(
 							_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 							A3(
 								_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-								'memorandums',
+								'cookingTime',
 								{ctor: '[]'},
 								_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
 							A2(
 								_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 								A3(
 									_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-									'description',
+									'difficulty',
 									{ctor: '[]'},
-									_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
+									_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$int),
 								A2(
 									_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 									A3(
 										_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-										'title',
+										'memorandums',
 										{ctor: '[]'},
 										_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
 									A2(
 										_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
 										A3(
 											_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
-											'id',
+											'description',
 											{ctor: '[]'},
 											_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
-										_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$object(_user$project$Types_Recipe$Recipe)))))))))));
+										A2(
+											_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
+											A3(
+												_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
+												'title',
+												{ctor: '[]'},
+												_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
+											A2(
+												_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$with,
+												A3(
+													_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$field,
+													'id',
+													{ctor: '[]'},
+													_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$string),
+												_jamesmacaulay$elm_graphql$GraphQL_Request_Builder$object(_user$project$Types_Recipe$Recipe)))))))))))));
 var _user$project$Types_Recipe$recipesQueryObject = _jamesmacaulay$elm_graphql$GraphQL_Request_Builder$list(_user$project$Types_Recipe$recipeQueryObject);
 var _user$project$Types_Recipe$recipesByCategoryQuery = function () {
 	var recipes = _user$project$Types_Recipe$recipesQueryObject;
@@ -19661,7 +19679,12 @@ var _user$project$Style_Typography$h4 = _rtfeldman$elm_css$Css$batch(
 				_1: {
 					ctor: '::',
 					_0: _rtfeldman$elm_css$Css$fontWeight(_rtfeldman$elm_css$Css$bolder),
-					_1: {ctor: '[]'}
+					_1: {
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$margin(
+							_rtfeldman$elm_css$Css$px(0)),
+						_1: {ctor: '[]'}
+					}
 				}
 			}
 		}
@@ -20995,13 +21018,8 @@ var _user$project$View_Recipe$view = function (recipe) {
 													_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 														{
 															ctor: '::',
-															_0: _user$project$Style_Typography$h5,
-															_1: {
-																ctor: '::',
-																_0: _rtfeldman$elm_css$Css$marginTop(
-																	_user$project$Style_Theme$toEm(20)),
-																_1: {ctor: '[]'}
-															}
+															_0: _user$project$Style_Typography$h4,
+															_1: {ctor: '[]'}
 														}),
 													_1: {ctor: '[]'}
 												},
@@ -21019,8 +21037,13 @@ var _user$project$View_Recipe$view = function (recipe) {
 														_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 															{
 																ctor: '::',
-																_0: _user$project$Style_Typography$displaySm,
-																_1: {ctor: '[]'}
+																_0: _user$project$Style_Typography$displayMd,
+																_1: {
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Css$marginTop(
+																		_rtfeldman$elm_css$Css$px(0)),
+																	_1: {ctor: '[]'}
+																}
 															}),
 														_1: {ctor: '[]'}
 													},
@@ -21030,7 +21053,58 @@ var _user$project$View_Recipe$view = function (recipe) {
 															_user$project$View_Recipe$difficultyText(recipe.difficulty)),
 														_1: {ctor: '[]'}
 													}),
-												_1: {ctor: '[]'}
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_rtfeldman$elm_css$Html_Styled$h5,
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																{
+																	ctor: '::',
+																	_0: _user$project$Style_Typography$h4,
+																	_1: {
+																		ctor: '::',
+																		_0: _rtfeldman$elm_css$Css$marginTop(
+																			_user$project$Style_Theme$toEm(15)),
+																		_1: {ctor: '[]'}
+																	}
+																}),
+															_1: {ctor: '[]'}
+														},
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Html_Styled$text('Serves'),
+															_1: {ctor: '[]'}
+														}),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_rtfeldman$elm_css$Html_Styled$p,
+															{
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																	{
+																		ctor: '::',
+																		_0: _user$project$Style_Typography$displayMd,
+																		_1: {
+																			ctor: '::',
+																			_0: _rtfeldman$elm_css$Css$marginTop(
+																				_rtfeldman$elm_css$Css$px(0)),
+																			_1: {ctor: '[]'}
+																		}
+																	}),
+																_1: {ctor: '[]'}
+															},
+															{
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Html_Styled$text(
+																	_elm_lang$core$Basics$toString(recipe.serves)),
+																_1: {ctor: '[]'}
+															}),
+														_1: {ctor: '[]'}
+													}
+												}
 											}
 										}),
 									_1: {
@@ -21100,13 +21174,8 @@ var _user$project$View_Recipe$view = function (recipe) {
 															_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 																{
 																	ctor: '::',
-																	_0: _user$project$Style_Typography$h5,
-																	_1: {
-																		ctor: '::',
-																		_0: _rtfeldman$elm_css$Css$marginTop(
-																			_user$project$Style_Theme$toEm(20)),
-																		_1: {ctor: '[]'}
-																	}
+																	_0: _user$project$Style_Typography$h4,
+																	_1: {ctor: '[]'}
 																}),
 															_1: {ctor: '[]'}
 														},
@@ -21124,60 +21193,79 @@ var _user$project$View_Recipe$view = function (recipe) {
 																_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 																	{
 																		ctor: '::',
-																		_0: _user$project$Style_Typography$displaySm,
-																		_1: {ctor: '[]'}
+																		_0: _user$project$Style_Typography$displayMd,
+																		_1: {
+																			ctor: '::',
+																			_0: _rtfeldman$elm_css$Css$marginTop(
+																				_rtfeldman$elm_css$Css$px(0)),
+																			_1: {ctor: '[]'}
+																		}
 																	}),
 																_1: {ctor: '[]'}
 															},
 															{
 																ctor: '::',
 																_0: _rtfeldman$elm_css$Html_Styled$text(
-																	A2(
-																		_elm_lang$core$Basics_ops['++'],
-																		_elm_lang$core$Basics$toString(recipe.id),
-																		' minutes')),
+																	_elm_lang$core$Basics$toString(recipe.cookingTime)),
 																_1: {ctor: '[]'}
 															}),
 														_1: {
 															ctor: '::',
 															_0: A2(
-																_rtfeldman$elm_css$Html_Styled$button,
+																_rtfeldman$elm_css$Html_Styled$div,
 																{
 																	ctor: '::',
 																	_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
 																		{
 																			ctor: '::',
-																			_0: _user$project$Style_Components$secondaryButton,
+																			_0: _rtfeldman$elm_css$Css$marginTop(
+																				_rtfeldman$elm_css$Css$px(15)),
 																			_1: {ctor: '[]'}
 																		}),
 																	_1: {ctor: '[]'}
 																},
 																{
 																	ctor: '::',
-																	_0: _rtfeldman$elm_css$Html_Styled$text('Print'),
-																	_1: {ctor: '[]'}
-																}),
-															_1: {
-																ctor: '::',
-																_0: A2(
-																	_rtfeldman$elm_css$Html_Styled$button,
-																	{
+																	_0: A2(
+																		_rtfeldman$elm_css$Html_Styled$button,
+																		{
+																			ctor: '::',
+																			_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																				{
+																					ctor: '::',
+																					_0: _user$project$Style_Components$secondaryButton,
+																					_1: {ctor: '[]'}
+																				}),
+																			_1: {ctor: '[]'}
+																		},
+																		{
+																			ctor: '::',
+																			_0: _rtfeldman$elm_css$Html_Styled$text('Print'),
+																			_1: {ctor: '[]'}
+																		}),
+																	_1: {
 																		ctor: '::',
-																		_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																		_0: A2(
+																			_rtfeldman$elm_css$Html_Styled$button,
 																			{
 																				ctor: '::',
-																				_0: _user$project$Style_Components$primaryButton,
+																				_0: _rtfeldman$elm_css$Html_Styled_Attributes$css(
+																					{
+																						ctor: '::',
+																						_0: _user$project$Style_Components$primaryButton,
+																						_1: {ctor: '[]'}
+																					}),
+																				_1: {ctor: '[]'}
+																			},
+																			{
+																				ctor: '::',
+																				_0: _rtfeldman$elm_css$Html_Styled$text('Email'),
 																				_1: {ctor: '[]'}
 																			}),
 																		_1: {ctor: '[]'}
-																	},
-																	{
-																		ctor: '::',
-																		_0: _rtfeldman$elm_css$Html_Styled$text('Email'),
-																		_1: {ctor: '[]'}
-																	}),
-																_1: {ctor: '[]'}
-															}
+																	}
+																}),
+															_1: {ctor: '[]'}
 														}
 													}
 												}),

@@ -367,7 +367,7 @@ IngredientAmount.create!(
 )
 ibruschetta = Image.create!(
   name: 'Bruschetta',
-  url: ' https://s3-us-west-1.amazonaws.com/family-recipes/gnocchi-main.jpg',
+  url: 'https://s3-us-west-1.amazonaws.com/family-recipes/bruschetta-1.jpg',
   alt: 'Bruschetta plate with tomatoes',
   width: 1329,
   height: 888,
